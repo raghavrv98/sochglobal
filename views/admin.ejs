@@ -29,6 +29,70 @@
 	<!--[if lt IE 9]-->
 	<script src="js/html5shiv.min.js"></script>
 	<!--[endif]-->
+
+
+	<style>
+		.scrollbar-product {
+			overflow: auto;
+			height: 121vh;
+			border: 1px solid gray;
+			border-radius: 10px;
+		}
+
+		.product-image {
+			height: 180px;
+			width: 180px;
+			border-radius: 10px;
+		}
+
+		@media screen and (min-width: 768px) {
+			.categories ul li {
+				display: block;
+				font-size: 20px;
+				margin: 10px 20px;
+			}
+		}
+
+		@media screen and (max-width: 769px) {
+			.categories ul li {
+				display: block;
+				font-size: 20px;
+				margin: 10px 0px;
+			}
+		}
+
+		.down-arrow {
+			display: inline;
+			padding: 0px 10px 0px;
+			position: absolute;
+			top: 63px;
+		}
+
+		.main-heading-product {
+			display: inline !important;
+			color: gray;
+			font-size: 23px;
+			cursor: pointer;
+		}
+
+		.main-heading-product:hover {
+			color: #FE9126;
+		}
+
+		.categories ul li a {
+			color: #999;
+			text-decoration: none;
+		}
+
+		.categories ul li a:hover {
+			color: #3399cc;
+		}
+
+		.categories ul li span {
+			float: right;
+		}
+	</style>
+
 </head>
 
 <body>
@@ -39,18 +103,213 @@
 
 		<!-- End Header -->
 
-		<!--====== Carrier Pafe ======-->
+		<!--====== Products Page ======-->
 
 		<section class="contact section-padding">
 			<div class="container">
 
 				<div class="section-head spac">
-					<h3>Admin Page</h3>
-					<a class="logout-button" href="/">Logout</a>
+					<h3>Admin Dashboard</h3>
 				</div>
+
+				<div class="row">
+					<div class="cat-outer col-md-3">
+						<p class="cat-heading-text">Categories</p>
+						<hr>
+						<div class="cat-link">
+							<a class="cat-li-text" data-toggle="collapse" href="#1" role="button">
+								<i class="fas fa-caret-right mr-10"></i>
+								Audio & Video
+							</a>
+							<div class="collapse" id="1">
+								<div class="card card-body ml-20">
+									<p class="card-sub-li-text">streaming Devices</p>
+									<p class="card-sub-li-text">TV</p>
+									<p class="card-sub-li-text">Speakers</p>
+								</div>
+							</div>
+						</div>
+						<div class="cat-link">
+							<a class="cat-li-text" data-toggle="collapse" href="#2" role="button">
+								<i class="fas fa-caret-right  mr-10"></i>Computers
+							</a>
+							<div class="collapse" id="2">
+								<div class="card card-body ml-20">
+									<p class="card-sub-li-text">Laptops</p>
+									<p class="card-sub-li-text">Desktops</p>
+									<p class="card-sub-li-text">software</p>
+								</div>
+							</div>
+						</div>
+						<div class="cat-link">
+							<a class="cat-li-text" data-toggle="collapse" href="#2" role="button">
+								<i class="fas fa-caret-right  mr-10"></i>Computers
+							</a>
+							<div class="collapse" id="2">
+								<div class="card card-body ml-20">
+									<p class="card-sub-li-text">Laptops</p>
+									<p class="card-sub-li-text">Desktops</p>
+									<p class="card-sub-li-text">software</p>
+								</div>
+							</div>
+						</div>
+						<div class="cat-link">
+							<a class="cat-li-text" data-toggle="collapse" href="#2" role="button">
+								<i class="fas fa-caret-right  mr-10"></i>Computers
+							</a>
+							<div class="collapse" id="2">
+								<div class="card card-body ml-20">
+									<p class="card-sub-li-text">Laptops</p>
+									<p class="card-sub-li-text">Desktops</p>
+									<p class="card-sub-li-text">software</p>
+								</div>
+							</div>
+						</div>
+						<div class="cat-link">
+							<a class="cat-li-text" data-toggle="collapse" href="#2" role="button">
+								<i class="fas fa-caret-right  mr-10"></i>Computers
+							</a>
+							<div class="collapse" id="2">
+								<div class="card card-body ml-20">
+									<p class="card-sub-li-text">Laptops</p>
+									<p class="card-sub-li-text">Desktops</p>
+									<p class="card-sub-li-text">software</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="prod-outer col-md-9">
+						<span class="prod-heading-text"><span class="admin-product-heading">Main Heading: </span>
+							Computers &nbsp;&nbsp;</span>
+						<span class="prod-heading-text"><span class="admin-product-heading">Sub Heading: </span>
+							Laptops</span>
+						<span class="cat-total-text"><span class="admin-product-heading">Total Products: </span>
+							27</span>
+						<hr>
+						<div class="table-responsive">
+							<table class="table">
+								<thead>
+									<tr>
+										<th>Image</th>
+										<th>Name</th>
+										<th>Description</th>
+										<th>Stock Count</th>
+										<th>Action</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td><input type="file"></td>
+										<td><input type="text" class="pd-0" name="" id=""></td>
+										<td><input type="text" class="pd-0" name="" id=""></td>
+										<td><input type="text" class="pd-0" name="" id=""></td>
+										<td><input type="submit" class="mr-0" value="Add/Update" name="" id=""></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<hr>
+						<div class="admin-prod-outer">
+							<div>
+								<div class="float-right mb-20">
+									<input type="submit" class="admin-edit-button" value="Edit">
+									<input type="submit" class="admin-delete-button" value="Delete">
+								</div>
+								<p class="prod-li-head-text">JBL Headphone Endurance Jump BT In-ear Black/Yellow</p>
+								<p class="prod-li-text">
+									SKU: ENDURJUMPLAM UPC: 050036354844 CONDITION: NEW COLOR: YELLOW SPECS: USA/CANADIAN
+									WARRANTY:
+									1-YEAR WARRANTY REGION: USA RESTRICTIONS: LATAM ONLY BRAND: JBL CATEGORY: AUDIO &
+									VIDEO
+									SUB-CATEGORY: HEADPHONES
+								</p>
+								<p class="prod-li-stock-text">169 In Stock</p>
+								</p>
+								<hr>
+							</div>
+							<div>
+								<div class="float-right mb-20">
+									<input type="submit" class="admin-edit-button" value="Edit">
+									<input type="submit" class="admin-delete-button" value="Delete">
+								</div>
+								<p class="prod-li-head-text">JBL Headphone Endurance Jump BT In-ear Black/Yellow</p>
+								<p class="prod-li-text">
+									SKU: ENDURJUMPLAM UPC: 050036354844 CONDITION: NEW COLOR: YELLOW SPECS: USA/CANADIAN
+									WARRANTY:
+									1-YEAR WARRANTY REGION: USA RESTRICTIONS: LATAM ONLY BRAND: JBL CATEGORY: AUDIO &
+									VIDEO
+									SUB-CATEGORY: HEADPHONES
+								</p>
+								<p class="prod-li-stock-text">169 In Stock</p>
+								</p>
+								<hr>
+							</div>
+							<div>
+								<div class="float-right mb-20">
+									<input type="submit" class="admin-edit-button" value="Edit">
+									<input type="submit" class="admin-delete-button" value="Delete">
+								</div>
+								<p class="prod-li-head-text">JBL Headphone Endurance Jump BT In-ear Black/Yellow</p>
+								<p class="prod-li-text">
+									SKU: ENDURJUMPLAM UPC: 050036354844 CONDITION: NEW COLOR: YELLOW SPECS: USA/CANADIAN
+									WARRANTY:
+									1-YEAR WARRANTY REGION: USA RESTRICTIONS: LATAM ONLY BRAND: JBL CATEGORY: AUDIO &
+									VIDEO
+									SUB-CATEGORY: HEADPHONES
+								</p>
+								<p class="prod-li-stock-text">169 In Stock</p>
+								</p>
+								<hr>
+							</div>
+							<div>
+								<div class="float-right mb-20">
+									<input type="submit" class="admin-edit-button" value="Edit">
+									<input type="submit" class="admin-delete-button" value="Delete">
+								</div>
+								<p class="prod-li-head-text">JBL Headphone Endurance Jump BT In-ear Black/Yellow</p>
+								<p class="prod-li-text">
+									SKU: ENDURJUMPLAM UPC: 050036354844 CONDITION: NEW COLOR: YELLOW SPECS: USA/CANADIAN
+									WARRANTY:
+									1-YEAR WARRANTY REGION: USA RESTRICTIONS: LATAM ONLY BRAND: JBL CATEGORY: AUDIO &
+									VIDEO
+									SUB-CATEGORY: HEADPHONES
+								</p>
+								<p class="prod-li-stock-text">169 In Stock</p>
+								</p>
+								<hr>
+							</div>
+							<div>
+								<div class="float-right mb-20">
+									<input type="submit" class="admin-edit-button" value="Edit">
+									<input type="submit" class="admin-delete-button" value="Delete">
+								</div>
+								<p class="prod-li-head-text">JBL Headphone Endurance Jump BT In-ear Black/Yellow</p>
+								<p class="prod-li-text">
+									SKU: ENDURJUMPLAM UPC: 050036354844 CONDITION: NEW COLOR: YELLOW SPECS: USA/CANADIAN
+									WARRANTY:
+									1-YEAR WARRANTY REGION: USA RESTRICTIONS: LATAM ONLY BRAND: JBL CATEGORY: AUDIO &
+									VIDEO
+									SUB-CATEGORY: HEADPHONES
+								</p>
+								<p class="prod-li-stock-text">169 In Stock</p>
+								</p>
+								<hr>
+							</div>
+						</div>
+						<!-- <div class="text-center pagination-text">
+							<span><i class="fas fa-chevron-circle-left pagination-left-icon"></i></span>
+							Page 1 of 3
+							<span><i class="fas fa-chevron-circle-right pagination-right-icon"></i></span>
+						</div> -->
+					</div>
+				</div>
+
+			</div>
+
 			</div>
 		</section>
-		<!--====== End Carrier Pafe ======-->
+
+		<!--====== End Products Page ======-->
 
 		<!-- footer -->
 
