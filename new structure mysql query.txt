@@ -1,0 +1,360 @@
+
+login cred 
+
+id 	 name     emailid       password timestamp
+1. 	admin admin@gmail.com   1234		now()
+--------------------------------
+
+DROP TABLE IF EXISTS login_cred;
+create table login_cred(
+   id INT NOT NULL AUTO_INCREMENT,
+   name VARCHAR(255) NOT NULL,
+   email VARCHAR(255) NOT NULL,
+   password VARCHAR(255) NOT NULL,
+   creationTimestamp timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
+   PRIMARY KEY ( id )
+);
+
+INSERT INTO login_cred (name,email,password)
+VALUES ('admin','admin@gmail.com','1234');
+
+---------------------------------------------------------------
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+--------------------------------------------------------------------
+productCategories
+
+id Category	displayCategory subCategory displaySubCategory timestamp
+1. grocery    Grocery		dal					Dal			now()
+
+===================================================================
+
+DROP TABLE IF EXISTS product_categories;
+create table product_categories(
+   id INT NOT NULL AUTO_INCREMENT,
+   category VARCHAR(255) NOT NULL,
+   displayCategory VARCHAR(255) NOT NULL,
+   subCategory VARCHAR(255) NOT NULL,
+   displaySubCategory VARCHAR(255) NOT NULL,
+   creationTimestamp timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
+   PRIMARY KEY ( id )
+);
+
+INSERT INTO product_categories (category, displayCategory, subCategory, displaySubCategory) VALUES ('new_arrivals','New Arrivals','', '');
+INSERT INTO product_categories (category, displayCategory, subCategory, displaySubCategory) VALUES ('breakfast_dairy','Breakfast & Dairy','', '');
+INSERT INTO product_categories (category, displayCategory, subCategory, displaySubCategory) VALUES ('oral_care','Oral Care','', '');
+INSERT INTO product_categories (category, displayCategory, subCategory, displaySubCategory) VALUES ('grocery','Grocery','dal', 'Dal');
+INSERT INTO product_categories (category, displayCategory, subCategory, displaySubCategory) VALUES ('grocery','Grocery','sugar_salt', 'Salt/Sugar');
+INSERT INTO product_categories (category, displayCategory, subCategory, displaySubCategory) VALUES ('grocery','Grocery','rice_rice_products', 'Rice & Rice Products');
+INSERT INTO product_categories (category, displayCategory, subCategory, displaySubCategory) VALUES ('grocery','Grocery','dry_fruits', 'Dry Fruits');
+INSERT INTO product_categories (category, displayCategory, subCategory, displaySubCategory) VALUES ('grocery','Grocery','flours_grains', 'Flours & Grains');
+INSERT INTO product_categories (category, displayCategory, subCategory, displaySubCategory) VALUES ('grocery','Grocery','cookingoil_ghee', 'Cooking Oil & Ghee');
+INSERT INTO product_categories (category, displayCategory, subCategory, displaySubCategory) VALUES ('beverages','Beverages','', '');
+INSERT INTO product_categories (category, displayCategory, subCategory, displaySubCategory) VALUES ('personal_care','Personal Care','deo_perfumes', 'Deo & Perfumes');
+INSERT INTO product_categories (category, displayCategory, subCategory, displaySubCategory) VALUES ('personal_care','Personal Care','shampoo_Conditioner', 'Shampoo & Conditioner');
+INSERT INTO product_categories (category, displayCategory, subCategory, displaySubCategory) VALUES ('personal_care','Personal Care','hair_care', 'Hair & Care');
+INSERT INTO product_categories (category, displayCategory, subCategory, displaySubCategory) VALUES ('beauty_cosmetics','Beauty & Cosmetics','', '');
+INSERT INTO product_categories (category, displayCategory, subCategory, displaySubCategory) VALUES ('cleaning_household','Cleaning & Household','', '');
+INSERT INTO product_categories (category, displayCategory, subCategory, displaySubCategory) VALUES ('branded_foods','Branded Foods','pickles', 'Pickles');
+INSERT INTO product_categories (category, displayCategory, subCategory, displaySubCategory) VALUES ('baby_care','Baby Care','', '');
+INSERT INTO product_categories (category, displayCategory, subCategory, displaySubCategory) VALUES ('pooja_needs','Pooja Needs','', '');
+INSERT INTO product_categories (category, displayCategory, subCategory, displaySubCategory) VALUES ('mask_sanitizer','Mask & Sanitizer','', '');
+INSERT INTO product_categories (category, displayCategory, subCategory, displaySubCategory) VALUES ('health_wellness','Health & Wellness','', '');
+INSERT INTO product_categories (category, displayCategory, subCategory, displaySubCategory) VALUES ('bakery_cakes','Bakery & Cakes','', '');
+INSERT INTO product_categories (category, displayCategory, subCategory, displaySubCategory) VALUES ('birthday_items','Birthday Items','', '');
+INSERT INTO product_categories (category, displayCategory, subCategory, displaySubCategory) VALUES ('disposable_items','Disposable Items','', '');
+INSERT INTO product_categories (category, displayCategory, subCategory, displaySubCategory) VALUES ('stationary','Stationary','', '');
+INSERT INTO product_categories (category, displayCategory, subCategory, displaySubCategory) VALUES ('upvaas_fast_special','Upvaas/Fast Special','', '');
+INSERT INTO product_categories (category, displayCategory, subCategory, displaySubCategory) VALUES ('sunglasses_watches','Sunglasses & Watches','', '');
+
+---------------------------------------------------------------------
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+--------------------------------------------------------------------
+
+Category table
+Grocery
+
+id subCategory 	displaySubCategory  name	     imgname    actualPrice cuttingPrice timestamp 
+1.	dal	                  Dal		 massor	    massor.png		 20			  43			  now()
+
+
+DROP TABLE IF EXISTS new_arrivals;
+create table new_arrivals(
+   id INT NOT NULL AUTO_INCREMENT,
+   category VARCHAR(255) NOT NULL,
+   subCategory VARCHAR(255) NOT NULL,
+   displaySubCategory VARCHAR(255) NOT NULL,
+   name VARCHAR(255) NOT NULL,
+   img VARCHAR(255) NOT NULL,
+   actualPrice FLOAT NOT NULL,
+   cuttingPrice FLOAT NOT NULL,
+   creationTimestamp timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
+   PRIMARY KEY ( id )
+);
+
+DROP TABLE IF EXISTS breakfast_dairy;
+create table breakfast_dairy(
+   id INT NOT NULL AUTO_INCREMENT,
+   category VARCHAR(255) NOT NULL,
+   subCategory VARCHAR(255) NOT NULL,
+   displaySubCategory VARCHAR(255) NOT NULL,
+   name VARCHAR(255) NOT NULL,
+   img VARCHAR(255) NOT NULL,
+   actualPrice FLOAT NOT NULL,
+   cuttingPrice FLOAT NOT NULL,
+   creationTimestamp timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
+   PRIMARY KEY ( id )
+);
+
+DROP TABLE IF EXISTS oral_care;
+create table oral_care(
+   id INT NOT NULL AUTO_INCREMENT,
+   category VARCHAR(255) NOT NULL,
+   subCategory VARCHAR(255) NOT NULL,
+   displaySubCategory VARCHAR(255) NOT NULL,
+   name VARCHAR(255) NOT NULL,
+   img VARCHAR(255) NOT NULL,
+   actualPrice FLOAT NOT NULL,
+   cuttingPrice FLOAT NOT NULL,
+   creationTimestamp timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
+   PRIMARY KEY ( id )
+);
+
+DROP TABLE IF EXISTS grocery;
+create table grocery(
+   id INT NOT NULL AUTO_INCREMENT,
+   category VARCHAR(255) NOT NULL,
+   subCategory VARCHAR(255) NOT NULL,
+   displaySubCategory VARCHAR(255) NOT NULL,
+   name VARCHAR(255) NOT NULL,
+   img VARCHAR(255) NOT NULL,
+   actualPrice FLOAT NOT NULL,
+   cuttingPrice FLOAT NOT NULL,
+   creationTimestamp timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
+   PRIMARY KEY ( id )
+);
+
+DROP TABLE IF EXISTS beverages;
+create table beverages(
+   id INT NOT NULL AUTO_INCREMENT,
+   category VARCHAR(255) NOT NULL,
+   subCategory VARCHAR(255) NOT NULL,
+   displaySubCategory VARCHAR(255) NOT NULL,
+   name VARCHAR(255) NOT NULL,
+   img VARCHAR(255) NOT NULL,
+   actualPrice FLOAT NOT NULL,
+   cuttingPrice FLOAT NOT NULL,
+   creationTimestamp timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
+   PRIMARY KEY ( id )
+);
+
+DROP TABLE IF EXISTS personal_care;
+create table personal_care(
+   id INT NOT NULL AUTO_INCREMENT,
+   category VARCHAR(255) NOT NULL,
+   subCategory VARCHAR(255) NOT NULL,
+   displaySubCategory VARCHAR(255) NOT NULL,
+   name VARCHAR(255) NOT NULL,
+   img VARCHAR(255) NOT NULL,
+   actualPrice FLOAT NOT NULL,
+   cuttingPrice FLOAT NOT NULL,
+   creationTimestamp timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
+   PRIMARY KEY ( id )
+);
+
+DROP TABLE IF EXISTS beauty_cosmetics;
+create table beauty_cosmetics(
+   id INT NOT NULL AUTO_INCREMENT,
+   category VARCHAR(255) NOT NULL,
+   subCategory VARCHAR(255) NOT NULL,
+   displaySubCategory VARCHAR(255) NOT NULL,
+   name VARCHAR(255) NOT NULL,
+   img VARCHAR(255) NOT NULL,
+   actualPrice FLOAT NOT NULL,
+   cuttingPrice FLOAT NOT NULL,
+   creationTimestamp timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
+   PRIMARY KEY ( id )
+);
+
+DROP TABLE IF EXISTS cleaning_household;
+create table cleaning_household(
+   id INT NOT NULL AUTO_INCREMENT,
+   category VARCHAR(255) NOT NULL,
+   subCategory VARCHAR(255) NOT NULL,
+   displaySubCategory VARCHAR(255) NOT NULL,
+   name VARCHAR(255) NOT NULL,
+   img VARCHAR(255) NOT NULL,
+   actualPrice FLOAT NOT NULL,
+   cuttingPrice FLOAT NOT NULL,
+   creationTimestamp timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
+   PRIMARY KEY ( id )
+);
+
+DROP TABLE IF EXISTS branded_foods;
+create table branded_foods(
+   id INT NOT NULL AUTO_INCREMENT,
+   category VARCHAR(255) NOT NULL,
+   subCategory VARCHAR(255) NOT NULL,
+   displaySubCategory VARCHAR(255) NOT NULL,
+   name VARCHAR(255) NOT NULL,
+   img VARCHAR(255) NOT NULL,
+   actualPrice FLOAT NOT NULL,
+   cuttingPrice FLOAT NOT NULL,
+   creationTimestamp timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
+   PRIMARY KEY ( id )
+);
+
+DROP TABLE IF EXISTS baby_care;
+create table baby_care(
+   id INT NOT NULL AUTO_INCREMENT,
+   category VARCHAR(255) NOT NULL,
+   subCategory VARCHAR(255) NOT NULL,
+   displaySubCategory VARCHAR(255) NOT NULL,
+   name VARCHAR(255) NOT NULL,
+   img VARCHAR(255) NOT NULL,
+   actualPrice FLOAT NOT NULL,
+   cuttingPrice FLOAT NOT NULL,
+   creationTimestamp timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
+   PRIMARY KEY ( id )
+);
+
+DROP TABLE IF EXISTS pooja_needs;
+create table pooja_needs(
+   id INT NOT NULL AUTO_INCREMENT,
+   category VARCHAR(255) NOT NULL,
+   subCategory VARCHAR(255) NOT NULL,
+   displaySubCategory VARCHAR(255) NOT NULL,
+   name VARCHAR(255) NOT NULL,
+   img VARCHAR(255) NOT NULL,
+   actualPrice FLOAT NOT NULL,
+   cuttingPrice FLOAT NOT NULL,
+   creationTimestamp timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
+   PRIMARY KEY ( id )
+);
+
+DROP TABLE IF EXISTS mask_sanitizer;
+create table mask_sanitizer(
+   id INT NOT NULL AUTO_INCREMENT,
+   category VARCHAR(255) NOT NULL,
+   subCategory VARCHAR(255) NOT NULL,
+   displaySubCategory VARCHAR(255) NOT NULL,
+   name VARCHAR(255) NOT NULL,
+   img VARCHAR(255) NOT NULL,
+   actualPrice FLOAT NOT NULL,
+   cuttingPrice FLOAT NOT NULL,
+   creationTimestamp timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
+   PRIMARY KEY ( id )
+);
+
+DROP TABLE IF EXISTS health_wellness;
+create table health_wellness(
+   id INT NOT NULL AUTO_INCREMENT,
+   category VARCHAR(255) NOT NULL,
+   subCategory VARCHAR(255) NOT NULL,
+   displaySubCategory VARCHAR(255) NOT NULL,
+   name VARCHAR(255) NOT NULL,
+   img VARCHAR(255) NOT NULL,
+   actualPrice FLOAT NOT NULL,
+   cuttingPrice FLOAT NOT NULL,
+   creationTimestamp timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
+   PRIMARY KEY ( id )
+);
+
+DROP TABLE IF EXISTS bakery_cakes;
+create table bakery_cakes(
+   id INT NOT NULL AUTO_INCREMENT,
+   category VARCHAR(255) NOT NULL,
+   subCategory VARCHAR(255) NOT NULL,
+   displaySubCategory VARCHAR(255) NOT NULL,
+   name VARCHAR(255) NOT NULL,
+   img VARCHAR(255) NOT NULL,
+   actualPrice FLOAT NOT NULL,
+   cuttingPrice FLOAT NOT NULL,
+   creationTimestamp timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
+   PRIMARY KEY ( id )
+);
+
+DROP TABLE IF EXISTS birthday_items;
+create table birthday_items(
+   id INT NOT NULL AUTO_INCREMENT,
+   category VARCHAR(255) NOT NULL,
+   subCategory VARCHAR(255) NOT NULL,
+   displaySubCategory VARCHAR(255) NOT NULL,
+   name VARCHAR(255) NOT NULL,
+   img VARCHAR(255) NOT NULL,
+   actualPrice FLOAT NOT NULL,
+   cuttingPrice FLOAT NOT NULL,
+   creationTimestamp timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
+   PRIMARY KEY ( id )
+);
+
+DROP TABLE IF EXISTS disposable_items;
+create table disposable_items(
+   id INT NOT NULL AUTO_INCREMENT,
+   category VARCHAR(255) NOT NULL,
+   subCategory VARCHAR(255) NOT NULL,
+   displaySubCategory VARCHAR(255) NOT NULL,
+   name VARCHAR(255) NOT NULL,
+   img VARCHAR(255) NOT NULL,
+   actualPrice FLOAT NOT NULL,
+   cuttingPrice FLOAT NOT NULL,
+   creationTimestamp timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
+   PRIMARY KEY ( id )
+);
+
+DROP TABLE IF EXISTS stationary;
+create table stationary(
+   id INT NOT NULL AUTO_INCREMENT,
+   category VARCHAR(255) NOT NULL,
+   subCategory VARCHAR(255) NOT NULL,
+   displaySubCategory VARCHAR(255) NOT NULL,
+   name VARCHAR(255) NOT NULL,
+   img VARCHAR(255) NOT NULL,
+   actualPrice FLOAT NOT NULL,
+   cuttingPrice FLOAT NOT NULL,
+   creationTimestamp timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
+   PRIMARY KEY ( id )
+);
+
+DROP TABLE IF EXISTS upvaas_fast_special;
+create table upvaas_fast_special(
+   id INT NOT NULL AUTO_INCREMENT,
+   category VARCHAR(255) NOT NULL,
+   subCategory VARCHAR(255) NOT NULL,
+   displaySubCategory VARCHAR(255) NOT NULL,
+   name VARCHAR(255) NOT NULL,
+   img VARCHAR(255) NOT NULL,
+   actualPrice FLOAT NOT NULL,
+   cuttingPrice FLOAT NOT NULL,
+   creationTimestamp timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
+   PRIMARY KEY ( id )
+);
+
+DROP TABLE IF EXISTS sunglasses_watches;
+create table sunglasses_watches(
+   id INT NOT NULL AUTO_INCREMENT,
+   category VARCHAR(255) NOT NULL,
+   subCategory VARCHAR(255) NOT NULL,
+   displaySubCategory VARCHAR(255) NOT NULL,
+   name VARCHAR(255) NOT NULL,
+   img VARCHAR(255) NOT NULL,
+   actualPrice FLOAT NOT NULL,
+   cuttingPrice FLOAT NOT NULL,
+   creationTimestamp timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
+   PRIMARY KEY ( id )
+);
+
+show tables;
+
+
+
+
+
+
+INSERT INTO health_wellness (category, subCategory, displaySubCategory, name, img, actualPrice, cuttingPrice) VALUES ('health_wellness', 'dal', 'Dal', 'massor', 'massor.png', '20', '35');
+
+
+
