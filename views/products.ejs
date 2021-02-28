@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Contact</title>
+	<title>Products</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -13,21 +13,21 @@
 		integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
 	<!-- owl carousel CSS -->
-	<link rel="stylesheet" href="css/owl.carousel.min.css">
-	<link rel="stylesheet" href="css/owl.theme.default.min.css">
+	<link rel="stylesheet" href="http://localhost:3001/css/owl.carousel.min.css">
+	<link rel="stylesheet" href="http://localhost:3001/css/owl.theme.default.min.css">
 
 	<!-- magnific-popup CSS -->
-	<link rel="stylesheet" href="css/magnific-popup.css">
+	<link rel="stylesheet" href="http://localhost:3001/css/magnific-popup.css">
 
 	<!--- Font Awesome Icos CDN-->
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
 		integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 
 	<!-- Core Style Css -->
-	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="http://localhost:3001/css/style.css">
 
 	<!--[if lt IE 9]-->
-	<script src="js/html5shiv.min.js"></script>
+	<script src="http://localhost:3001/js/html5shiv.min.js"></script>
 	<!--[endif]-->
 
 
@@ -116,137 +116,88 @@
 					<div class="cat-outer col-md-3">
 						<p class="cat-heading-text">Categories</p>
 						<hr>
-						<div class="cat-link">
-							<a class="cat-li-text" data-toggle="collapse" href="#1" role="button">
-								<i class="fas fa-caret-right mr-10"></i>
-								Audio & Video
-							</a>
-							<div class="collapse" id="1">
-								<div class="card card-body ml-20">
-									<p class="card-sub-li-text">streaming Devices</p>
-									<p class="card-sub-li-text">TV</p>
-									<p class="card-sub-li-text">Speakers</p>
-								</div>
+
+						<% for (var i=0; i < productCategoryList.length; i++) { %>
+							<div class="cat-link">
+
+								<% if (productCategoryList[i].name==activeLinkName[2]) { %>
+									<a style="color: orange;" class="cat-li-text"
+										href='/user/<%= productCategoryList[i].name%>' role="button">
+										<i class="fas fa-caret-right mr-10"></i>
+										<%= productCategoryList[i].displayName%>
+									</a>
+									<% } else { %>
+										<a class="cat-li-text" href='/user/<%= productCategoryList[i].name%>'
+											role="button">
+											<i class="fas fa-caret-right mr-10"></i>
+											<%= productCategoryList[i].displayName%>
+										</a>
+										<% } %>
+
+											<% if(Object.keys(productCategoryList[i].subCategory).length> 0) { %>
+												<a data-toggle="collapse" href="#<%= productCategoryList[i].name%>"><i
+														class="fa fa-angle-down" aria-hidden="true"></i></a>
+												<% } %>
+
+													<% if(Object.keys(productCategoryList[i].subCategory).length> 0)
+														{ %>
+														<div class="collapse" id=<%=productCategoryList[i].name%>>
+															<div class="card card-body ml-20">
+																<% for (var [key, value] of
+																	Object.entries(productCategoryList[i].subCategory))
+																	{ %>
+
+																	<% if (value==activeLinkName[3]) { %>
+																		<a style="color: #FE9126;"
+																			class="card-sub-li-text"
+																			href="/user/<%= productCategoryList[i].name%>/<%= value%>">
+																			<%= key%>
+																		</a>
+																		<% } else { %>
+
+																			<a class="card-sub-li-text"
+																				href="/user/<%= productCategoryList[i].name%>/<%= value%>">
+																				<%= key%>
+																			</a>
+
+																			<% } %>
+																				<% } %>
+															</div>
+														</div>
+														<% } %>
 							</div>
-						</div>
-						<div class="cat-link">
-							<a class="cat-li-text" data-toggle="collapse" href="#2" role="button">
-								<i class="fas fa-caret-right  mr-10"></i>Computers
-							</a>
-							<div class="collapse" id="2">
-								<div class="card card-body ml-20">
-									<p class="card-sub-li-text">Laptops</p>
-									<p class="card-sub-li-text">Desktops</p>
-									<p class="card-sub-li-text">software</p>
-								</div>
-							</div>
-						</div>
-						<div class="cat-link">
-							<a class="cat-li-text" data-toggle="collapse" href="#2" role="button">
-								<i class="fas fa-caret-right  mr-10"></i>Computers
-							</a>
-							<div class="collapse" id="2">
-								<div class="card card-body ml-20">
-									<p class="card-sub-li-text">Laptops</p>
-									<p class="card-sub-li-text">Desktops</p>
-									<p class="card-sub-li-text">software</p>
-								</div>
-							</div>
-						</div>
-						<div class="cat-link">
-							<a class="cat-li-text" data-toggle="collapse" href="#2" role="button">
-								<i class="fas fa-caret-right  mr-10"></i>Computers
-							</a>
-							<div class="collapse" id="2">
-								<div class="card card-body ml-20">
-									<p class="card-sub-li-text">Laptops</p>
-									<p class="card-sub-li-text">Desktops</p>
-									<p class="card-sub-li-text">software</p>
-								</div>
-							</div>
-						</div>
-						<div class="cat-link">
-							<a class="cat-li-text" data-toggle="collapse" href="#2" role="button">
-								<i class="fas fa-caret-right  mr-10"></i>Computers
-							</a>
-							<div class="collapse" id="2">
-								<div class="card card-body ml-20">
-									<p class="card-sub-li-text">Laptops</p>
-									<p class="card-sub-li-text">Desktops</p>
-									<p class="card-sub-li-text">software</p>
-								</div>
-							</div>
-						</div>
+							<% } %>
+
 					</div>
+
 					<div class="prod-outer col-md-9">
-						<span class="prod-heading-text">Laptops</span>
-						<span class="cat-total-text"><span class="admin-product-heading">Total Products: </span> 27</span>
+
+						<div class="cat-total-text"><span class="admin-product-heading">Total Products: </span>
+							<%= products.length %>
+						</div>
 						<hr>
-						<div>
-							<p class="prod-li-head-text">JBL Headphone Endurance Jump BT In-ear Black/Yellow</p>
-							<p class="prod-li-text">
-								SKU: ENDURJUMPLAM UPC: 050036354844 CONDITION: NEW COLOR: YELLOW SPECS: USA/CANADIAN
-								WARRANTY:
-								1-YEAR WARRANTY REGION: USA RESTRICTIONS: LATAM ONLY BRAND: JBL CATEGORY: AUDIO & VIDEO
-								SUB-CATEGORY: HEADPHONES
-							</p>
-							<p class="prod-li-stock-text">169 In Stock</p>
-							</p>
-							<hr>
-						</div>
-						<div>
-							<p class="prod-li-head-text">JBL Headphone Endurance Jump BT In-ear Black/Yellow</p>
-							<p class="prod-li-text">
-								SKU: ENDURJUMPLAM UPC: 050036354844 CONDITION: NEW COLOR: YELLOW SPECS: USA/CANADIAN
-								WARRANTY:
-								1-YEAR WARRANTY REGION: USA RESTRICTIONS: LATAM ONLY BRAND: JBL CATEGORY: AUDIO & VIDEO
-								SUB-CATEGORY: HEADPHONES
-							</p>
-							<p class="prod-li-stock-text">169 In Stock</p>
-							</p>
-							<hr>
-						</div>
-						<div>
-							<p class="prod-li-head-text">JBL Headphone Endurance Jump BT In-ear Black/Yellow</p>
-							<p class="prod-li-text">
-								SKU: ENDURJUMPLAM UPC: 050036354844 CONDITION: NEW COLOR: YELLOW SPECS: USA/CANADIAN
-								WARRANTY:
-								1-YEAR WARRANTY REGION: USA RESTRICTIONS: LATAM ONLY BRAND: JBL CATEGORY: AUDIO & VIDEO
-								SUB-CATEGORY: HEADPHONES
-							</p>
-							<p class="prod-li-stock-text">169 In Stock</p>
-							</p>
-							<hr>
-						</div>
-						<div>
-							<p class="prod-li-head-text">JBL Headphone Endurance Jump BT In-ear Black/Yellow</p>
-							<p class="prod-li-text">
-								SKU: ENDURJUMPLAM UPC: 050036354844 CONDITION: NEW COLOR: YELLOW SPECS: USA/CANADIAN
-								WARRANTY:
-								1-YEAR WARRANTY REGION: USA RESTRICTIONS: LATAM ONLY BRAND: JBL CATEGORY: AUDIO & VIDEO
-								SUB-CATEGORY: HEADPHONES
-							</p>
-							<p class="prod-li-stock-text">169 In Stock</p>
-							</p>
-							<hr>
-						</div>
-						<div>
-							<p class="prod-li-head-text">JBL Headphone Endurance Jump BT In-ear Black/Yellow</p>
-							<p class="prod-li-text">
-								SKU: ENDURJUMPLAM UPC: 050036354844 CONDITION: NEW COLOR: YELLOW SPECS: USA/CANADIAN
-								WARRANTY:
-								1-YEAR WARRANTY REGION: USA RESTRICTIONS: LATAM ONLY BRAND: JBL CATEGORY: AUDIO & VIDEO
-								SUB-CATEGORY: HEADPHONES
-							</p>
-							<p class="prod-li-stock-text">169 In Stock</p>
-							</p>
-							<hr>
-						</div>
-						<div class="text-center pagination-text">
-							<span><i class="fas fa-chevron-circle-left pagination-left-icon"></i></span>
-							Page 1 of 3
-							<span><i class="fas fa-chevron-circle-right pagination-right-icon"></i></span>
-						</div>
+
+						<% for(var i in products) { %>
+							<div>
+								<!-- <img style="height: 40px;" src="http://localhost:3002/uploads/<%= products[i].img%>"> -->
+								<p class="prod-li-head-text">
+									<%= products[i].name%>
+								</p>
+								<p class="prod-li-text">
+									<%= products[i].description%>
+								</p>
+								<p class="prod-li-stock-text">
+									<%= products[i].stockCount%> In Stock
+								</p>
+								</p>
+								<hr>
+							</div>
+							<% } %>
+								<div class="text-center pagination-text">
+									<span><i class="fas fa-chevron-circle-left pagination-left-icon"></i></span>
+									Page 1 of 3
+									<span><i class="fas fa-chevron-circle-right pagination-right-icon"></i></span>
+								</div>
 					</div>
 				</div>
 

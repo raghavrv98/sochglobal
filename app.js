@@ -14,7 +14,7 @@ var connection = mysql.createConnection({
   host: 'localhost',
   user: 'root',
   password: 'root',
-  database: 'ecommerce_prod'
+  database: 'sochglobal'
 });
 
 connection.connect();
@@ -25,7 +25,7 @@ global.db = connection;
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.use(session({
-  secret: 'ecommerce',
+  secret: 'sochglobal',
   resave: false,
   saveUninitialized: false,
   cookie: { maxAge: 10800000 }
@@ -55,7 +55,7 @@ app.use(function (err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  res.redirect('/notFound');
 });
 
 app.locals.baseUrl = "http://www.google.com"

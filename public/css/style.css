@@ -54,6 +54,12 @@ body {
   float: right;
 }
 
+.fa-angle-down{
+  float: right !important;
+  font-size: 20px !important;
+  margin-top: 6px !important;
+}
+
 .section-padding {
   padding: 100px 0 0;
 }
@@ -734,20 +740,21 @@ footer .main-footer p {
 /* Newsletter */
 
 .newsletter-input {
-  width: 68%;
-  padding: 10px;
-  border: 1px solid #f7f7f7;
-  background: #f7f7f7;
-  margin-bottom: 15px;
-  border-radius: 20px 0px 0px 20px;
+  width: 68% !important;
+  padding: 10px !important;
+  border: 1px solid #f7f7f7 !important;
+  background: #f7f7f7 !important;
+  margin-bottom: 15px !important;
+  border-radius: 20px 0px 0px 20px !important;
 }
 
 .newsletter-button {
-  height: 45px;
+  height: 38px;
   width: 100px;
   border-radius: 0px 20px 20px 0px;
   background-color: white;
   color: #07AAA5;
+  margin-left: -9px;
 }
 
 .newsletter-button:hover {
@@ -816,7 +823,7 @@ input[type=button], input[type=submit], input[type=reset] {
   text-transform: uppercase;
   font-size: 13px;
   border-radius: 5px 5px 5px 5px;
-  margin: 20px;
+  margin: 5px;
 }
 
 input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover {
@@ -831,11 +838,11 @@ input[type=button]:active, input[type=submit]:active, input[type=reset]:active {
   transform: scale(0.95);
 }
 
-input[type=text] {
+input[type=text], input[type=email], input[type=password], input[type=number], select {
   background-color: #f6f6f6;
   border: none;
   color: #0d0d0d;
-  padding: 15px 32px;
+  padding: 15px 0px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
@@ -844,15 +851,20 @@ input[type=text] {
   width: 85%;
   border: 2px solid #f6f6f6;
   border-radius: 5px 5px 5px 5px;
+  height: 35px;
 }
 
-input[type=text]:focus {
+input[type=text]:focus, input[type=email]:focus, input[type=password]:focus, input[type=number]:focus, select {
   background-color: #fff;
   border-bottom: 2px solid #5fbae9;
 }
 
-input[type=text]:placeholder {
+input[type=text]:placeholder, input[type=email]:placeholder, input[type=password]:placeholder, input[type=number]:placeholder, select {
   color: #cccccc;
+}
+
+select{
+  width: 150px;
 }
 
 /* ANIMATIONS */
@@ -1007,9 +1019,12 @@ input[type=text]:placeholder {
   text-transform: uppercase;
   font-size: 13px;
   border-radius: 5px 5px 5px 5px;
-  margin: 20px;
-  margin-top: 40px;
   float: right;
+  -moz-transform: scale(0.95);
+  -webkit-transform: scale(0.95);
+  -o-transform: scale(0.95);
+  -ms-transform: scale(0.95);
+  transform: scale(0.95);
 }
 
 .logout-button:hover {
@@ -1038,16 +1053,18 @@ input[type=text]:placeholder {
 .cat-total-text {
   font-size: 15px;
   float: right;
+  margin-top: 10px;
 }
 
 .cat-li-text {
   font-size: 20px;
-  color: #23527c !important;
+  color: #23527c;
   margin-bottom: 10px !important;
 }
 
 .prod-heading-text {
   font-size: 20px !important;
+  margin-bottom: 20px;
 }
 
 .prod-li-text {
@@ -1071,8 +1088,8 @@ input[type=text]:placeholder {
 }
 
 .card-sub-li-text {
-  cursor: pointer;
-  margin-bottom: 5px;
+  margin: 10px 0px;
+  display: block;
 }
 
 .pagination-text {

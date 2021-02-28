@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Contact</title>
+	<title>Login</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -13,21 +13,21 @@
 		integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
 	<!-- owl carousel CSS -->
-	<link rel="stylesheet" href="css/owl.carousel.min.css">
-	<link rel="stylesheet" href="css/owl.theme.default.min.css">
+	<link rel="stylesheet" href="http://localhost:3001/css/owl.carousel.min.css">
+	<link rel="stylesheet" href="http://localhost:3001/css/owl.theme.default.min.css">
 
 	<!-- magnific-popup CSS -->
-	<link rel="stylesheet" href="css/magnific-popup.css">
+	<link rel="stylesheet" href="http://localhost:3001/css/magnific-popup.css">
 
 	<!--- Font Awesome Icos CDN-->
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
 		integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 
 	<!-- Core Style Css -->
-	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="http://localhost:3001/css/style.css">
 
 	<!--[if lt IE 9]-->
-	<script src="js/html5shiv.min.js"></script>
+	<script src="http://localhost:3001/js/html5shiv.min.js"></script>
 	<!--[endif]-->
 </head>
 
@@ -52,22 +52,25 @@
 					<div id="formContent">
 						<!-- Tabs Titles -->
 
-						<!-- Icon -->
-						<!-- <div class="fadeIn first">
-							<img src="http://danielzawadzki.com/codepen/01/icon.svg" id="icon" alt="User Icon" />
-						</div> -->
+						<% if (message.length> 0) { %>
+							<div class="alert alert-danger col-sm-12">
+								<%= message %>
+							</div>
+							<% } %>
 
-						<!-- Login Form -->
-						<form method="POST" action="/login">
-							<input type="text" id="login" class="second" name="login" placeholder="login">
-							<input type="text" id="password" class="third" name="login" placeholder="password">
-							<input type="submit" class="fourth" value="Log In">
-						</form>
+								<!-- Login Form -->
+								<form method="POST" action="/login">
+									<input type="email" id="login" class="second" name="emailId"
+										placeholder="Email Address" required>
+									<input type="password" id="password" class="third" name="password"
+										placeholder="Password" required>
+									<input type="submit" class="fourth" value="Log In">
+								</form>
 
-						<!-- Remind Passowrd -->
-						<div id="formFooter">
+								<!-- Remind Passowrd -->
+								<!-- <div id="formFooter">
 							<a class="underlineHover" href="#">Forgot Password?</a>
-						</div>
+						</div> -->
 
 					</div>
 				</div>
