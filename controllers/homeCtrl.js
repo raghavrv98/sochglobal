@@ -612,7 +612,7 @@ module.exports = {
                     });
 
                     var messageBody = "\n Hello There, Your password is" + rows[0].password
-                    mailUtils.sendMail('lethoooos@gmail.com', "Password Request", messageBody)
+                    mailUtils.sendMail('info@sochglobal.com', "Password Request", messageBody)
                 }
                 else {
                     message = "Email id does not exist.";
@@ -634,7 +634,7 @@ module.exports = {
 
         var messageBody = "\n Name : " + name + "\n Email-id : " + email + "\n subject : " + subject + "\n Message : " + message
      
-        mailUtils.sendMail('lethoooos@gmail.com', "Enquiry Mail", messageBody)
+        mailUtils.sendMail('info@sochglobal.com', "Enquiry Mail", messageBody)
         message = "Message send successfully. Please wait we will contact you soon."
         res.render('contact', {
             message
@@ -643,6 +643,18 @@ module.exports = {
 
     showNotFound: (req, res, next) => {
         res.render('notFound');
+    },
+
+    submitNewsLetter: (req, res, next) => {
+        var email = req.body.emailId
+
+        var messageBodyForCompany = "User Email-id for Subscription: " + email
+        var messageBodyForUser = "Thanks for subscribe to SochGlobal. You will now get latest udates."
+     
+        mailUtils.sendMail('lethoooos@gmail.com', "Enquiry Mail", messageBodyForCompany)
+        mailUtils.sendMail(email, "Congratulations", messageBodyForUser)
+        
+        res.redirect('/');
     },
 
 }

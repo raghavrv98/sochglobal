@@ -18,6 +18,7 @@ router.get('/notFound', homeCtrl.showNotFound);
 
 //dynamic routes
 
+router.post('/newsLetter', homeCtrl.submitNewsLetter);
 router.post('/contact', homeCtrl.postContact);
 router.post('/forgotPassword', homeCtrl.postForgotPassword);
 router.get('/user/:categoryId/:subCategoryId?', homeCtrl.showCategoryProductsUser);
