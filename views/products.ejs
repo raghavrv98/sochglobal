@@ -30,69 +30,6 @@
 	<script src="http://localhost:3001/js/html5shiv.min.js"></script>
 	<!--[endif]-->
 
-
-	<style>
-		.scrollbar-product {
-			overflow: auto;
-			height: 121vh;
-			border: 1px solid gray;
-			border-radius: 10px;
-		}
-
-		.product-image {
-			height: 180px;
-			width: 180px;
-			border-radius: 10px;
-		}
-
-		@media screen and (min-width: 768px) {
-			.categories ul li {
-				display: block;
-				font-size: 20px;
-				margin: 10px 20px;
-			}
-		}
-
-		@media screen and (max-width: 769px) {
-			.categories ul li {
-				display: block;
-				font-size: 20px;
-				margin: 10px 0px;
-			}
-		}
-
-		.down-arrow {
-			display: inline;
-			padding: 0px 10px 0px;
-			position: absolute;
-			top: 63px;
-		}
-
-		.main-heading-product {
-			display: inline !important;
-			color: gray;
-			font-size: 23px;
-			cursor: pointer;
-		}
-
-		.main-heading-product:hover {
-			color: #FE9126;
-		}
-
-		.categories ul li a {
-			color: #999;
-			text-decoration: none;
-		}
-
-		.categories ul li a:hover {
-			color: #3399cc;
-		}
-
-		.categories ul li span {
-			float: right;
-		}
-	</style>
-
 </head>
 
 <body>
@@ -179,7 +116,7 @@
 
 						<% for(var i in products) { %>
 							<div>
-								<!-- <img style="height: 40px;" src="http://localhost:3002/uploads/<%= products[i].img%>"> -->
+								<!-- <img style="height: 40px;" src="http://localhost:3001/uploads/<%= products[i].img%>"> -->
 								<p class="prod-li-head-text">
 									<%= products[i].name%>
 								</p>
@@ -193,11 +130,11 @@
 								<hr>
 							</div>
 							<% } %>
-								<div class="text-center pagination-text">
+								<!-- <div class="text-center pagination-text">
 									<span><i class="fas fa-chevron-circle-left pagination-left-icon"></i></span>
 									Page 1 of 3
 									<span><i class="fas fa-chevron-circle-right pagination-right-icon"></i></span>
-								</div>
+								</div> -->
 					</div>
 				</div>
 

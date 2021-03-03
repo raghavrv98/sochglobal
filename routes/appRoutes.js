@@ -13,6 +13,7 @@ router.get('/contact', homeCtrl.showContact);
 router.get('/brands', homeCtrl.showBrands);
 router.get('/faq', homeCtrl.showFaq);
 router.get('/carrier', homeCtrl.showCarrier);
+router.get('/forgotPassword', homeCtrl.showForgotPassword);
 router.get('/notFound', homeCtrl.showNotFound);
 
 //dynamic routes

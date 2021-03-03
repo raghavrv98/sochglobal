@@ -6,7 +6,8 @@
 body {
   color: #222;
   font-weight: 400;
-  font-family: 'Lato', sans-serif;
+  font-family: 'Times New Roman', Serif;
+  font-size: 16px;
 }
 
 .icon-size {
@@ -64,6 +65,41 @@ body {
   padding: 100px 0 0;
 }
 
+.forgot-password:hover{
+color: #39ace7;
+}
+
+.prod-outer{
+  overflow: auto;
+  height: 500px;
+}
+
+.call-us{
+  color: #ffffff;
+  margin-right: 50px;
+  float: right;
+}
+
+.float-whatsapp {
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  cursor: pointer;
+  z-index: 9999;
+}
+
+.float-whatsapp:hover {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.whatsapp-contact{
+  height: 20px;
+  width: 20px;
+}
+
 .section-head {
   text-align: center;
   margin-bottom: 40px;
@@ -96,9 +132,7 @@ body {
 }
 
 .sm-titl {
-  font-size: 12px;
-  font-weight: 600;
-  text-transform: uppercase;
+  font-size: 14px;
   letter-spacing: 1px;
 }
 
@@ -171,7 +205,7 @@ p {
 }
 
 .navbar-default .navbar-nav>li {
-  font-size: 14px;
+  font-size: 16px;
   margin: 25px 20px 0;
   padding: 5 10px;
   background: none;
@@ -460,6 +494,7 @@ p {
   -webkit-transition: all .5s;
   transition: all .5s;
   position: relative;
+  min-height: 240px;
 }
 
 .hero .feat .item:hover {
@@ -843,7 +878,6 @@ input[type=text], input[type=email], input[type=password], input[type=number], s
   border: none;
   color: #0d0d0d;
   padding: 15px 0px;
-  text-align: center;
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
@@ -1010,7 +1044,7 @@ select{
 /* --------------------------------------------------------------- */
 
 .logout-button {
-  background-color: #56baed;
+  background-color: gray;
   border: none;
   color: white;
   padding: 10px 20px;
@@ -1029,7 +1063,7 @@ select{
 
 .logout-button:hover {
   color: white;
-  background-color: #39ACE7;
+  background-color: gray;
 }
 
 /* --------------------------------------------------------------- */
@@ -1135,6 +1169,18 @@ select{
   padding: 20px;
 }
 
+
+/* -------------------------------------------------------------- */
+
+/* contact headline */
+
+.contact-headline{
+background-color: #07AAA5;
+color: #ffffff;
+}
+
+/* ------------------------------------------------------------------- */
+
 /* Responsive */
 
 /* --------------------------------------------------------  */
@@ -1220,6 +1266,14 @@ select{
   .contact .info .item {
     margin-bottom: 30px;
   }
+  .call-us{
+    color: #ffffff;
+    float: right;
+    margin-right: 10px;
+    font-size: 12px;
+    margin-top: 3px;
+  }
+
 }
 
 /* ------------------------------------------------------- */

@@ -582,6 +582,10 @@ module.exports = {
         res.render('faq');
     },
 
+    showForgotPassword: (req, res, next) => {
+        res.render('forgot');
+    },
+
     showNotFound: (req, res, next) => {
         res.render('notFound');
     },
