@@ -47,7 +47,10 @@ module.exports = {
     },
 
     showContact: (req, res, next) => {
-        res.render('contact');
+        var message = ""
+        res.render('contact', {
+            message
+        });
     },
 
     showBrands: (req, res, next) => {
@@ -550,23 +553,23 @@ module.exports = {
 
         // if (file.mimetype == "image/jpeg" || file.mimetype == "image/png" || file.mimetype == "image/gif") {
 
-            // file.mv('public/uploads/' + file.name, function (err) {
+        // file.mv('public/uploads/' + file.name, function (err) {
 
-                // if (err)
-                //     return res.status(500).send(err);
+        // if (err)
+        //     return res.status(500).send(err);
 
-                if (editID) {
-                    var sql = `UPDATE ${categoryId} SET category="${categoryId}", subCategory="${subCategoryId}", displaySubCategory = "${displaySubCategoryId}", img="${img_name}", name="${name}", description="${description}", stockCount=${stockCount} where id=${editID}`;
-                    var query = db.query(sql, function (err, result) {
-                        res.redirect(`/admin-subCategory/${categoryId}/${subCategoryId}`);
-                    });
-                }
-                else {
-                    var sql = `INSERT INTO ${categoryId} (category, subCategory, displaySubCategory, img, name, description, stockCount) VALUES ("${categoryId}", "${subCategoryId}", "${displaySubCategoryId}", "${img_name}", "${name}", "${description}", ${stockCount})`;
-                    var query = db.query(sql, function (err, result) {
-                        res.redirect(`/admin-subCategory/${categoryId}/${subCategoryId}`);
-                    });
-                }
+        if (editID) {
+            var sql = `UPDATE ${categoryId} SET category="${categoryId}", subCategory="${subCategoryId}", displaySubCategory = "${displaySubCategoryId}", img="${img_name}", name="${name}", description="${description}", stockCount=${stockCount} where id=${editID}`;
+            var query = db.query(sql, function (err, result) {
+                res.redirect(`/admin-subCategory/${categoryId}/${subCategoryId}`);
+            });
+        }
+        else {
+            var sql = `INSERT INTO ${categoryId} (category, subCategory, displaySubCategory, img, name, description, stockCount) VALUES ("${categoryId}", "${subCategoryId}", "${displaySubCategoryId}", "${img_name}", "${name}", "${description}", ${stockCount})`;
+            var query = db.query(sql, function (err, result) {
+                res.redirect(`/admin-subCategory/${categoryId}/${subCategoryId}`);
+            });
+        }
         //     });
         // } else {
         //     message = "This format is not allowed , please upload file with '.png','.gif','.jpg'";
@@ -574,8 +577,8 @@ module.exports = {
         // }
     },
 
-    showCarrier: (req, res, next) => {
-        res.render('carrier');
+    showCareer: (req, res, next) => {
+        res.render('career');
     },
 
     showFaq: (req, res, next) => {
@@ -583,7 +586,59 @@ module.exports = {
     },
 
     showForgotPassword: (req, res, next) => {
-        res.render('forgot');
+        var message = ""
+        res.render('forgotPassword', {
+            message,
+            success: false
+        });
+    },
+
+    postForgotPassword: (req, res, next) => {
+        var email = req.body.emailId
+        console.log('email: ', email);
+
+        var sql = "select * from login_cred";
+        var query = db.query(sql, function (err, rows) {
+            if (err) {
+                return res.status(500).send(err);
+            }
+            else {
+                if (rows[0].email === email) {
+                    message = "Password send to your registered Email-id.";
+                    console.log('message: ', message);
+                    res.render('forgotPassword', {
+                        message,
+                        success: true
+                    });
+
+                    var messageBody = "\n Hello There, Your password is" + rows[0].password
+                    mailUtils.sendMail('lethoooos@gmail.com', "Password Request", messageBody)
+                }
+                else {
+                    message = "Email id does not exist.";
+                    console.log('message: ', message);
+                    res.render('forgotPassword', {
+                        message,
+                        success: false
+                    });
+                }
+            }
+        })
+    },
+
+    postContact: (req, res, next) => {
+        var name = req.body.name
+        var email = req.body.emailId
+        var subject = req.body.subject
+        var message = req.body.message
+
+        var messageBody = "\n Name : " + name + "\n Email-id : " + email + "\n subject : " + subject + "\n Message : " + message
+     
+        mailUtils.sendMail('lethoooos@gmail.com', "Enquiry Mail", messageBody)
+        message = "Message send successfully. Please wait we will contact you soon."
+        res.render('contact', {
+            message
+        });
     },
 
     showNotFound: (req, res, next) => {

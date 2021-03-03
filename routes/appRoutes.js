@@ -12,12 +12,14 @@ router.get('/login', homeCtrl.showLogin);
 router.get('/contact', homeCtrl.showContact);
 router.get('/brands', homeCtrl.showBrands);
 router.get('/faq', homeCtrl.showFaq);
-router.get('/carrier', homeCtrl.showCarrier);
+router.get('/career', homeCtrl.showCareer);
 router.get('/forgotPassword', homeCtrl.showForgotPassword);
 router.get('/notFound', homeCtrl.showNotFound);
 
 //dynamic routes
 
+router.post('/contact', homeCtrl.postContact);
+router.post('/forgotPassword', homeCtrl.postForgotPassword);
 router.get('/user/:categoryId/:subCategoryId?', homeCtrl.showCategoryProductsUser);
 router.post('/deleteSubCategory/:categoryId', homeCtrl.deleteSubCategory);
 router.post('/admin-delete', homeCtrl.deleteProduct);

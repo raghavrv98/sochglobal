@@ -7,11 +7,12 @@ body {
   color: #222;
   font-weight: 400;
   font-family: 'Times New Roman', Serif;
-  font-size: 16px;
+  font-size: 18px;
 }
 
 .icon-size {
   font-size: 25px;
+  color: #00bcd4;
 }
 
 .icon-arrow-right {
@@ -55,7 +56,12 @@ body {
   float: right;
 }
 
-.fa-angle-down{
+.alert-success {
+  color: #417A4E;
+  background-color: #D4EDDA;
+}
+
+.fa-angle-down {
   float: right !important;
   font-size: 20px !important;
   margin-top: 6px !important;
@@ -65,19 +71,20 @@ body {
   padding: 100px 0 0;
 }
 
-.forgot-password:hover{
-color: #39ace7;
+.forgot-password:hover {
+  color: #39ace7;
 }
 
-.prod-outer{
+.prod-outer {
   overflow: auto;
   height: 500px;
 }
 
-.call-us{
+.call-us {
   color: #ffffff;
   margin-right: 50px;
   float: right;
+  margin-top: 10px;
 }
 
 .float-whatsapp {
@@ -95,9 +102,52 @@ color: #39ace7;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.whatsapp-contact{
+.whatsapp-contact {
   height: 20px;
   width: 20px;
+  position: absolute;
+  right: 23%;
+  top: 20%;
+  cursor: pointer !important;
+}
+
+.whatsapp-text {
+  top: 1px;
+  position: absolute;
+  left: 25px;
+  cursor: pointer !important;
+}
+
+.hero-img {
+  border-radius: 10px !important;
+}
+
+.mission-heading {
+  font-size: 20px;
+  font-weight: 600;
+  color: #000;
+}
+
+.at-Center{
+  position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+}
+
+.mission-icon {
+  background: #00bcd4;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    position: relative;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    z-index: 1;
+    font-size: 25px;
+    line-height: 90px;
+    color: #fff;
+    margin: 42px 0px;
 }
 
 .section-head {
@@ -196,7 +246,7 @@ p {
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 99999;
+  z-index: 1000;
 }
 
 .navbar-default .navbar-nav>li>a {
@@ -238,6 +288,10 @@ p {
 
 .nav-scroll .navbar-nav>li>a {
   color: #111 !important;
+}
+
+.nav-scroll .container {
+  margin-top: 0px !important;
 }
 
 .logo {
@@ -735,7 +789,7 @@ p {
 
 .footer-img-height {
   height: 100px;
-  width: 100px;
+  width: 55%;
 }
 
 footer {
@@ -775,7 +829,7 @@ footer .main-footer p {
 /* Newsletter */
 
 .newsletter-input {
-  width: 68% !important;
+  width: 65% !important;
   padding: 10px !important;
   border: 1px solid #f7f7f7 !important;
   background: #f7f7f7 !important;
@@ -785,7 +839,7 @@ footer .main-footer p {
 
 .newsletter-button {
   height: 38px;
-  width: 100px;
+  width: 90px;
   border-radius: 0px 20px 20px 0px;
   background-color: white;
   color: #07AAA5;
@@ -897,7 +951,7 @@ input[type=text]:placeholder, input[type=email]:placeholder, input[type=password
   color: #cccccc;
 }
 
-select{
+select {
   width: 150px;
 }
 
@@ -1169,14 +1223,16 @@ select{
   padding: 20px;
 }
 
-
 /* -------------------------------------------------------------- */
 
 /* contact headline */
 
-.contact-headline{
-background-color: #07AAA5;
-color: #ffffff;
+.contact-headline {
+  background-color: #07AAA5;
+  color: #ffffff;
+  height: 40px;
+  position: relative;
+  z-index: 1001;
 }
 
 /* ------------------------------------------------------------------- */
@@ -1266,12 +1322,41 @@ color: #ffffff;
   .contact .info .item {
     margin-bottom: 30px;
   }
-  .call-us{
+  .call-us {
     color: #ffffff;
     float: right;
-    margin-right: 10px;
+    margin-right: 16px;
     font-size: 12px;
-    margin-top: 3px;
+    margin-top: 13px;
+  }
+  .whatsapp-contact {
+    height: 20px;
+    width: 20px;
+    position: absolute;
+    left: 6%;
+    top: 20%;
+    cursor: pointer !important;
+  }
+  .whatsapp-text {
+    top: 1px;
+    position: absolute;
+    left: 25px;
+    cursor: pointer !important;
+  }
+
+  .mission-icon {
+    background: #00bcd4;
+      width: 90px;
+      height: 90px;
+      text-align: center;
+      position: relative;
+      -webkit-border-radius: 50%;
+      border-radius: 50%;
+      z-index: 1;
+      font-size: 25px;
+      line-height: 90px;
+      color: #fff;
+      margin: 42px 0px;
   }
 
 }

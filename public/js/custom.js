@@ -36,7 +36,7 @@ $(function() {
         }else{
 
             navbar.removeClass("nav-scroll");
-            logo.attr('src', 'http://localhost:3001/images/sochGloballogo1.jpeg');
+            logo.attr('src', 'http://localhost:3001/images/sochGloballogo3.jpg');
         }
     });
 

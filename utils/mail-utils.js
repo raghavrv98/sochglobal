@@ -5,14 +5,14 @@ module.exports={
     var transporter=nodemailer.createTransport({
         service:'Gmail',
         auth:{
-            user:'atozonlinemart5@gmail.com',
-            pass:'Deepakag123'
+            user:'lethoooos@gmail.com',
+            pass:''
         }
     });
 
     if(msgType==='html'){
         var mailOptions={
-            from:'atozonlinemart5@gmail.com',
+            from:'lethoooos@gmail.com',
             to:receiver,
             subject:subject,
             html:msg
@@ -20,7 +20,7 @@ module.exports={
     }
     else{
         var mailOptions={
-            from:'atozonlinemart5@gmail.com',
+            from:'lethoooos@gmail.com',
             to:receiver,
             subject:subject,
             text:msg
