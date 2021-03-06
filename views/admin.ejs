@@ -394,6 +394,19 @@
 							<div class="row">
 								<p class="cat-heading-text">Brands</p>
 								<hr>
+								<div class="col-md-2">
+									<p class="cat-heading-text">Brands Header</p>
+									<form role="form" method="post" action="/addBrandsHeader" enctype="multipart/form-data">
+										<span><input type="file" class="admin-fileWidth" accept="image/*" name="img" required></span>
+										<span><input type="submit" value="Add Image"></span>
+									</form>
+									<form role="form" method="post" action="/deleteBrandsHeader" enctype="multipart/form-data">
+									<input style="display: none;" name="id" value="brands">
+									<button type="submit" class="admin-home-times" onclick="return confirm('Are you sure you want to Delete?')" ><i class="fas fa-times-circle"></i></button>
+									</form>
+										<img src="http://localhost:3001/uploads/<%= brandsHeader%>" class="brands-admin-img-height" alt="image">
+								</div>
+								<div class="col-md-10">
 								<form role="form" method="post" action="/addBrands" enctype="multipart/form-data">
 								<span><input type="file" class="fileWidth" accept="image/*" name="img" required></span>
 								<span><input type="submit" value="Add Brand"></span>
@@ -419,17 +432,22 @@
 							</div>
 						</div>
 						</div>
+						</div>
 						<div class="tab-pane fade" id="v-pills-faq">
 						<div class="row">
 								<p class="cat-heading-text">FAQ</p>
 								<hr>
 								<div class="col-md-4">
-									<form role="form" method="post" action="/deleteFaq" enctype="multipart/form-data">
+									<p class="cat-heading-text">FAQ</p>
+									<form role="form" method="post" action="/addFaq" enctype="multipart/form-data">
 										<span><input type="file" class="admin-fileWidth" accept="image/*" name="img" required></span>
 										<span><input type="submit" value="Add Image"></span>
 									</form>
-									<button type="submit" class="admin-faq-times" onclick="return confirm('Are you sure you want to Delete?')" ><i class="fas fa-times-circle"></i></button>
-										<img src="http://localhost:3001/uploads/hp.png" class="brands-admin-img-height" alt="image">
+									<form role="form" method="post" action="/deleteFaq" enctype="multipart/form-data">
+									<input style="display: none;" name="id" value="faq">
+									<button type="submit" class="admin-home-times" onclick="return confirm('Are you sure you want to Delete?')" ><i class="fas fa-times-circle"></i></button>
+									</form>
+										<img src="http://localhost:3001/uploads/<%= faq%>" class="brands-admin-img-height" alt="image">
 								</div>
 						</div>
 						</div>
@@ -438,12 +456,16 @@
 								<p class="cat-heading-text">Career</p>
 								<hr>
 								<div class="col-md-4">
-									<form role="form" method="post" action="/deleteCareer" enctype="multipart/form-data">
+									<p class="cat-heading-text">Career</p>
+									<form role="form" method="post" action="/addCareer" enctype="multipart/form-data">
 										<span><input type="file" class="admin-fileWidth" accept="image/*" name="img" required></span>
 										<span><input type="submit" value="Add Image"></span>
 									</form>
-									<button type="submit" class="admin-career-times" onclick="return confirm('Are you sure you want to Delete?')" ><i class="fas fa-times-circle"></i></button>
-										<img src="http://localhost:3001/uploads/hp.png" class="brands-admin-img-height" alt="image">
+									<form role="form" method="post" action="/deleteCareer" enctype="multipart/form-data">
+									<input style="display: none;" name="id" value="career">
+									<button type="submit" class="admin-home-times" onclick="return confirm('Are you sure you want to Delete?')" ><i class="fas fa-times-circle"></i></button>
+									</form>
+										<img src="http://localhost:3001/uploads/<%= career%>" class="brands-admin-img-height" alt="image">
 								</div>
 						</div>
 						</div>
@@ -452,12 +474,16 @@
 								<p class="cat-heading-text">Contact</p>
 								<hr>
 								<div class="col-md-4">
-									<form role="form" method="post" action="/deleteContact" enctype="multipart/form-data">
+									<p class="cat-heading-text">Contact</p>
+									<form role="form" method="post" action="/addContact" enctype="multipart/form-data">
 										<span><input type="file" class="admin-fileWidth" accept="image/*" name="img" required></span>
 										<span><input type="submit" value="Add Image"></span>
 									</form>
-									<button type="submit" class="admin-contact-times" onclick="return confirm('Are you sure you want to Delete?')" ><i class="fas fa-times-circle"></i></button>
-										<img src="http://localhost:3001/uploads/hp.png" class="brands-admin-img-height" alt="image">
+									<form role="form" method="post" action="/deleteContact" enctype="multipart/form-data">
+									<input style="display: none;" name="id" value="contact">
+									<button type="submit" class="admin-home-times" onclick="return confirm('Are you sure you want to Delete?')" ><i class="fas fa-times-circle"></i></button>
+									</form>
+										<img src="http://localhost:3001/uploads/<%= contact%>" class="brands-admin-img-height" alt="image">
 								</div>
 						</div>
 						</div>

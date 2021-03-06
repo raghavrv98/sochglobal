@@ -24,6 +24,18 @@ router.post('/deleteBrands', homeCtrl.deleteBrands);
 router.post('/addLogo', homeCtrl.addLogo);
 router.post('/deleteLogo', homeCtrl.deleteLogo);
 
+router.post('/addContact', homeCtrl.addContact);
+router.post('/deleteContact', homeCtrl.deleteContact);
+
+router.post('/addCareer', homeCtrl.addCareer);
+router.post('/deleteCareer', homeCtrl.deleteCareer);
+
+router.post('/addFaq', homeCtrl.addFaq);
+router.post('/deleteFaq', homeCtrl.deleteFaq);
+
+router.post('/addBrandsHeader', homeCtrl.addBrandsHeader);
+router.post('/deleteBrandsHeader', homeCtrl.deleteBrandsHeader);
+
 router.post('/newsLetter', homeCtrl.submitNewsLetter);
 router.post('/contact', homeCtrl.postContact);
 router.post('/forgotPassword', homeCtrl.postForgotPassword);
