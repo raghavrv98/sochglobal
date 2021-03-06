@@ -18,6 +18,12 @@ router.get('/notFound', homeCtrl.showNotFound);
 
 //dynamic routes
 
+router.post('/addBrands', homeCtrl.addBrands);
+router.post('/deleteBrands', homeCtrl.deleteBrands);
+
+router.post('/addLogo', homeCtrl.addLogo);
+router.post('/deleteLogo', homeCtrl.deleteLogo);
+
 router.post('/newsLetter', homeCtrl.submitNewsLetter);
 router.post('/contact', homeCtrl.postContact);
 router.post('/forgotPassword', homeCtrl.postForgotPassword);

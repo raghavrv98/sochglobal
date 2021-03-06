@@ -4,10 +4,11 @@
 
 @import url(main.css);
 body {
-  color: #222;
-  font-weight: 400;
-  font-family: 'Times New Roman', Serif;
-  font-size: 18px;
+  color: #7c7c7c !important;
+  font-weight: 600 !important;
+  font-family: TITILLIUM SANS AND DOSIS !important;
+  font-size: 16px !important;
+  line-height: 26px !important;
 }
 
 .icon-size {
@@ -57,8 +58,23 @@ body {
 }
 
 .about-img {
-  height: 200px;
+  height: auto;
   margin-top: -45px;
+  font-family: TITILLIUM SANS AND DOSIS !important;
+}
+
+.about-text {
+  color: #ffffff;
+  position: absolute;
+  z-index: 1;
+  font-size: 100px;
+  left: 40%;
+  top: -10%;
+}
+
+.career-text {
+  font-size: 30px;
+  text-align: center;
 }
 
 .alert-success {
@@ -89,7 +105,8 @@ body {
   color: #ffffff;
   margin-right: 50px;
   float: right;
-  margin-top: 10px;
+  margin-top: 5px;
+  font-size: 13px;
 }
 
 .float-whatsapp {
@@ -192,14 +209,7 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Raleway', sans-serif;
-}
-
-p {
-  line-height: 1.8;
-  margin: 0;
-  font-size: 15px;
-  color: #777;
+  font-family: TITILLIUM SANS AND DOSIS !important;
 }
 
 .button-top {
@@ -232,6 +242,62 @@ p {
 .brands-img-height {
   height: 150px;
   margin-bottom: 20px;
+}
+
+.brands-admin-img-height {
+  height: 150px;
+  width: 150px;
+}
+
+.brands-outer-admin {
+  max-height: 420px;
+  overflow: auto;
+  border: 1px solid;
+  border-radius: 10px;
+}
+
+.delete-btn {
+  background-color: #B67B81 !important;
+}
+
+.admin-brands-img, .brands-img {
+    border: 1px solid;
+    border-radius: 15px;
+    margin: 10px;
+    padding: 10px;
+    width: 165px;
+    box-shadow: 0px 10px 10px #eee;
+}
+
+.brands-img{
+width: 100%;
+height: auto;
+}
+
+.admin-brands-times{
+    float: right;
+    border: none;
+    background: transparent;
+}
+.admin-faq-times, .admin-career-times, .admin-contact-times, .admin-home-times {
+    position: absolute;
+    top: 25%;
+    right: 45%;
+    border: none;
+    background: transparent;
+}
+
+.admin-home-times{
+  top: 40%;
+}
+
+.admin-sub-tabs{
+  font-size: 20px;
+  margin-right: 20px;
+}
+
+.admin-fileWidth{
+  width: 220px;
 }
 
 /* -------------------------------------------------------
@@ -305,7 +371,39 @@ p {
   padding-top: 7px;
 }
 
+/* scroll bar  */
+
+/* width */
+
+::-webkit-scrollbar {
+	width: 6px;
+}
+
+/* Track */
+
+::-webkit-scrollbar-track {
+	background: #f1f1f1;
+	border-radius: 10px !important;
+}
+
+/* Handle */
+
+::-webkit-scrollbar-thumb {
+	background: #888;
+	border-radius: 10px !important;
+}
+
+/* Handle on hover */
+
+::-webkit-scrollbar-thumb:hover {
+	background: #555;
+}
+
+
+
 /* -------------------------------------------------------
+
+
                      Header 
 -------------------------------------------------------- */
 
@@ -504,6 +602,7 @@ p {
 .hero .intro h6 {
   margin-bottom: 15px;
   color: #07AAA5;
+  position: absolute;
 }
 
 .hero .intro h4 {
@@ -553,7 +652,7 @@ p {
   -webkit-transition: all .5s;
   transition: all .5s;
   position: relative;
-  min-height: 240px;
+  min-height: 255px;
 }
 
 .hero .feat .item:hover {
@@ -680,7 +779,7 @@ p {
 -------------------------------------------------------- */
 
 .info {
-  max-height: 531px;
+  height: 460px;
 }
 
 .contact .map-pin-img {
@@ -688,7 +787,7 @@ p {
 }
 
 .contact .form, .contact .info {
-  padding: 80px 50px;
+  padding: 40px 50px;
   background: #fff;
   -webkit-box-shadow: 0px 5px 50px #eee;
   box-shadow: 0px 5px 50px #eee;
@@ -794,7 +893,7 @@ p {
 
 .footer-img-height {
   height: 100px;
-  width: 55%;
+  width: 100;
 }
 
 footer {
@@ -815,18 +914,26 @@ footer .main-footer .logo {
 }
 
 footer .main-footer p {
-  font-size: 12px;
-  letter-spacing: 1px;
+  font-size: 13px;
   text-transform: uppercase;
+  margin: 0px;
 }
 
 .quick-links {
   cursor: pointer;
-  color: #777777;
+  color: #ffffff;
+  font-size: 15px;
 }
 
 .quick-links:hover {
   text-decoration: underline !important;
+}
+
+.address-text {
+  font-size: 20px !important;
+  color: #fff;
+  margin-top: -6px;
+  font-weight: 500;
 }
 
 /* ------------------------------------------------------- */
@@ -1222,7 +1329,7 @@ select {
 
 .admin-prod-outer {
   overflow: auto;
-  max-height: 100vh;
+  max-height: 460px;
   border: 1px solid;
   border-radius: 5px;
   padding: 20px;
@@ -1235,9 +1342,18 @@ select {
 .contact-headline {
   background-color: #07AAA5;
   color: #ffffff;
-  height: 40px;
+  height: 38px;
   position: relative;
   z-index: 1001;
+}
+
+.logo {
+  width: 100px;
+  float: left;
+  height: 100px;
+  padding-top: 7px;
+  margin-top: 0px;
+  margin-left: -50px;
 }
 
 /* ------------------------------------------------------------------- */
@@ -1294,6 +1410,10 @@ select {
   .portfolio .filtering span {
     margin: 10px 2px;
   }
+
+  .section-head h3{
+    font-size: 25px;
+  }
 }
 
 @media screen and (max-width: 991px) {
@@ -1303,7 +1423,7 @@ select {
   .header h1 {
     font-size: 35px !important;
   }
-  .hero .hero-img, .hero .feat .item, .team .about-team, .skills .item, .price .prc-item, .faq .accordion {
+  .hero, .hero .feat .item, .team .about-team, .skills .item, .price .prc-item, .faq .accordion {
     margin-bottom: 50px !important;
   }
   .team .owl-theme .owl-nav.disabled+.owl-dots {
@@ -1331,8 +1451,8 @@ select {
     color: #ffffff;
     float: right;
     margin-right: 16px;
-    font-size: 12px;
-    margin-top: 13px;
+    font-size: 13px;
+    margin-top: 6px;
   }
   .whatsapp-contact {
     height: 20px;
@@ -1361,6 +1481,27 @@ select {
     line-height: 90px;
     color: #fff;
     margin: 42px 0px;
+  }
+  .about-text {
+    color: #000;
+    position: absolute;
+    z-index: 1;
+    font-size: 40px;
+    left: 35%;
+    top: -42%;
+  }
+  .about-img {
+    height: auto;
+    margin-top: 20px;
+    font-family: TITILLIUM SANS AND DOSIS !important;
+  }
+  .logo {
+    width: 100px;
+    height: 100px;
+    float: left;
+    padding-top: 7px;
+    margin-top: 5px;
+    margin-left: 0px !important;
   }
 }
 

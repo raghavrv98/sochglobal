@@ -4,12 +4,133 @@ var mailUtils = require('./../utils/mail-utils')
 var message = '';
 module.exports = {
 
-
     showLogin: (req, res, next) => {
+        var sql = "select * from home";
+        var query = db.query(sql, function (err, home) {
+            if (err) {
+                return res.status(500).send(err);
+            }
+            else {
+                home = home[0] ? home[0].img : "noImage.jpg"
+
+                var message = ""
+                res.render('login', {
+                    message,
+                    home
+                });
+            }
+        })
+    },
+
+    showHome: (req, res, next) => {
+        var sql = "select * from home";
+        var query = db.query(sql, function (err, home) {
+            if (err) {
+                return res.status(500).send(err);
+            }
+            else {
+                home = home[0] ? home[0].img : "noImage.jpg"
+
+                res.render('index', { home });
+            }
+        })
+    },
+
+    showContact: (req, res, next) => {
         var message = ""
-        res.render('login', {
-            message
-        });
+
+        var sql = "select * from home";
+        var query = db.query(sql, function (err, home) {
+            if (err) {
+                return res.status(500).send(err);
+            }
+            else {
+                home = home[0] ? home[0].img : "noImage.jpg"
+
+                res.render('contact', {
+                    message,
+                    home
+                });
+
+            }
+        })
+    },
+
+    showCareer: (req, res, next) => {
+        var sql = "select * from home";
+        var query = db.query(sql, function (err, home) {
+            if (err) {
+                return res.status(500).send(err);
+            }
+            else {
+                home = home[0] ? home[0].img : "noImage.jpg"
+                res.render('career', { home });
+            }
+        })
+    },
+
+    showFaq: (req, res, next) => {
+        var sql = "select * from home";
+        var query = db.query(sql, function (err, home) {
+            if (err) {
+                return res.status(500).send(err);
+            }
+            else {
+                home = home[0] ? home[0].img : "noImage.jpg"
+                res.render('faq', { home });
+            }
+        })
+    },
+
+    showNotFound: (req, res, next) => {
+        var sql = "select * from home";
+        var query = db.query(sql, function (err, home) {
+            if (err) {
+                return res.status(500).send(err);
+            }
+            else {
+                home = home[0] ? home[0].img : "noImage.jpg"
+                res.render('notFound', { home });
+            }
+        })
+    },
+
+    submitNewsLetter: (req, res, next) => {
+        var email = req.body.emailId
+
+        var messageBodyForCompany = "User Email-id for Subscription: " + email
+        var messageBodyForUser = "Thanks for subscribe to SochGlobal. You will now get latest udates."
+
+        mailUtils.sendMail('info@sochglobal.com', "Enquiry Mail", messageBodyForCompany)
+        mailUtils.sendMail(email, "Congratulations", messageBodyForUser)
+
+        res.redirect('/');
+    },
+
+    showBrands: (req, res, next) => {
+
+        var sql = "select * from home";
+        var query = db.query(sql, function (err, home) {
+            if (err) {
+                return res.status(500).send(err);
+            }
+            else {
+                home = home[0] ? home[0].img : "noImage.jpg"
+
+                var sql = "select * from brands";
+                var query = db.query(sql, function (err, brands) {
+                    if (err) {
+                        return res.status(500).send(err);
+                    }
+                    else {
+                        res.render('brands', {
+                            brands,
+                            home
+                        });
+                    }
+                })
+            }
+        })
     },
 
     postLogin: (req, res, next) => {
@@ -36,26 +157,12 @@ module.exports = {
         })
     },
 
-    showHome: (req, res, next) => {
-        res.render('index');
-    },
-
     logout: (req, res, next) => {
         req.session.destroy(function (err) {
             res.redirect("/login");
         })
     },
 
-    showContact: (req, res, next) => {
-        var message = ""
-        res.render('contact', {
-            message
-        });
-    },
-
-    showBrands: (req, res, next) => {
-        res.render('brands');
-    },
 
     showCategoryProducts: (req, res, next) => {
 
@@ -70,116 +177,138 @@ module.exports = {
         var categoryRedirect = true
         var message = ""
 
-        var productCategoryList = []
-
-        var sql = 'SELECT * FROM product_categories';
-        var query = db.query(sql, function (err, product_categories) {
+        var sql = "select * from home";
+        var query = db.query(sql, function (err, home) {
             if (err) {
                 return res.status(500).send(err);
             }
             else {
+                home = home[0] ? home[0].img : "noImage.jpg"
 
-                var displayCategory = []
-                for (var i in product_categories) {
-                    displayCategory.push(product_categories[i].displayCategory)
-                    displayCategory = [...new Set(displayCategory)]
-                }
-
-                var category = []
-                for (var i in product_categories) {
-                    category.push(product_categories[i].category)
-                    category = [...new Set(category)]
-                }
-
-                for (var i = 0; i < displayCategory.length; i++) {
-                    var catArr = product_categories.filter(val => val.category == category[i])
-                    var subCategory = {}
-
-                    catArr.map(val => {
-                        if (val.displaySubCategory.length > 0) {
-                            subCategory[val.displaySubCategory] = val.subCategory
-                        }
-                    })
-
-                    productCategoryList.push({
-                        displayName: displayCategory[i],
-                        name: category[i],
-                        subCategory: subCategory
-                    })
-                }
-
-                var dropdownlistObject = productCategoryList.find(val => val.name == categoryId)
-
-                if (dropdownlistObject) {
-                    var requiredPair = Object.entries(dropdownlistObject.subCategory)
-                    dropdownList = []
-
-                    for (var i = 0; i < requiredPair.length; i++) {
-                        dropdownList.push({
-                            displayName: requiredPair[i][0],
-                            name: requiredPair[i][1]
-                        })
+                var sql = "select * from brands";
+                var query = db.query(sql, function (err, brands) {
+                    if (err) {
+                        return res.status(500).send(err);
                     }
-                    displayCategoryId = productCategoryList.find(val => val.name == categoryId).displayName
+                    else {
 
-                    var sql = `SELECT * FROM ${categoryId}`;
-                    var query = db.query(sql, function (err, categoryList) {
-                        if (err) {
-                            return res.status(500).send(err);
-                        }
-                        else {
+                        var productCategoryList = []
 
-                            if (editId.length > 0) {
-                                editProduct = categoryList.find(val => {
-                                    if (val.id == editId) {
-                                        return val
+                        var sql = 'SELECT * FROM product_categories';
+                        var query = db.query(sql, function (err, product_categories) {
+                            if (err) {
+                                return res.status(500).send(err);
+                            }
+                            else {
+
+                                var displayCategory = []
+                                for (var i in product_categories) {
+                                    displayCategory.push(product_categories[i].displayCategory)
+                                    displayCategory = [...new Set(displayCategory)]
+                                }
+
+                                var category = []
+                                for (var i in product_categories) {
+                                    category.push(product_categories[i].category)
+                                    category = [...new Set(category)]
+                                }
+
+                                for (var i = 0; i < displayCategory.length; i++) {
+                                    var catArr = product_categories.filter(val => val.category == category[i])
+                                    var subCategory = {}
+
+                                    catArr.map(val => {
+                                        if (val.displaySubCategory.length > 0) {
+                                            subCategory[val.displaySubCategory] = val.subCategory
+                                        }
+                                    })
+
+                                    productCategoryList.push({
+                                        displayName: displayCategory[i],
+                                        name: category[i],
+                                        subCategory: subCategory
+                                    })
+                                }
+
+                                var dropdownlistObject = productCategoryList.find(val => val.name == categoryId)
+
+                                if (dropdownlistObject) {
+                                    var requiredPair = Object.entries(dropdownlistObject.subCategory)
+                                    dropdownList = []
+
+                                    for (var i = 0; i < requiredPair.length; i++) {
+                                        dropdownList.push({
+                                            displayName: requiredPair[i][0],
+                                            name: requiredPair[i][1]
+                                        })
                                     }
-                                })
-                                if (!editProduct) {
-                                    editRedirect = true;
-                                    message = "Edit Id does not exists";
+                                    displayCategoryId = productCategoryList.find(val => val.name == categoryId).displayName
+
+                                    var sql = `SELECT * FROM ${categoryId}`;
+                                    var query = db.query(sql, function (err, categoryList) {
+                                        if (err) {
+                                            return res.status(500).send(err);
+                                        }
+                                        else {
+
+                                            if (editId.length > 0) {
+                                                editProduct = categoryList.find(val => {
+                                                    if (val.id == editId) {
+                                                        return val
+                                                    }
+                                                })
+                                                if (!editProduct) {
+                                                    editRedirect = true;
+                                                    message = "Edit Id does not exists";
+                                                }
+                                            }
+
+                                            var session = req.session.userId;
+                                            res.render('admin', {
+                                                message,
+                                                productCategoryList,
+                                                products: categoryList,
+                                                editProduct,
+                                                categoryId,
+                                                subCategoryId,
+                                                displayCategoryId,
+                                                displaySubCategoryId,
+                                                dropdownList,
+                                                session,
+                                                editRedirect,
+                                                categoryRedirect,
+                                                brands,
+                                                home
+                                            });
+                                        }
+                                    })
+                                }
+                                else {
+                                    message = "Category does not exist"
+                                    var session = req.session.userId;
+                                    res.render('admin', {
+                                        message,
+                                        productCategoryList,
+                                        categoryId,
+                                        subCategoryId,
+                                        displayCategoryId,
+                                        displaySubCategoryId,
+                                        dropdownList,
+                                        session,
+                                        editRedirect,
+                                        editProduct,
+                                        products: [],
+                                        categoryRedirect,
+                                        brands,
+                                        home
+                                    });
+
                                 }
                             }
+                        })
+                    }
 
-                            var session = req.session.userId;
-
-                            res.render('admin', {
-                                message,
-                                productCategoryList,
-                                products: categoryList,
-                                editProduct,
-                                categoryId,
-                                subCategoryId,
-                                displayCategoryId,
-                                displaySubCategoryId,
-                                dropdownList,
-                                session,
-                                editRedirect,
-                                categoryRedirect
-                            });
-                        }
-                    })
-                }
-                else {
-                    message = "Category does not exist"
-
-                    var session = req.session.userId;
-                    res.render('admin', {
-                        message,
-                        productCategoryList,
-                        categoryId,
-                        subCategoryId,
-                        displayCategoryId,
-                        displaySubCategoryId,
-                        dropdownList,
-                        session,
-                        editRedirect,
-                        editProduct,
-                        products: [],
-                        categoryRedirect
-                    });
-
-                }
+                })
             }
         })
     },
@@ -195,92 +324,113 @@ module.exports = {
         var categoryRedirect = false
         message = ""
 
-        var productCategoryList = []
-
-        var sql = 'SELECT * FROM product_categories';
-        var query = db.query(sql, function (err, product_categories) {
+        var sql = "select * from home";
+        var query = db.query(sql, function (err, home) {
             if (err) {
                 return res.status(500).send(err);
             }
             else {
+                home = home[0] ? home[0].img : "noImage.jpg"
 
-                var displayCategory = []
-                for (var i in product_categories) {
-                    displayCategory.push(product_categories[i].displayCategory)
-                    displayCategory = [...new Set(displayCategory)]
-                }
-
-                var category = []
-                for (var i in product_categories) {
-                    category.push(product_categories[i].category)
-                    category = [...new Set(category)]
-                }
-
-                for (var i = 0; i < displayCategory.length; i++) {
-                    var catArr = product_categories.filter(val => val.category == category[i])
-                    var subCategory = {}
-
-                    catArr.map(val => {
-                        if (val.displaySubCategory.length > 0) {
-                            subCategory[val.displaySubCategory] = val.subCategory
-                        }
-                    })
-
-                    productCategoryList.push({
-                        displayName: displayCategory[i],
-                        name: category[i],
-                        subCategory: subCategory
-                    })
-                }
-                displayCategoryId = productCategoryList.find(val => val.name == categoryId).displayName
-
-                var categoryObject = productCategoryList.find(val => val.name == categoryId)
-                var requiredPair = Object.entries(categoryObject.subCategory).find(key => {
-                    if (key[1] == subCategoryId) {
-                        return key
-                    }
-                })
-                if (requiredPair) {
-                    displaySubCategoryId = requiredPair[0];
-                }
-                else {
-                    message = "Sub Category does not exist"
-                }
-
-                var sql = `SELECT * FROM ${categoryId} where subCategory ='${subCategoryId}'`;
-                var query = db.query(sql, function (err, categoryList) {
+                var sql = "select * from brands";
+                var query = db.query(sql, function (err, brands) {
                     if (err) {
                         return res.status(500).send(err);
                     }
                     else {
 
-                        if (editId.length > 0) {
-                            editProduct = categoryList.find(val => {
-                                if (val.id == editId) {
-                                    return val
-                                }
-                            })
-                            if (!editProduct) {
-                                editRedirect = true;
-                                message = "Edit Id does not exists";
+                        var productCategoryList = []
+
+                        var sql = 'SELECT * FROM product_categories';
+                        var query = db.query(sql, function (err, product_categories) {
+                            if (err) {
+                                return res.status(500).send(err);
                             }
-                        }
+                            else {
 
-                        var session = req.session.userId;
+                                var displayCategory = []
+                                for (var i in product_categories) {
+                                    displayCategory.push(product_categories[i].displayCategory)
+                                    displayCategory = [...new Set(displayCategory)]
+                                }
 
-                        res.render('admin', {
-                            message,
-                            productCategoryList,
-                            products: categoryList,
-                            editProduct,
-                            categoryId,
-                            subCategoryId,
-                            displayCategoryId,
-                            displaySubCategoryId,
-                            session,
-                            editRedirect,
-                            categoryRedirect
-                        });
+                                var category = []
+                                for (var i in product_categories) {
+                                    category.push(product_categories[i].category)
+                                    category = [...new Set(category)]
+                                }
+
+                                for (var i = 0; i < displayCategory.length; i++) {
+                                    var catArr = product_categories.filter(val => val.category == category[i])
+                                    var subCategory = {}
+
+                                    catArr.map(val => {
+                                        if (val.displaySubCategory.length > 0) {
+                                            subCategory[val.displaySubCategory] = val.subCategory
+                                        }
+                                    })
+
+                                    productCategoryList.push({
+                                        displayName: displayCategory[i],
+                                        name: category[i],
+                                        subCategory: subCategory
+                                    })
+                                }
+                                displayCategoryId = productCategoryList.find(val => val.name == categoryId).displayName
+
+                                var categoryObject = productCategoryList.find(val => val.name == categoryId)
+                                var requiredPair = Object.entries(categoryObject.subCategory).find(key => {
+                                    if (key[1] == subCategoryId) {
+                                        return key
+                                    }
+                                })
+                                if (requiredPair) {
+                                    displaySubCategoryId = requiredPair[0];
+                                }
+                                else {
+                                    message = "Sub Category does not exist"
+                                }
+
+                                var sql = `SELECT * FROM ${categoryId} where subCategory ='${subCategoryId}'`;
+                                var query = db.query(sql, function (err, categoryList) {
+                                    if (err) {
+                                        return res.status(500).send(err);
+                                    }
+                                    else {
+
+                                        if (editId.length > 0) {
+                                            editProduct = categoryList.find(val => {
+                                                if (val.id == editId) {
+                                                    return val
+                                                }
+                                            })
+                                            if (!editProduct) {
+                                                editRedirect = true;
+                                                message = "Edit Id does not exists";
+                                            }
+                                        }
+
+                                        var session = req.session.userId;
+
+                                        res.render('admin', {
+                                            message,
+                                            productCategoryList,
+                                            products: categoryList,
+                                            editProduct,
+                                            categoryId,
+                                            subCategoryId,
+                                            displayCategoryId,
+                                            displaySubCategoryId,
+                                            session,
+                                            editRedirect,
+                                            categoryRedirect,
+                                            brands,
+                                            home
+                                        });
+                                    }
+                                })
+                            }
+                        })
                     }
                 })
             }
@@ -293,78 +443,103 @@ module.exports = {
         var categoryId = req.params.categoryId
         message = ""
 
-        var productCategoryList = []
-
-        var sql = 'SELECT * FROM product_categories';
-        var query = db.query(sql, function (err, product_categories) {
+        var sql = "select * from home";
+        var query = db.query(sql, function (err, home) {
             if (err) {
                 return res.status(500).send(err);
             }
             else {
+                home = home[0] ? home[0].img : "noImage.jpg"
 
-                var displayCategory = []
-                for (var i in product_categories) {
-                    displayCategory.push(product_categories[i].displayCategory)
-                    displayCategory = [...new Set(displayCategory)]
-                }
+                var sql = "select * from brands";
+                var query = db.query(sql, function (err, brands) {
+                    if (err) {
+                        return res.status(500).send(err);
+                    }
+                    else {
 
-                var category = []
-                for (var i in product_categories) {
-                    category.push(product_categories[i].category)
-                    category = [...new Set(category)]
-                }
+                        var productCategoryList = []
 
-                for (var i = 0; i < displayCategory.length; i++) {
-                    var catArr = product_categories.filter(val => val.category == category[i])
-                    var subCategory = {}
+                        var sql = 'SELECT * FROM product_categories';
+                        var query = db.query(sql, function (err, product_categories) {
+                            if (err) {
+                                return res.status(500).send(err);
+                            }
+                            else {
 
-                    catArr.map(val => {
-                        if (val.displaySubCategory.length > 0) {
-                            subCategory[val.displaySubCategory] = val.subCategory
-                        }
-                    })
+                                var displayCategory = []
+                                for (var i in product_categories) {
+                                    displayCategory.push(product_categories[i].displayCategory)
+                                    displayCategory = [...new Set(displayCategory)]
+                                }
 
-                    productCategoryList.push({
-                        displayName: displayCategory[i],
-                        name: category[i],
-                        subCategory: subCategory
-                    })
-                }
+                                var category = []
+                                for (var i in product_categories) {
+                                    category.push(product_categories[i].category)
+                                    category = [...new Set(category)]
+                                }
 
-                var activeLinkName = req.originalUrl.split('/')
+                                for (var i = 0; i < displayCategory.length; i++) {
+                                    var catArr = product_categories.filter(val => val.category == category[i])
+                                    var subCategory = {}
 
-                if (subCategoryId) {
-                    var sql = `SELECT * FROM ${categoryId} where subCategory = "${subCategoryId}"`;
-                    var query = db.query(sql, function (err, subCategoryList) {
-                        if (err) {
-                            return res.status(500).send(err);
-                        }
-                        else {
-                            res.render('products', {
-                                message,
-                                productCategoryList,
-                                products: subCategoryList,
-                                activeLinkName
-                            });
-                        }
-                    })
-                }
-                else {
-                    var sql = `SELECT * FROM ${categoryId}`;
-                    var query = db.query(sql, function (err, categoryList) {
-                        if (err) {
-                            return res.status(500).send(err);
-                        }
-                        else {
-                            res.render('products', {
-                                message,
-                                productCategoryList,
-                                products: categoryList,
-                                activeLinkName
-                            });
-                        }
-                    })
-                }
+                                    catArr.map(val => {
+                                        if (val.displaySubCategory.length > 0) {
+                                            subCategory[val.displaySubCategory] = val.subCategory
+                                        }
+                                    })
+
+                                    productCategoryList.push({
+                                        displayName: displayCategory[i],
+                                        name: category[i],
+                                        subCategory: subCategory
+                                    })
+                                }
+
+                                var activeLinkName = req.originalUrl.split('/')
+
+                                if (subCategoryId) {
+                                    var sql = `SELECT * FROM ${categoryId} where subCategory = "${subCategoryId}"`;
+                                    var query = db.query(sql, function (err, subCategoryList) {
+                                        if (err) {
+                                            return res.status(500).send(err);
+                                        }
+                                        else {
+                                            res.render('products', {
+                                                message,
+                                                productCategoryList,
+                                                products: subCategoryList,
+                                                activeLinkName,
+                                                home,
+                                                brands
+                                            });
+                                        }
+                                    })
+                                }
+                                else {
+                                    var sql = `SELECT * FROM ${categoryId}`;
+                                    var query = db.query(sql, function (err, categoryList) {
+                                        if (err) {
+                                            return res.status(500).send(err);
+                                        }
+                                        else {
+                                            res.render('products', {
+                                                message,
+                                                productCategoryList,
+                                                products: categoryList,
+                                                activeLinkName,
+                                                brands,
+                                                home
+                                            });
+                                        }
+                                    })
+                                }
+                            }
+                        })
+
+                    }
+                })
+
             }
         })
     },
@@ -472,18 +647,7 @@ module.exports = {
         var subCategory = req.body.subCategory ? req.body.subCategory.split(',')[0] : ""
         var displaySubCategory = req.body.subCategory ? req.body.subCategory.split(',')[1] : ""
 
-        // if (!req.files)
-        //     return res.status(400).send('No files were uploaded.');
-
-        // var file = req.files.img;
         var img_name = "";
-
-        // if (file.mimetype == "image/jpeg" || file.mimetype == "image/png" || file.mimetype == "image/gif") {
-
-        // file.mv('public/uploads/' + file.name, function (err) {
-
-        // if (err)
-        //     return res.status(500).send(err);
 
         if (editID) {
             var sql = `UPDATE ${categoryId} SET category="${categoryId}", subCategory="${subCategory}", displaySubCategory="${displaySubCategory}", name="${name}", img="${img_name}", description="${description}", stockCount=${stockCount} where id=${editID};`;
@@ -497,11 +661,6 @@ module.exports = {
                 res.redirect(`/admin-category/${categoryId}`);
             });
         }
-        // });
-        // } else {
-        //     message = "This format is not allowed , please upload file with '.png','.gif','.jpg'";
-        //     res.render('sampleIndex', { message: message });
-        // }
     },
 
     addSubCategory: (req, res, next) => {
@@ -545,18 +704,7 @@ module.exports = {
         var description = req.body.description
         var stockCount = req.body.stockCount.length > 0 ? req.body.stockCount : 0
 
-        // if (!req.files)
-        //     return res.status(400).send('No files were uploaded.');
-
-        // var file = req.files.img;
         var img_name = "";
-
-        // if (file.mimetype == "image/jpeg" || file.mimetype == "image/png" || file.mimetype == "image/gif") {
-
-        // file.mv('public/uploads/' + file.name, function (err) {
-
-        // if (err)
-        //     return res.status(500).send(err);
 
         if (editID) {
             var sql = `UPDATE ${categoryId} SET category="${categoryId}", subCategory="${subCategoryId}", displaySubCategory = "${displaySubCategoryId}", img="${img_name}", name="${name}", description="${description}", stockCount=${stockCount} where id=${editID}`;
@@ -570,19 +718,6 @@ module.exports = {
                 res.redirect(`/admin-subCategory/${categoryId}/${subCategoryId}`);
             });
         }
-        //     });
-        // } else {
-        //     message = "This format is not allowed , please upload file with '.png','.gif','.jpg'";
-        //     res.render('sampleIndex', { message: message });
-        // }
-    },
-
-    showCareer: (req, res, next) => {
-        res.render('career');
-    },
-
-    showFaq: (req, res, next) => {
-        res.render('faq');
     },
 
     showForgotPassword: (req, res, next) => {
@@ -595,7 +730,6 @@ module.exports = {
 
     postForgotPassword: (req, res, next) => {
         var email = req.body.emailId
-        console.log('email: ', email);
 
         var sql = "select * from login_cred";
         var query = db.query(sql, function (err, rows) {
@@ -605,7 +739,7 @@ module.exports = {
             else {
                 if (rows[0].email === email) {
                     message = "Password send to your registered Email-id.";
-                    console.log('message: ', message);
+
                     res.render('forgotPassword', {
                         message,
                         success: true
@@ -616,7 +750,6 @@ module.exports = {
                 }
                 else {
                     message = "Email id does not exist.";
-                    console.log('message: ', message);
                     res.render('forgotPassword', {
                         message,
                         success: false
@@ -633,7 +766,7 @@ module.exports = {
         var message = req.body.message
 
         var messageBody = "\n Name : " + name + "\n Email-id : " + email + "\n subject : " + subject + "\n Message : " + message
-     
+
         mailUtils.sendMail('info@sochglobal.com', "Enquiry Mail", messageBody)
         message = "Message send successfully. Please wait we will contact you soon."
         res.render('contact', {
@@ -641,20 +774,107 @@ module.exports = {
         });
     },
 
-    showNotFound: (req, res, next) => {
-        res.render('notFound');
+    addBrands: (req, res, next) => {
+
+        var file = req.files.img;
+        var img_name = file.name;
+
+        if (file.mimetype == "image/jpeg" || file.mimetype == "image/png" || file.mimetype == "image/gif") {
+
+            file.mv('public/uploads/' + file.name, function (err) {
+
+                var sql = `INSERT INTO brands (img) VALUES ('${img_name}');`;
+                var query = db.query(sql, function (err, brands) {
+                    if (err) {
+                        return res.status(500).send(err);
+                    }
+                    else {
+                        res.redirect(`/admin-category/computers`);
+                    }
+                })
+
+            });
+        } else {
+
+            var sql = "select * from brands";
+            var query = db.query(sql, function (err, brands) {
+                if (err) {
+                    return res.status(500).send(err);
+                }
+                else {
+                    message = "This format is not allowed , please upload file with '.png','.gif','.jpg'";
+                    res.render('admin', { message: message, brands });
+                }
+            })
+        }
     },
 
-    submitNewsLetter: (req, res, next) => {
-        var email = req.body.emailId
+    deleteBrands: (req, res, next) => {
 
-        var messageBodyForCompany = "User Email-id for Subscription: " + email
-        var messageBodyForUser = "Thanks for subscribe to SochGlobal. You will now get latest udates."
-     
-        mailUtils.sendMail('lethoooos@gmail.com', "Enquiry Mail", messageBodyForCompany)
-        mailUtils.sendMail(email, "Congratulations", messageBodyForUser)
-        
-        res.redirect('/');
+        var id = req.body.id;
+
+        var sql = `DELETE FROM brands where id = ${id};`;
+        var query = db.query(sql, function (err) {
+            if (err) {
+                return res.status(500).send(err);
+            }
+            else {
+                res.redirect(`/admin-category/computers`);
+            }
+        })
+    },
+
+
+    addLogo: (req, res, next) => {
+
+        var file = req.files.img;
+        var img_name = file.name;
+
+        if (file.mimetype == "image/jpeg" || file.mimetype == "image/png" || file.mimetype == "image/gif") {
+
+            file.mv('public/uploads/' + file.name, function (err) {
+
+                var sql = `INSERT INTO home (img, type) VALUES ('${img_name}', 'logo');`;
+                var query = db.query(sql, function (err) {
+                    if (err) {
+                        return res.status(500).send(err);
+                    }
+                    else {
+                        res.redirect(`/admin-category/computers`);
+                    }
+                })
+
+            });
+        } else {
+
+            var sql = "select * from home";
+            var query = db.query(sql, function (err, home) {
+                home = home[0] ? home[0].img : "noImage.jpg"
+                if (err) {
+                    return res.status(500).send(err);
+                }
+                else {
+                    message = "This format is not allowed , please upload file with '.png','.gif','.jpg'";
+                    res.render('admin', { message: message, home });
+                }
+            })
+        }
+    },
+
+
+    deleteLogo: (req, res, next) => {
+
+        var type = req.body.id;
+
+        var sql = `DELETE FROM home where type="${type}"`;
+        var query = db.query(sql, function (err) {
+            if (err) {
+                return res.status(500).send(err);
+            }
+            else {
+                res.redirect(`/admin-category/computers`);
+            }
+        })
     },
 
 }

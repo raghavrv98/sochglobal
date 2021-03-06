@@ -4,21 +4,21 @@
 		<div class="row-footer">
 			<div class="col-md-3 items text-center mb-20">
 				<div class="item-img">
-					<img src="http://localhost:3001/images/sochGlobalLogo3.jpg" class="footer-img-height" alt="image">
+					<img src="http://localhost:3001/uploads/<%=home%>" class="footer-img-height" alt="image">
 					<div class="item-img-overlay">
 					</div>
 				</div>
 			</div>
 
 			<div class="col-md-2 mb-20">
-				<p>Address</p>
+				<p class="address-text mb-20">Address</p>
 				<p>211 Denton Avenue </p>
-				<p>NeW Hyde Park , NY 11040</p>
-				<p>Phone no +1 516-248-8777</p>
+				<p>NeW Hyde Park,<br> New York 11040</p>
+				<p>Phone no +1 (516) 248-8777</p>
 			</div>
 
 			<div class="col-md-2 items mb-20">
-				<h5 class="mb-20">Quick Links</h5>
+				<h5 class="mb-10">Quick Links</h5>
 				<a href="/brands" class="quick-links">Brands</a><br>
 				<a href="/faq" class="quick-links">FAQ</a><br>
 				<a href="/career" class="quick-links">Career</a><br>
@@ -28,17 +28,19 @@
 		</div>
 
 		<div class="col-md-5 items">
-			<label class="mb-20">Join Our NewsLetter</label>
+			<label style="font-size: 20px;" class="mb-20">Join Our NewsLetter</label>
 			<form method="POST" action="/newsLetter">
 				<div class="form-group">
-					<input class="newsletter-input" type="email" name="emailId" id='emailId' placeholder="Enter your Email" required>
+					<input class="newsletter-input" type="email" name="emailId" id='emailId'
+						placeholder="Enter your Email" required>
 					<button class="newsletter-button">Subscribe</button>
 				</div>
 			</form>
 		</div>
 	</div>
-
-	<p class="text-center pb-20">&copy; 2021 By SochGlobal | All Rights Reserved.</p>
+	<div class="float-whatsapp"><a href="https://api.whatsapp.com/send?phone=15162488777"><img
+		src="http://localhost:3001/images/whatsapp.png" alt="whatsapp chat bot"></a></div>
+	<p class="text-center mr-0">&copy; 2021 By Soch Global | All Rights Reserved.</p>
 	</div>
 </footer>
 
