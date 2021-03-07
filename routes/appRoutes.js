@@ -24,6 +24,12 @@ router.post('/deleteBrands', homeCtrl.deleteBrands);
 router.post('/addLogo', homeCtrl.addLogo);
 router.post('/deleteLogo', homeCtrl.deleteLogo);
 
+router.post('/addLanding', homeCtrl.addLanding);
+router.post('/deleteLanding', homeCtrl.deleteLanding);
+
+router.post('/addAbout', homeCtrl.addAbout);
+router.post('/deleteAbout', homeCtrl.deleteAbout);
+
 router.post('/addContact', homeCtrl.addContact);
 router.post('/deleteContact', homeCtrl.deleteContact);
 

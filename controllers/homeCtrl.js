@@ -29,9 +29,10 @@ module.exports = {
                 return res.status(500).send(err);
             }
             else {
+                var landing = home[1] ? home[1].img : "noImage.jpg"
+                var about = home[2] ? home[2].img : "noImage.jpg"
                 home = home[0] ? home[0].img : "noImage.jpg"
-
-                res.render('index', { home });
+                res.render('index', { home, landing, about });
             }
         })
     },
@@ -259,6 +260,8 @@ module.exports = {
                                                 return res.status(500).send(err);
                                             }
                                             else {
+                                                var landing = home[1] ? home[1].img : "noImage.jpg"
+                                                var about = home[2] ? home[2].img : "noImage.jpg"
                                                 home = home[0] ? home[0].img : "noImage.jpg"
 
                                                 var sql = "select * from brands";
@@ -358,7 +361,9 @@ module.exports = {
                                                                                 contact,
                                                                                 career,
                                                                                 faq,
-                                                                                brandsHeader
+                                                                                brandsHeader,
+                                                                                landing,
+                                                                                about
                                                                             });
                                                                         }
                                                                     })
@@ -384,7 +389,9 @@ module.exports = {
                                                                         contact,
                                                                         career,
                                                                         faq,
-                                                                        brandsHeader
+                                                                        brandsHeader,
+                                                                        landing,
+                                                                        about
                                                                     });
 
                                                                 }
@@ -455,6 +462,8 @@ module.exports = {
                                                 return res.status(500).send(err);
                                             }
                                             else {
+                                                var landing = home[1] ? home[1].img : "noImage.jpg"
+                                                var about = home[2] ? home[2].img : "noImage.jpg"
                                                 home = home[0] ? home[0].img : "noImage.jpg"
 
                                                 var sql = "select * from brands";
@@ -554,7 +563,9 @@ module.exports = {
                                                                             contact,
                                                                             career,
                                                                             faq,
-                                                                            brandsHeader
+                                                                            brandsHeader,
+                                                                            landing,
+                                                                            about
                                                                         });
                                                                     }
                                                                 })
@@ -620,6 +631,8 @@ module.exports = {
                                                 return res.status(500).send(err);
                                             }
                                             else {
+                                                var landing = home[1] ? home[1].img : "noImage.jpg"
+                                                var about = home[2] ? home[2].img : "noImage.jpg"
                                                 home = home[0] ? home[0].img : "noImage.jpg"
 
                                                 var sql = "select * from brands";
@@ -685,7 +698,9 @@ module.exports = {
                                                                                 brands,
                                                                                 career,
                                                                                 faq,
-                                                                                brandsHeader
+                                                                                brandsHeader,
+                                                                                landing,
+                                                                                about
                                                                             });
                                                                         }
                                                                     })
@@ -707,7 +722,9 @@ module.exports = {
                                                                                 contact,
                                                                                 career,
                                                                                 faq,
-                                                                                brandsHeader
+                                                                                brandsHeader,
+                                                                                landing,
+                                                                                about
                                                                             });
                                                                         }
                                                                     })
@@ -1047,6 +1064,110 @@ module.exports = {
 
 
     deleteLogo: (req, res, next) => {
+
+        var type = req.body.id;
+
+        var sql = `DELETE FROM home where type="${type}"`;
+        var query = db.query(sql, function (err) {
+            if (err) {
+                return res.status(500).send(err);
+            }
+            else {
+                res.redirect(`/admin-category/computers`);
+            }
+        })
+    },
+
+    addLanding: (req, res, next) => {
+
+        var file = req.files.img;
+        var img_name = file.name;
+
+        if (file.mimetype == "image/jpeg" || file.mimetype == "image/png" || file.mimetype == "image/gif") {
+
+            file.mv('public/uploads/' + file.name, function (err) {
+
+                var sql = `INSERT INTO home (img, type) VALUES ('${img_name}', 'landing');`;
+                var query = db.query(sql, function (err) {
+                    if (err) {
+                        return res.status(500).send(err);
+                    }
+                    else {
+                        res.redirect(`/admin-category/computers`);
+                    }
+                })
+
+            });
+        } else {
+
+            var sql = "select * from home";
+            var query = db.query(sql, function (err, home) {
+                home = home[0] ? home[0].img : "noImage.jpg"
+                if (err) {
+                    return res.status(500).send(err);
+                }
+                else {
+                    message = "This format is not allowed , please upload file with '.png','.gif','.jpg'";
+                    res.render('admin', { message: message, home });
+                }
+            })
+        }
+    },
+
+
+    deleteLanding: (req, res, next) => {
+
+        var type = req.body.id;
+
+        var sql = `DELETE FROM home where type="${type}"`;
+        var query = db.query(sql, function (err) {
+            if (err) {
+                return res.status(500).send(err);
+            }
+            else {
+                res.redirect(`/admin-category/computers`);
+            }
+        })
+    },
+
+    addAbout: (req, res, next) => {
+
+        var file = req.files.img;
+        var img_name = file.name;
+
+        if (file.mimetype == "image/jpeg" || file.mimetype == "image/png" || file.mimetype == "image/gif") {
+
+            file.mv('public/uploads/' + file.name, function (err) {
+
+                var sql = `INSERT INTO home (img, type) VALUES ('${img_name}', 'about');`;
+                var query = db.query(sql, function (err) {
+                    if (err) {
+                        return res.status(500).send(err);
+                    }
+                    else {
+                        res.redirect(`/admin-category/computers`);
+                    }
+                })
+
+            });
+        } else {
+
+            var sql = "select * from home";
+            var query = db.query(sql, function (err, home) {
+                home = home[0] ? home[0].img : "noImage.jpg"
+                if (err) {
+                    return res.status(500).send(err);
+                }
+                else {
+                    message = "This format is not allowed , please upload file with '.png','.gif','.jpg'";
+                    res.render('admin', { message: message, home });
+                }
+            })
+        }
+    },
+
+
+    deleteAbout: (req, res, next) => {
 
         var type = req.body.id;
 
