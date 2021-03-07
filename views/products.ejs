@@ -53,7 +53,7 @@
 					<div class="cat-outer col-md-3">
 						<p class="cat-heading-text">Categories</p>
 						<hr>
-
+						<% if(productCategoryList.length > 0) { %>
 						<% for (var i=0; i < productCategoryList.length; i++) { %>
 							<div class="cat-link">
 
@@ -104,6 +104,10 @@
 														<% } %>
 							</div>
 							<% } %>
+							
+							<% } else {%>
+								<p>No Data Found</p>	
+								<% } %>
 
 					</div>
 

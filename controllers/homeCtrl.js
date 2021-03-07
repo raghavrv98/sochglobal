@@ -221,6 +221,8 @@ module.exports = {
         var editRedirect = false
         var categoryRedirect = true
         var message = ""
+        var dropdownListCategory = []
+        var dropdownListCategoryUpdated = []
 
         var sql = "select * from brandsHeader";
         var query = db.query(sql, function (err, brandsHeader) {
@@ -342,6 +344,26 @@ module.exports = {
                                                                                 }
                                                                             }
 
+                                                                            product_categories.map((val, index) => {
+                                                                                dropdownListCategory.push({
+                                                                                    category: val.category,
+                                                                                    displayCategory: val.displayCategory
+                                                                                })
+                                                                            })
+
+                                                                            product_categories.map((val, index) => {
+                                                                                
+                                                                                if (dropdownListCategory[index]) {
+                                                                                    if (!dropdownListCategoryUpdated.find(value=>value.category == val.category)) {
+                                                                                        dropdownListCategoryUpdated.push({
+                                                                                            category: val.category,
+                                                                                            displayCategory: val.displayCategory
+                                                                                        })
+                                                                                    }
+                                                                                }
+                                                                            })
+                                                                            
+
                                                                             var session = req.session.userId;
                                                                             res.render('admin', {
                                                                                 message,
@@ -363,7 +385,8 @@ module.exports = {
                                                                                 faq,
                                                                                 brandsHeader,
                                                                                 landing,
-                                                                                about
+                                                                                about,
+                                                                                dropdownListCategoryUpdated
                                                                             });
                                                                         }
                                                                     })
@@ -391,7 +414,8 @@ module.exports = {
                                                                         faq,
                                                                         brandsHeader,
                                                                         landing,
-                                                                        about
+                                                                        about,
+                                                                        dropdownListCategoryUpdated
                                                                     });
 
                                                                 }
@@ -421,6 +445,8 @@ module.exports = {
         var editProduct = ""
         var editRedirect = false
         var categoryRedirect = false
+        var dropdownListCategory = []
+        var dropdownListCategoryUpdated = []
         message = ""
 
         var sql = "select * from brandsHeader";
@@ -543,8 +569,26 @@ module.exports = {
                                                                                 message = "Edit Id does not exists";
                                                                             }
                                                                         }
-
                                                                         var session = req.session.userId;
+
+                                                                        product_categories.map((val, index) => {
+                                                                            dropdownListCategory.push({
+                                                                                category: val.category,
+                                                                                displayCategory: val.displayCategory
+                                                                            })
+                                                                        })
+
+                                                                        product_categories.map((val, index) => {
+                                                                            
+                                                                            if (dropdownListCategory[index]) {
+                                                                                if (!dropdownListCategoryUpdated.find(value=>value.category == val.category)) {
+                                                                                    dropdownListCategoryUpdated.push({
+                                                                                        category: val.category,
+                                                                                        displayCategory: val.displayCategory
+                                                                                    })
+                                                                                }
+                                                                            }
+                                                                        })
 
                                                                         res.render('admin', {
                                                                             message,
@@ -565,7 +609,8 @@ module.exports = {
                                                                             faq,
                                                                             brandsHeader,
                                                                             landing,
-                                                                            about
+                                                                            about,
+                                                                            dropdownListCategoryUpdated
                                                                         });
                                                                     }
                                                                 })
@@ -623,7 +668,6 @@ module.exports = {
                                     }
                                     else {
                                         contact = contact[0] ? contact[0].img : "noImage.jpg"
-
 
                                         var sql = "select * from home";
                                         var query = db.query(sql, function (err, home) {
@@ -831,7 +875,17 @@ module.exports = {
                 return res.status(500).send(err);
             }
             else {
-                res.redirect(`/admin-category/${categoryId}`);
+
+                var sql = `delete from ${categoryId} where subCategory='${deleteSubCategory}';`;
+                var query = db.query(sql, function (err, row) {
+                    if (err) {
+                        return res.status(500).send(err);
+                    }
+                    else {
+
+                        res.redirect(`/admin-category/${categoryId}`);
+                    }
+                });
             }
         });
 
@@ -851,13 +905,13 @@ module.exports = {
         var img_name = "";
 
         if (editID) {
-            var sql = `UPDATE ${categoryId} SET category="${categoryId}", subCategory="${subCategory}", displaySubCategory="${displaySubCategory}", name="${name}", img="${img_name}", description="${description}", stockCount=${stockCount} where id=${editID};`;
+            var sql = `UPDATE ${categoryId} SET category="${categoryId}", subCategory="${subCategory}", displaySubCategory="${displaySubCategory}", name="${name}", description="${description}", stockCount=${stockCount} where id=${editID};`;
             var query = db.query(sql, function (err, result) {
                 res.redirect(`/admin-category/${categoryId}`);
             });
         }
         else {
-            var sql = `INSERT INTO ${categoryId} (category, subCategory, displaySubCategory, name, img, description, stockCount) VALUES ("${categoryId}", "${subCategory}","${displaySubCategory}", "${name}", "${img_name}", "${description}", ${stockCount});`;
+            var sql = `INSERT INTO ${categoryId} (category, subCategory, displaySubCategory, name, description, stockCount) VALUES ("${categoryId}", "${subCategory}","${displaySubCategory}", "${name}", "${description}", ${stockCount});`;
             var query = db.query(sql, function (err, result) {
                 res.redirect(`/admin-category/${categoryId}`);
             });
@@ -894,6 +948,59 @@ module.exports = {
 
     },
 
+    addCategory: (req, res, next) => {
+
+        var addCategory = req.body.addCategory.trim()
+        var addCategoryHeading = addCategory.trim().replace(/&/gi, '_').replace(/ /gi, "").replace(/\//gi, "").replace(/-/gi, "")
+
+        message = '';
+
+        var sql = `create table ${addCategoryHeading}(id INT NOT NULL AUTO_INCREMENT, category VARCHAR(255) NOT NULL, subCategory VARCHAR(255) NOT NULL, displaySubCategory VARCHAR(255) NOT NULL, name VARCHAR(255) NOT NULL, description VARCHAR(255) NOT NULL, stockCount FLOAT NOT NULL, creationTimestamp timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP, PRIMARY KEY ( id ));`;
+
+        var query = db.query(sql, function (err, result) {
+            if (err) {
+                return res.status(500).send(err);
+            }
+            else {
+                var sql = `INSERT INTO product_categories (category, displayCategory, subCategory, displaySubCategory) VALUES ('${addCategoryHeading}','${addCategory}','', '')`;
+                var query = db.query(sql, function (err, result) {
+                    if (err) {
+                        return res.status(500).send(err);
+                    }
+                    else {
+                        res.redirect(`/admin-category/${addCategoryHeading}`);
+                    }
+                });
+            };
+        })
+    },
+
+    deleteCategory: (req, res, next) => {
+
+        var deleteCategory = req.body.deleteCategory;
+
+        message = '';
+
+        var sql = `delete from product_categories where category='${deleteCategory}';`;
+        var query = db.query(sql, function (err, row) {
+            if (err) {
+                return res.status(500).send(err);
+            }
+            else {
+                var sql = `drop table ${deleteCategory};`;
+                var query = db.query(sql, function (err, row) {
+                    if (err) {
+                        return res.status(500).send(err);
+                    }
+                    else {
+                        res.redirect(`/admin-category/computers`);
+                    }
+                });
+            }
+        });
+
+    },
+
     addSubCategoryProduct: (req, res, next) => {
         var editID = req.params.editId
         var categoryId = req.params.categoryId;
@@ -905,16 +1012,14 @@ module.exports = {
         var description = req.body.description
         var stockCount = req.body.stockCount.length > 0 ? req.body.stockCount : 0
 
-        var img_name = "";
-
         if (editID) {
-            var sql = `UPDATE ${categoryId} SET category="${categoryId}", subCategory="${subCategoryId}", displaySubCategory = "${displaySubCategoryId}", img="${img_name}", name="${name}", description="${description}", stockCount=${stockCount} where id=${editID}`;
+            var sql = `UPDATE ${categoryId} SET category="${categoryId}", subCategory="${subCategoryId}", displaySubCategory = "${displaySubCategoryId}", name="${name}", description="${description}", stockCount=${stockCount} where id=${editID}`;
             var query = db.query(sql, function (err, result) {
                 res.redirect(`/admin-subCategory/${categoryId}/${subCategoryId}`);
             });
         }
         else {
-            var sql = `INSERT INTO ${categoryId} (category, subCategory, displaySubCategory, img, name, description, stockCount) VALUES ("${categoryId}", "${subCategoryId}", "${displaySubCategoryId}", "${img_name}", "${name}", "${description}", ${stockCount})`;
+            var sql = `INSERT INTO ${categoryId} (category, subCategory, displaySubCategory, name, description, stockCount) VALUES ("${categoryId}", "${subCategoryId}", "${displaySubCategoryId}", "${name}", "${description}", ${stockCount})`;
             var query = db.query(sql, function (err, result) {
                 res.redirect(`/admin-subCategory/${categoryId}/${subCategoryId}`);
             });

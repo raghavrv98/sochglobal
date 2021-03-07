@@ -47,6 +47,11 @@ router.post('/contact', homeCtrl.postContact);
 router.post('/forgotPassword', homeCtrl.postForgotPassword);
 router.get('/user/:categoryId/:subCategoryId?', homeCtrl.showCategoryProductsUser);
 router.post('/deleteSubCategory/:categoryId', homeCtrl.deleteSubCategory);
+
+
+router.post('/addCategory', homeCtrl.addCategory);
+router.post('/deleteCategory', homeCtrl.deleteCategory);
+
 router.post('/admin-delete', homeCtrl.deleteProduct);
 router.get('/admin-category/:categoryId/:editId?', homeCtrl.showCategoryProducts);
 router.post('/admin-category-add/:categoryId/:editId?', homeCtrl.addCategoryProduct);
@@ -54,6 +59,8 @@ router.get('/admin-subCategory/:categoryId/:subCategoryId/:editId?', homeCtrl.sh
 router.post('/admin-subCategory-add/:categoryId/:subCategoryId/:editId?', homeCtrl.addSubCategoryProduct);
 router.post('/addSubCategory/:categoryId', homeCtrl.addSubCategory);
 router.post('/admin-edit', homeCtrl.showEditProduct);
+
+
 router.post('/login', homeCtrl.postLogin);
 
 module.exports = router;
