@@ -57,6 +57,7 @@ router.get('/admin-category/:categoryId/:editId?', homeCtrl.showCategoryProducts
 router.post('/admin-category-add/:categoryId/:editId?', homeCtrl.addCategoryProduct);
 router.get('/admin-subCategory/:categoryId/:subCategoryId/:editId?', homeCtrl.showSubCategoryProducts);
 router.post('/admin-subCategory-add/:categoryId/:subCategoryId/:editId?', homeCtrl.addSubCategoryProduct);
+router.post('/admin-subCategory-add/multiple', homeCtrl.addSubCategoryMultiple);
 router.post('/addSubCategory/:categoryId', homeCtrl.addSubCategory);
 router.post('/admin-edit', homeCtrl.showEditProduct);
 

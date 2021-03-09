@@ -145,7 +145,7 @@
 										<form style="float: right;" role="form" method="post" action="/addCategory"
 											enctype="multipart/form-data">
 											<span>Category : </span>
-											<input style="width: 43%; height: 20px;"
+											<input style="width: 40%; height: 20px;"
 												title="Start and end with character and use only alphabets, &, -, spaces and / between characters."
 												pattern="[a-zA-Z][a-zA-Z &/-]+[a-zA-Z]$" type="text" name="addCategory" required>
 														<input type="submit" value="Add">
@@ -164,7 +164,7 @@
 											<% if (message.length > 0) { %>
 												<input disabled type="submit" value="Delete">
 												<% } else { %>
-													<input type="submit" value="Delete">
+													<input type="submit" onclick="return confirm('Are you sure you want to Delete?')" value="Delete">
 												<% } %>
 										</form>
 									</div>
@@ -207,14 +207,24 @@
 										<% if(subCategoryId.length != 0) { %>
 											<span class="prod-heading-text"><span class="admin-product-heading">Sub Heading: </span>
 											<%= displaySubCategoryId%></span>
+											<form role="form" method="post" action="/admin-subCategory-add/multiple" enctype="multipart/form-data">
+												<input style="display: none;" type="text" value="<%= subCategoryId %>" name="subCategoryId" required>
+												<input style="display: none;" type="text" value="<%= categoryId %>" name="categoryId" required>
+												<input style="display: none;" type="text" value="<%= displaySubCategoryId %>" name="displaySubCategoryId" required>
+												<input type="file" name="multipleRecord" required>
+												<% if (message.length > 0) { %>
+													<input disabled type="submit" value="Add">
+													<% } else { %>
+														<input type="submit" value="Add">
+													<% } %>
+											</form>		
 									<% } else {%>
 				
 							<div class="row">
 								<div class="col-md-6">
-									<form role="form" method="post" action="/addSubCategory/<%= categoryId %>"
-										enctype="multipart/form-data">
+									<form role="form" method="post" action="/addSubCategory/<%= categoryId %>" enctype="multipart/form-data">
 										<span>Sub Category : </span>
-										<input style="width: 43%; height: 20px;"
+										<input style="width: 40%; height: 20px;"
 											title="Start and end with character and use only alphabets, &, -, spaces and / between characters."
 											pattern="[a-zA-Z][a-zA-Z &/-]+[a-zA-Z]$" type="text" name="addSubCategory" required>
 											<% if (message.length > 0) { %>
@@ -237,7 +247,7 @@
 										<% if (message.length > 0) { %>
 											<input disabled type="submit" value="Delete">
 											<% } else { %>
-												<input type="submit" value="Delete">
+												<input type="submit" onclick="return confirm('Are you sure you want to Delete?')" value="Delete" required>
 											<% } %>
 									</form>
 								</div>
@@ -265,7 +275,6 @@
 							
 														<% if(subCategoryId.length == 0) { %>
 														<form role="form" method="post" action="/admin-category-add/<%= categoryId %>/<%= editProduct.id%>" enctype="multipart/form-data">
-															<!-- <td><input type="file" class="fileWidth" accept="image/*" value="<%= editProduct.img %>" name="img" required></td> -->
 							
 															<% if(subCategoryId.length == 0) { %>
 															<% if(dropdownList.length > 0) { %>
@@ -297,7 +306,6 @@
 							
 														<form role="form" method="post" action="/admin-subCategory-add/<%= categoryId %>/<%= subCategoryId %>/<%= editProduct.id%>" enctype="multipart/form-data">
 															<td style="display: none;"><input type="text" value="<%= displaySubCategoryId %>" name="displaySubCategoryId" required></td>
-															<!-- <td><input type="file" class="fileWidth" accept="image/*" value="<%= editProduct.img %>" name="img" required></td> -->
 															<td><input type="text" class="pd-0" value="<%= editProduct.name %>" name="name" required></td>
 															<td><input type="text" class="pd-0" value="<%= editProduct.description %>" name="description" required></td>
 															<td><input type="number" class="pd-0" value="<%= editProduct.stockCount %>" name="stockCount" required></td>
@@ -313,7 +321,6 @@
 							
 														<% if(subCategoryId.length == 0) { %>
 														<form role="form" method="post" action="/admin-category-add/<%= categoryId %>" enctype="multipart/form-data">
-															<!-- <td><input type="file" class="fileWidth" name="img" required></td> -->
 															<% if(subCategoryId.length == 0) { %>
 															<% if(dropdownList.length > 0) { %>
 															<td><select class="pd-0" name="subCategory" value="" required>
@@ -346,7 +353,6 @@
 														<form role="form" method="post"
 															action="/admin-subCategory-add/<%= categoryId %>/<%= subCategoryId %>"
 															enctype="multipart/form-data">
-															<!-- <td><input type="file" class="fileWidth" name="img" required></td> -->
 															<td style="display: none;"><input type="text" value="<%= displaySubCategoryId %>" name="displaySubCategoryId" required></td>
 															<td><input class="pd-0" type="text" name="name" required></td>
 															<td><input class="pd-0" type="text" name="description" required></td>
@@ -395,8 +401,6 @@
 												<% } %>
 												</form>
 												</div>
-												<!-- <img style="height: 40px;"
-													src="http://localhost:3001/uploads/<%= products[i].img%>"> -->
 												<% if(subCategoryId.length == 0) { %>
 													<th>Sub Category</th>
 													<% if(products[i].displaySubCategory.length > 0) { %>
@@ -419,11 +423,6 @@
 										<p>No Data Found</p>	
 										<% } %>
 											
-										<!-- <div class="text-center pagination-text">
-											<span><i class="fas fa-chevron-circle-left pagination-left-icon"></i></span>
-											Page 1 of 3
-											<span><i class="fas fa-chevron-circle-right pagination-right-icon"></i></span>
-										</div> -->
 									</div>
 						</div>
 					  </div>

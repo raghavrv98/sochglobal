@@ -111,16 +111,13 @@
 
 					</div>
 
+					<div class="cat-total-text"><span class="admin-product-heading">Total Products: </span>
+						<%= products.length %>
+					</div><br><br>
 					<div class="prod-outer col-md-9">
-
-						<div class="cat-total-text"><span class="admin-product-heading">Total Products: </span>
-							<%= products.length %>
-						</div>
-						<hr>
-
+						<% if (products.length > 0) { %>
 						<% for(var i in products) { %>
 							<div>
-								<!-- <img style="height: 40px;" src="http://localhost:3001/uploads/<%= products[i].img%>"> -->
 								<p class="prod-li-head-text">
 									<%= products[i].name%>
 								</p>
@@ -134,11 +131,10 @@
 								<hr>
 							</div>
 							<% } %>
-								<!-- <div class="text-center pagination-text">
-									<span><i class="fas fa-chevron-circle-left pagination-left-icon"></i></span>
-									Page 1 of 3
-									<span><i class="fas fa-chevron-circle-right pagination-right-icon"></i></span>
-								</div> -->
+
+							<% } else {%>
+								<p>No Data Found</p>	
+								<% } %>
 					</div>
 				</div>
 

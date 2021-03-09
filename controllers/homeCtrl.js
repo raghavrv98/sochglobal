@@ -1,5 +1,7 @@
 var mysql = require('mysql')
 var mailUtils = require('./../utils/mail-utils')
+const csv = require('csv-parser')
+const fs = require('fs')
 
 var message = '';
 module.exports = {
@@ -11,7 +13,7 @@ module.exports = {
                 return res.status(500).send(err);
             }
             else {
-                var logo = home.find(val=>val.type=="logo") ? home.find(val=>val.type=="logo").img : "noImage.jpg"
+                var logo = home.find(val => val.type == "logo") ? home.find(val => val.type == "logo").img : "noImage.jpg"
 
                 var message = ""
                 res.render('login', {
@@ -29,10 +31,10 @@ module.exports = {
                 return res.status(500).send(err);
             }
             else {
-                var logo = home.find(val=>val.type=="logo") ? home.find(val=>val.type=="logo").img : "noImage.jpg"
-                var landing = home.find(val=>val.type=="landing") ? home.find(val=>val.type=="landing").img : "noImage.jpg"
-                var about = home.find(val=>val.type=="about") ? home.find(val=>val.type=="about").img : "noImage.jpg"
-                
+                var logo = home.find(val => val.type == "logo") ? home.find(val => val.type == "logo").img : "noImage.jpg"
+                var landing = home.find(val => val.type == "landing") ? home.find(val => val.type == "landing").img : "noImage.jpg"
+                var about = home.find(val => val.type == "about") ? home.find(val => val.type == "about").img : "noImage.jpg"
+
                 res.render('index', { logo, landing, about });
             }
         })
@@ -55,7 +57,7 @@ module.exports = {
                         return res.status(500).send(err);
                     }
                     else {
-                        var logo = home.find(val=>val.type=="logo") ? home.find(val=>val.type=="logo").img : "noImage.jpg"
+                        var logo = home.find(val => val.type == "logo") ? home.find(val => val.type == "logo").img : "noImage.jpg"
 
                         res.render('contact', {
                             message,
@@ -85,7 +87,7 @@ module.exports = {
                         return res.status(500).send(err);
                     }
                     else {
-                        var logo = home.find(val=>val.type=="logo") ? home.find(val=>val.type=="logo").img : "noImage.jpg"
+                        var logo = home.find(val => val.type == "logo") ? home.find(val => val.type == "logo").img : "noImage.jpg"
                         res.render('career', { logo, career });
                     }
                 })
@@ -109,7 +111,7 @@ module.exports = {
                         return res.status(500).send(err);
                     }
                     else {
-                        var logo = home.find(val=>val.type=="logo") ? home.find(val=>val.type=="logo").img : "noImage.jpg"
+                        var logo = home.find(val => val.type == "logo") ? home.find(val => val.type == "logo").img : "noImage.jpg"
                         res.render('faq', { logo, faq });
                     }
                 })
@@ -124,7 +126,7 @@ module.exports = {
                 return res.status(500).send(err);
             }
             else {
-                var logo = home.find(val=>val.type=="logo") ? home.find(val=>val.type=="logo").img : "noImage.jpg"
+                var logo = home.find(val => val.type == "logo") ? home.find(val => val.type == "logo").img : "noImage.jpg"
                 res.render('notFound', { logo });
             }
         })
@@ -158,7 +160,7 @@ module.exports = {
                         return res.status(500).send(err);
                     }
                     else {
-                        var logo = home.find(val=>val.type=="logo") ? home.find(val=>val.type=="logo").img : "noImage.jpg"
+                        var logo = home.find(val => val.type == "logo") ? home.find(val => val.type == "logo").img : "noImage.jpg"
 
                         var sql = "select * from brands";
                         var query = db.query(sql, function (err, brands) {
@@ -263,9 +265,9 @@ module.exports = {
                                                 return res.status(500).send(err);
                                             }
                                             else {
-                                                var logo = home.find(val=>val.type=="logo") ? home.find(val=>val.type=="logo").img : "noImage.jpg"
-                                                var landing = home.find(val=>val.type=="landing") ? home.find(val=>val.type=="landing").img : "noImage.jpg"
-                                                var about = home.find(val=>val.type=="about") ? home.find(val=>val.type=="about").img : "noImage.jpg"
+                                                var logo = home.find(val => val.type == "logo") ? home.find(val => val.type == "logo").img : "noImage.jpg"
+                                                var landing = home.find(val => val.type == "landing") ? home.find(val => val.type == "landing").img : "noImage.jpg"
+                                                var about = home.find(val => val.type == "about") ? home.find(val => val.type == "about").img : "noImage.jpg"
 
                                                 var sql = "select * from brands";
                                                 var query = db.query(sql, function (err, brands) {
@@ -353,9 +355,9 @@ module.exports = {
                                                                             })
 
                                                                             product_categories.map((val, index) => {
-                                                                                
+
                                                                                 if (dropdownListCategory[index]) {
-                                                                                    if (!dropdownListCategoryUpdated.find(value=>value.category == val.category)) {
+                                                                                    if (!dropdownListCategoryUpdated.find(value => value.category == val.category)) {
                                                                                         dropdownListCategoryUpdated.push({
                                                                                             category: val.category,
                                                                                             displayCategory: val.displayCategory
@@ -363,7 +365,7 @@ module.exports = {
                                                                                     }
                                                                                 }
                                                                             })
-                                                                            
+
 
                                                                             var session = req.session.userId;
                                                                             res.render('admin', {
@@ -489,9 +491,9 @@ module.exports = {
                                                 return res.status(500).send(err);
                                             }
                                             else {
-                                                var logo = home.find(val=>val.type=="logo") ? home.find(val=>val.type=="logo").img : "noImage.jpg"
-                                                var landing = home.find(val=>val.type=="landing") ? home.find(val=>val.type=="landing").img : "noImage.jpg"
-                                                var about = home.find(val=>val.type=="about") ? home.find(val=>val.type=="about").img : "noImage.jpg"
+                                                var logo = home.find(val => val.type == "logo") ? home.find(val => val.type == "logo").img : "noImage.jpg"
+                                                var landing = home.find(val => val.type == "landing") ? home.find(val => val.type == "landing").img : "noImage.jpg"
+                                                var about = home.find(val => val.type == "about") ? home.find(val => val.type == "about").img : "noImage.jpg"
 
                                                 var sql = "select * from brands";
                                                 var query = db.query(sql, function (err, brands) {
@@ -580,9 +582,9 @@ module.exports = {
                                                                         })
 
                                                                         product_categories.map((val, index) => {
-                                                                            
+
                                                                             if (dropdownListCategory[index]) {
-                                                                                if (!dropdownListCategoryUpdated.find(value=>value.category == val.category)) {
+                                                                                if (!dropdownListCategoryUpdated.find(value => value.category == val.category)) {
                                                                                     dropdownListCategoryUpdated.push({
                                                                                         category: val.category,
                                                                                         displayCategory: val.displayCategory
@@ -676,9 +678,9 @@ module.exports = {
                                                 return res.status(500).send(err);
                                             }
                                             else {
-                                                var logo = home.find(val=>val.type=="logo") ? home.find(val=>val.type=="logo").img : "noImage.jpg"
-                                                var landing = home.find(val=>val.type=="landing") ? home.find(val=>val.type=="landing").img : "noImage.jpg"
-                                                var about = home.find(val=>val.type=="about") ? home.find(val=>val.type=="about").img : "noImage.jpg"
+                                                var logo = home.find(val => val.type == "logo") ? home.find(val => val.type == "logo").img : "noImage.jpg"
+                                                var landing = home.find(val => val.type == "landing") ? home.find(val => val.type == "landing").img : "noImage.jpg"
+                                                var about = home.find(val => val.type == "about") ? home.find(val => val.type == "about").img : "noImage.jpg"
 
                                                 var sql = "select * from brands";
                                                 var query = db.query(sql, function (err, brands) {
@@ -1025,6 +1027,34 @@ module.exports = {
                 res.redirect(`/admin-subCategory/${categoryId}/${subCategoryId}`);
             });
         }
+    },
+
+    addSubCategoryMultiple: (req, res, next) => {
+        var categoryId = req.body.categoryId;
+        var subCategoryId = req.body.subCategoryId;
+        var displaySubCategoryId = req.body.displaySubCategoryId
+        var file = req.files.multipleRecord;
+
+        var file_name = file.name;
+
+        file.mv('public/uploads/' + file_name, function (err) {
+            var results = []
+
+            fs.createReadStream('public/uploads/' + file.name)
+                .pipe(csv())
+                .on('data', (data) => results.push(data))
+                .on('end', () => {
+
+                    results.map(val => {
+                        var sql = `INSERT INTO ${categoryId} (category, subCategory, displaySubCategory, name, description, stockCount) VALUES ("${categoryId}", "${subCategoryId}", "${displaySubCategoryId}", "${val.name}", "${val.description}", ${val.stockCount})`;
+                        var query = db.query(sql, function (err, result) {
+                        });
+                    })
+
+                    res.redirect(`/admin-subCategory/${categoryId}/${subCategoryId}`);
+                });
+        });
+
     },
 
     showForgotPassword: (req, res, next) => {
