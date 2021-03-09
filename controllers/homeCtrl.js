@@ -11,12 +11,12 @@ module.exports = {
                 return res.status(500).send(err);
             }
             else {
-                home = home[0] ? home[0].img : "noImage.jpg"
+                var logo = home.find(val=>val.type=="logo") ? home.find(val=>val.type=="logo").img : "noImage.jpg"
 
                 var message = ""
                 res.render('login', {
                     message,
-                    home
+                    logo
                 });
             }
         })
@@ -29,10 +29,11 @@ module.exports = {
                 return res.status(500).send(err);
             }
             else {
-                var landing = home[1] ? home[1].img : "noImage.jpg"
-                var about = home[2] ? home[2].img : "noImage.jpg"
-                home = home[0] ? home[0].img : "noImage.jpg"
-                res.render('index', { home, landing, about });
+                var logo = home.find(val=>val.type=="logo") ? home.find(val=>val.type=="logo").img : "noImage.jpg"
+                var landing = home.find(val=>val.type=="landing") ? home.find(val=>val.type=="landing").img : "noImage.jpg"
+                var about = home.find(val=>val.type=="about") ? home.find(val=>val.type=="about").img : "noImage.jpg"
+                
+                res.render('index', { logo, landing, about });
             }
         })
     },
@@ -54,11 +55,11 @@ module.exports = {
                         return res.status(500).send(err);
                     }
                     else {
-                        home = home[0] ? home[0].img : "noImage.jpg"
+                        var logo = home.find(val=>val.type=="logo") ? home.find(val=>val.type=="logo").img : "noImage.jpg"
 
                         res.render('contact', {
                             message,
-                            home,
+                            logo,
                             contact
                         });
 
@@ -84,8 +85,8 @@ module.exports = {
                         return res.status(500).send(err);
                     }
                     else {
-                        home = home[0] ? home[0].img : "noImage.jpg"
-                        res.render('career', { home, career });
+                        var logo = home.find(val=>val.type=="logo") ? home.find(val=>val.type=="logo").img : "noImage.jpg"
+                        res.render('career', { logo, career });
                     }
                 })
             }
@@ -108,8 +109,8 @@ module.exports = {
                         return res.status(500).send(err);
                     }
                     else {
-                        home = home[0] ? home[0].img : "noImage.jpg"
-                        res.render('faq', { home, faq });
+                        var logo = home.find(val=>val.type=="logo") ? home.find(val=>val.type=="logo").img : "noImage.jpg"
+                        res.render('faq', { logo, faq });
                     }
                 })
             }
@@ -123,8 +124,8 @@ module.exports = {
                 return res.status(500).send(err);
             }
             else {
-                home = home[0] ? home[0].img : "noImage.jpg"
-                res.render('notFound', { home });
+                var logo = home.find(val=>val.type=="logo") ? home.find(val=>val.type=="logo").img : "noImage.jpg"
+                res.render('notFound', { logo });
             }
         })
     },
@@ -157,7 +158,7 @@ module.exports = {
                         return res.status(500).send(err);
                     }
                     else {
-                        home = home[0] ? home[0].img : "noImage.jpg"
+                        var logo = home.find(val=>val.type=="logo") ? home.find(val=>val.type=="logo").img : "noImage.jpg"
 
                         var sql = "select * from brands";
                         var query = db.query(sql, function (err, brands) {
@@ -167,7 +168,7 @@ module.exports = {
                             else {
                                 res.render('brands', {
                                     brands,
-                                    home,
+                                    logo,
                                     brandsHeader
                                 });
                             }
@@ -262,9 +263,9 @@ module.exports = {
                                                 return res.status(500).send(err);
                                             }
                                             else {
-                                                var landing = home[1] ? home[1].img : "noImage.jpg"
-                                                var about = home[2] ? home[2].img : "noImage.jpg"
-                                                home = home[0] ? home[0].img : "noImage.jpg"
+                                                var logo = home.find(val=>val.type=="logo") ? home.find(val=>val.type=="logo").img : "noImage.jpg"
+                                                var landing = home.find(val=>val.type=="landing") ? home.find(val=>val.type=="landing").img : "noImage.jpg"
+                                                var about = home.find(val=>val.type=="about") ? home.find(val=>val.type=="about").img : "noImage.jpg"
 
                                                 var sql = "select * from brands";
                                                 var query = db.query(sql, function (err, brands) {
@@ -379,7 +380,7 @@ module.exports = {
                                                                                 editRedirect,
                                                                                 categoryRedirect,
                                                                                 brands,
-                                                                                home,
+                                                                                logo,
                                                                                 contact,
                                                                                 career,
                                                                                 faq,
@@ -408,7 +409,7 @@ module.exports = {
                                                                         products: [],
                                                                         categoryRedirect,
                                                                         brands,
-                                                                        home,
+                                                                        logo,
                                                                         contact,
                                                                         career,
                                                                         faq,
@@ -488,9 +489,9 @@ module.exports = {
                                                 return res.status(500).send(err);
                                             }
                                             else {
-                                                var landing = home[1] ? home[1].img : "noImage.jpg"
-                                                var about = home[2] ? home[2].img : "noImage.jpg"
-                                                home = home[0] ? home[0].img : "noImage.jpg"
+                                                var logo = home.find(val=>val.type=="logo") ? home.find(val=>val.type=="logo").img : "noImage.jpg"
+                                                var landing = home.find(val=>val.type=="landing") ? home.find(val=>val.type=="landing").img : "noImage.jpg"
+                                                var about = home.find(val=>val.type=="about") ? home.find(val=>val.type=="about").img : "noImage.jpg"
 
                                                 var sql = "select * from brands";
                                                 var query = db.query(sql, function (err, brands) {
@@ -603,7 +604,7 @@ module.exports = {
                                                                             editRedirect,
                                                                             categoryRedirect,
                                                                             brands,
-                                                                            home,
+                                                                            logo,
                                                                             contact,
                                                                             career,
                                                                             faq,
@@ -675,9 +676,9 @@ module.exports = {
                                                 return res.status(500).send(err);
                                             }
                                             else {
-                                                var landing = home[1] ? home[1].img : "noImage.jpg"
-                                                var about = home[2] ? home[2].img : "noImage.jpg"
-                                                home = home[0] ? home[0].img : "noImage.jpg"
+                                                var logo = home.find(val=>val.type=="logo") ? home.find(val=>val.type=="logo").img : "noImage.jpg"
+                                                var landing = home.find(val=>val.type=="landing") ? home.find(val=>val.type=="landing").img : "noImage.jpg"
+                                                var about = home.find(val=>val.type=="about") ? home.find(val=>val.type=="about").img : "noImage.jpg"
 
                                                 var sql = "select * from brands";
                                                 var query = db.query(sql, function (err, brands) {
@@ -738,7 +739,7 @@ module.exports = {
                                                                                 productCategoryList,
                                                                                 products: subCategoryList,
                                                                                 activeLinkName,
-                                                                                home,
+                                                                                logo,
                                                                                 brands,
                                                                                 career,
                                                                                 faq,
@@ -762,7 +763,7 @@ module.exports = {
                                                                                 products: categoryList,
                                                                                 activeLinkName,
                                                                                 brands,
-                                                                                home,
+                                                                                logo,
                                                                                 contact,
                                                                                 career,
                                                                                 faq,
@@ -1155,13 +1156,13 @@ module.exports = {
 
             var sql = "select * from home";
             var query = db.query(sql, function (err, home) {
-                home = home[0] ? home[0].img : "noImage.jpg"
+                var logo = home[0] ? home[0].img : "noImage.jpg"
                 if (err) {
                     return res.status(500).send(err);
                 }
                 else {
                     message = "This format is not allowed , please upload file with '.png','.gif','.jpg'";
-                    res.render('admin', { message: message, home });
+                    res.render('admin', { message: message, logo });
                 }
             })
         }
@@ -1207,13 +1208,13 @@ module.exports = {
 
             var sql = "select * from home";
             var query = db.query(sql, function (err, home) {
-                home = home[0] ? home[0].img : "noImage.jpg"
+                var logo = home[0] ? home[0].img : "noImage.jpg"
                 if (err) {
                     return res.status(500).send(err);
                 }
                 else {
                     message = "This format is not allowed , please upload file with '.png','.gif','.jpg'";
-                    res.render('admin', { message: message, home });
+                    res.render('admin', { message: message, logo });
                 }
             })
         }
@@ -1259,13 +1260,13 @@ module.exports = {
 
             var sql = "select * from home";
             var query = db.query(sql, function (err, home) {
-                home = home[0] ? home[0].img : "noImage.jpg"
+                var logo = home[0] ? home[0].img : "noImage.jpg"
                 if (err) {
                     return res.status(500).send(err);
                 }
                 else {
                     message = "This format is not allowed , please upload file with '.png','.gif','.jpg'";
-                    res.render('admin', { message: message, home });
+                    res.render('admin', { message: message, logo });
                 }
             })
         }

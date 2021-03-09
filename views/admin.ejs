@@ -107,7 +107,7 @@
 									<input style="display: none;" name="id" value="logo">
 									<button type="submit" class="admin-home-times" onclick="return confirm('Are you sure you want to Delete?')" ><i class="fas fa-times-circle"></i></button>
 									</form>
-										<img src="http://localhost:3001/uploads/<%= home%>" class="brands-admin-img-height" alt="image">
+										<img src="http://localhost:3001/uploads/<%= logo%>" class="brands-admin-img-height" alt="image">
 								</div>
 								<div class="col-md-4">
 									<p class="cat-heading-text">Landing Image</p>
@@ -139,7 +139,7 @@
 						<div class="tab-pane fade active in" id="v-pills-products">
 							<div class="row">
 								<div class="col-md-2">
-									<p class="cat-heading-text">Proucts</p>
+									<p class="cat-heading-text">Products</p>
 								</div>
 									<div class="col-md-5">
 										<form style="float: right;" role="form" method="post" action="/addCategory"
@@ -148,11 +148,7 @@
 											<input style="width: 43%; height: 20px;"
 												title="Start and end with character and use only alphabets, &, -, spaces and / between characters."
 												pattern="[a-zA-Z][a-zA-Z &/-]+[a-zA-Z]$" type="text" name="addCategory" required>
-												<% if (message.length > 0) { %>
-													<input disabled type="submit" value="Add">
-													<% } else { %>
 														<input type="submit" value="Add">
-													<% } %>
 										</form>
 									</div>
 									<div class="col-md-5">

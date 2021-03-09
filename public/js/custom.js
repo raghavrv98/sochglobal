@@ -22,23 +22,23 @@ $(function() {
     });
 
     // navbar scrolling background
-    // wind.on("scroll",function () {
+    wind.on("scroll",function () {
 
-    //     var bodyScroll = wind.scrollTop(),
-    //         navbar = $(".navbar-default"),
-    //         logo = $(".navbar .logo> img");
+        var bodyScroll = wind.scrollTop(),
+            navbar = $(".navbar-default"),
+            logo = $(".navbar .logo> img");
 
-    //     if(bodyScroll > 300){
+        if(bodyScroll > 300){
 
-    //         navbar.addClass("nav-scroll");
-    //         logo.attr('src', 'http://localhost:3001/images/sochGloballogo5.png');
+            navbar.addClass("nav-scroll");
+            logo.attr('src', 'http://localhost:3001/images/sochGloballogo5.png');
 
-    //     }else{
+        }else{
 
-    //         navbar.removeClass("nav-scroll");
-    //         logo.attr('src', 'http://localhost:3001/images/sochGloballogo4.png');
-    //     }
-    // });
+            navbar.removeClass("nav-scroll");
+            logo.attr('src', 'http://localhost:3001/images/sochGloballogo5.png');
+        }
+    });
 
 
 
