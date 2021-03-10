@@ -18,6 +18,9 @@ router.get('/notFound', homeCtrl.showNotFound);
 
 //dynamic routes
 
+router.post('/registerUser', homeCtrl.registerUser);
+
+
 router.post('/addBrands', homeCtrl.addBrands);
 router.post('/deleteBrands', homeCtrl.deleteBrands);
 
@@ -45,9 +48,9 @@ router.post('/deleteBrandsHeader', homeCtrl.deleteBrandsHeader);
 router.post('/newsLetter', homeCtrl.submitNewsLetter);
 router.post('/contact', homeCtrl.postContact);
 router.post('/forgotPassword', homeCtrl.postForgotPassword);
+
 router.get('/user/:categoryId/:subCategoryId?', homeCtrl.showCategoryProductsUser);
 router.post('/deleteSubCategory/:categoryId', homeCtrl.deleteSubCategory);
-
 
 router.post('/addCategory', homeCtrl.addCategory);
 router.post('/deleteCategory', homeCtrl.deleteCategory);
@@ -55,12 +58,13 @@ router.post('/deleteCategory', homeCtrl.deleteCategory);
 router.post('/admin-delete', homeCtrl.deleteProduct);
 router.get('/admin-category/:categoryId/:editId?', homeCtrl.showCategoryProducts);
 router.post('/admin-category-add/:categoryId/:editId?', homeCtrl.addCategoryProduct);
+
 router.get('/admin-subCategory/:categoryId/:subCategoryId/:editId?', homeCtrl.showSubCategoryProducts);
 router.post('/admin-subCategory-add/:categoryId/:subCategoryId/:editId?', homeCtrl.addSubCategoryProduct);
 router.post('/admin-subCategory-add/multiple', homeCtrl.addSubCategoryMultiple);
 router.post('/addSubCategory/:categoryId', homeCtrl.addSubCategory);
-router.post('/admin-edit', homeCtrl.showEditProduct);
 
+router.post('/admin-edit', homeCtrl.showEditProduct);
 
 router.post('/login', homeCtrl.postLogin);
 

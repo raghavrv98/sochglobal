@@ -42,40 +42,73 @@
 		<!--====== Login Page ======-->
 
 		<section class="contact section-padding">
-			<div class="container">
 
-				<div class="section-head spac">
-					<h3>Login</h3>
-				</div>
-
-				<div class="wrapper">
-					<div id="formContent">
-						<!-- Tabs Titles -->
-
-						<% if (message.length> 0) { %>
-							<div class="alert alert-success col-sm-12">
-								<%= message %>
-							</div>
-							<% } %>
-
-								<!-- Login Form -->
-								<form class="mb-10" method="POST" action="/login">
-									<input type="email" id="login" class="second" name="emailId"
-										placeholder="Email Address" required>
-									<input type="password" id="password" class="third" name="password"
-										placeholder="Password" required>
-									<input type="submit" class="fourth" value="Log In">
-								</form>
-								<a class="forgot-password" href="/forgotpassword">Forgot Password</a>
-
-								<!-- Remind Passowrd -->
-								<!-- <div id="formFooter">
-							<a class="underlineHover" href="#">Forgot Password?</a>
-						</div> -->
-
+			<div class="row mr-0">
+	
+				<div class="col-md-6">
+	
+					<div class="section-head spac">
+						<h3>Register</h3>
 					</div>
+	
+					<div class="wrapper">
+						<div id="formContent">
+							<!-- Tabs Titles -->
+	
+							<% if (registerMessage.length> 0 && success) { %>
+								<div class="alert alert-success col-sm-12">
+									<%= registerMessage %>
+								</div>
+								<% } else if(registerMessage.length> 0) { %>
+									<div class="alert alert-danger col-sm-12">
+										<%= registerMessage %>
+									</div>
+									<% } %>
+	
+									<!-- Login Form -->
+									<form class="mb-10" method="POST" action="/registerUser">
+										<input type="text" id="username" class="second" name="username" placeholder="Name"
+											required>
+										<input type="email" id="login" class="second" name="emailId"
+											placeholder="Email Address" required>
+										<input type="password" id="password" class="third" name="password"
+											placeholder="Password" required>
+										<input type="submit" class="fourth" value="Register">
+									</form>
+						</div>
+					</div>
+	
 				</div>
-
+	
+				<div class="col-md-6">
+	
+					<div class="section-head spac">
+						<h3>Login</h3>
+					</div>
+	
+					<div class="wrapper">
+						<div id="formContent">
+							<!-- Tabs Titles -->
+	
+							<% if (message.length> 0) { %>
+								<div class="alert alert-danger col-sm-12">
+									<%= message %>
+								</div>
+								<% } %>
+	
+									<!-- Login Form -->
+									<form class="mb-10" method="POST" action="/login">
+										<input type="email" id="login" class="second" name="emailId"
+											placeholder="Email Address" required>
+										<input type="password" id="password" class="third" name="password"
+											placeholder="Password" required>
+										<input type="submit" class="fourth" value="Log In">
+									</form>
+									<a class="forgot-password" href="/forgotpassword">Forgot Password</a>
+						</div>
+					</div>
+	
+				</div>
 			</div>
 		</section>
 		<!--====== End Login Page ======-->

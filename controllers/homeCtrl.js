@@ -2,6 +2,7 @@ var mysql = require('mysql')
 var mailUtils = require('./../utils/mail-utils')
 const csv = require('csv-parser')
 const fs = require('fs')
+var sessionStorage = require('sessionstorage');
 
 var message = '';
 module.exports = {
@@ -14,11 +15,14 @@ module.exports = {
             }
             else {
                 var logo = home.find(val => val.type == "logo") ? home.find(val => val.type == "logo").img : "noImage.jpg"
-
+                var session = sessionStorage.getItem('username')
                 var message = ""
+                var registerMessage = ""
                 res.render('login', {
                     message,
-                    logo
+                    logo,
+                    session,
+                    registerMessage
                 });
             }
         })
@@ -34,8 +38,9 @@ module.exports = {
                 var logo = home.find(val => val.type == "logo") ? home.find(val => val.type == "logo").img : "noImage.jpg"
                 var landing = home.find(val => val.type == "landing") ? home.find(val => val.type == "landing").img : "noImage.jpg"
                 var about = home.find(val => val.type == "about") ? home.find(val => val.type == "about").img : "noImage.jpg"
+                var session = sessionStorage.getItem('username')
 
-                res.render('index', { logo, landing, about });
+                res.render('index', { logo, landing, about, session });
             }
         })
     },
@@ -58,13 +63,14 @@ module.exports = {
                     }
                     else {
                         var logo = home.find(val => val.type == "logo") ? home.find(val => val.type == "logo").img : "noImage.jpg"
+                        var session = sessionStorage.getItem('username')
 
                         res.render('contact', {
                             message,
                             logo,
-                            contact
+                            contact,
+                            session
                         });
-
                     }
                 })
             }
@@ -88,7 +94,8 @@ module.exports = {
                     }
                     else {
                         var logo = home.find(val => val.type == "logo") ? home.find(val => val.type == "logo").img : "noImage.jpg"
-                        res.render('career', { logo, career });
+                        var session = sessionStorage.getItem('username')
+                        res.render('career', { logo, career, session });
                     }
                 })
             }
@@ -112,7 +119,8 @@ module.exports = {
                     }
                     else {
                         var logo = home.find(val => val.type == "logo") ? home.find(val => val.type == "logo").img : "noImage.jpg"
-                        res.render('faq', { logo, faq });
+                        var session = sessionStorage.getItem('username')
+                        res.render('faq', { logo, faq, session });
                     }
                 })
             }
@@ -127,7 +135,8 @@ module.exports = {
             }
             else {
                 var logo = home.find(val => val.type == "logo") ? home.find(val => val.type == "logo").img : "noImage.jpg"
-                res.render('notFound', { logo });
+                var session = sessionStorage.getItem('username')
+                res.render('notFound', { logo, session });
             }
         })
     },
@@ -168,10 +177,12 @@ module.exports = {
                                 return res.status(500).send(err);
                             }
                             else {
+                                var session = sessionStorage.getItem('username')
                                 res.render('brands', {
                                     brands,
                                     logo,
-                                    brandsHeader
+                                    brandsHeader,
+                                    session
                                 });
                             }
                         })
@@ -184,28 +195,69 @@ module.exports = {
     postLogin: (req, res, next) => {
         var email = req.body.emailId
         var password = req.body.password
-
-        var sql = "select * from login_cred";
-        var query = db.query(sql, function (err, rows) {
+        
+        var sql = "select * from home";
+        var query = db.query(sql, function (err, home) {
             if (err) {
                 return res.status(500).send(err);
             }
             else {
-                if (rows[0].email === email && rows[0].password === password) {
-                    req.session.userId = rows[0].id;
-                    res.redirect('admin-category/computers');
-                }
-                else {
-                    message = "Login Credentials are wrong";
-                    res.render('login', {
-                        message,
-                    });
-                }
+                var logo = home.find(val => val.type == "logo") ? home.find(val => val.type == "logo").img : "noImage.jpg"
+
+                var sql = "select * from login_cred";
+                var query = db.query(sql, function (err, rows) {
+                    if (err) {
+                        return res.status(500).send(err);
+                    }
+                    else {
+                        var selectedObject = rows.find(val => val.email === email && val.password === password)
+
+                        if (selectedObject) {
+
+                            if (selectedObject.type === 'admin') {
+
+                                if (selectedObject.status) {
+                                    req.session.userId = selectedObject.id;
+                                    res.redirect('admin-category/computers');
+                                }
+                                else {
+                                    message = "Your account is not activated yet.";
+                                    var registerMessage = ""
+                                    var session = sessionStorage.getItem('username')
+                                    res.render('login', {
+                                        message,
+                                        logo,
+                                        registerMessage,
+                                        session
+                                    });
+                                }
+                            }
+                            else {
+                                sessionStorage.setItem('username', selectedObject.email)
+                                res.redirect("/user/computers");
+                            }
+                        }
+                        else {
+                            message = "Login Credentials are wrong";
+                            var registerMessage = ""
+                            var session = sessionStorage.getItem('username')
+                            res.render('login', {
+                                message,
+                                logo,
+                                registerMessage,
+                                session
+                            });
+                        }
+
+                    }
+                })
+
             }
-        })
+        });
     },
 
     logout: (req, res, next) => {
+        sessionStorage.clear();
         req.session.destroy(function (err) {
             res.redirect("/login");
         })
@@ -389,7 +441,7 @@ module.exports = {
                                                                                 brandsHeader,
                                                                                 landing,
                                                                                 about,
-                                                                                dropdownListCategoryUpdated
+                                                                                dropdownListCategoryUpdated,
                                                                             });
                                                                         }
                                                                     })
@@ -418,7 +470,7 @@ module.exports = {
                                                                         brandsHeader,
                                                                         landing,
                                                                         about,
-                                                                        dropdownListCategoryUpdated
+                                                                        dropdownListCategoryUpdated,
                                                                     });
 
                                                                 }
@@ -613,7 +665,7 @@ module.exports = {
                                                                             brandsHeader,
                                                                             landing,
                                                                             about,
-                                                                            dropdownListCategoryUpdated
+                                                                            dropdownListCategoryUpdated,
                                                                         });
                                                                     }
                                                                 })
@@ -639,159 +691,169 @@ module.exports = {
         var categoryId = req.params.categoryId
         message = ""
 
-        var sql = "select * from brandsHeader";
-        var query = db.query(sql, function (err, brandsHeader) {
-            if (err) {
-                return res.status(500).send(err);
-            }
-            else {
-                brandsHeader = brandsHeader[0] ? brandsHeader[0].img : "noImage.jpg"
+        var session = sessionStorage.getItem('username')
 
-                var sql = "select * from faq";
-                var query = db.query(sql, function (err, faq) {
-                    if (err) {
-                        return res.status(500).send(err);
-                    }
-                    else {
-                        faq = faq[0] ? faq[0].img : "noImage.jpg"
+        if (session || req.session.userId) {
 
-                        var sql = "select * from career";
-                        var query = db.query(sql, function (err, career) {
-                            if (err) {
-                                return res.status(500).send(err);
-                            }
-                            else {
-                                career = career[0] ? career[0].img : "noImage.jpg"
+            var sql = "select * from brandsHeader";
+            var query = db.query(sql, function (err, brandsHeader) {
+                if (err) {
+                    return res.status(500).send(err);
+                }
+                else {
+                    brandsHeader = brandsHeader[0] ? brandsHeader[0].img : "noImage.jpg"
+
+                    var sql = "select * from faq";
+                    var query = db.query(sql, function (err, faq) {
+                        if (err) {
+                            return res.status(500).send(err);
+                        }
+                        else {
+                            faq = faq[0] ? faq[0].img : "noImage.jpg"
+
+                            var sql = "select * from career";
+                            var query = db.query(sql, function (err, career) {
+                                if (err) {
+                                    return res.status(500).send(err);
+                                }
+                                else {
+                                    career = career[0] ? career[0].img : "noImage.jpg"
 
 
-                                var sql = "select * from contact";
-                                var query = db.query(sql, function (err, contact) {
-                                    if (err) {
-                                        return res.status(500).send(err);
-                                    }
-                                    else {
-                                        contact = contact[0] ? contact[0].img : "noImage.jpg"
+                                    var sql = "select * from contact";
+                                    var query = db.query(sql, function (err, contact) {
+                                        if (err) {
+                                            return res.status(500).send(err);
+                                        }
+                                        else {
+                                            contact = contact[0] ? contact[0].img : "noImage.jpg"
 
-                                        var sql = "select * from home";
-                                        var query = db.query(sql, function (err, home) {
-                                            if (err) {
-                                                return res.status(500).send(err);
-                                            }
-                                            else {
-                                                var logo = home.find(val => val.type == "logo") ? home.find(val => val.type == "logo").img : "noImage.jpg"
-                                                var landing = home.find(val => val.type == "landing") ? home.find(val => val.type == "landing").img : "noImage.jpg"
-                                                var about = home.find(val => val.type == "about") ? home.find(val => val.type == "about").img : "noImage.jpg"
+                                            var sql = "select * from home";
+                                            var query = db.query(sql, function (err, home) {
+                                                if (err) {
+                                                    return res.status(500).send(err);
+                                                }
+                                                else {
+                                                    var logo = home.find(val => val.type == "logo") ? home.find(val => val.type == "logo").img : "noImage.jpg"
+                                                    var landing = home.find(val => val.type == "landing") ? home.find(val => val.type == "landing").img : "noImage.jpg"
+                                                    var about = home.find(val => val.type == "about") ? home.find(val => val.type == "about").img : "noImage.jpg"
 
-                                                var sql = "select * from brands";
-                                                var query = db.query(sql, function (err, brands) {
-                                                    if (err) {
-                                                        return res.status(500).send(err);
-                                                    }
-                                                    else {
+                                                    var sql = "select * from brands";
+                                                    var query = db.query(sql, function (err, brands) {
+                                                        if (err) {
+                                                            return res.status(500).send(err);
+                                                        }
+                                                        else {
 
-                                                        var productCategoryList = []
+                                                            var productCategoryList = []
 
-                                                        var sql = 'SELECT * FROM product_categories';
-                                                        var query = db.query(sql, function (err, product_categories) {
-                                                            if (err) {
-                                                                return res.status(500).send(err);
-                                                            }
-                                                            else {
-
-                                                                var displayCategory = []
-                                                                for (var i in product_categories) {
-                                                                    displayCategory.push(product_categories[i].displayCategory)
-                                                                    displayCategory = [...new Set(displayCategory)]
-                                                                }
-
-                                                                var category = []
-                                                                for (var i in product_categories) {
-                                                                    category.push(product_categories[i].category)
-                                                                    category = [...new Set(category)]
-                                                                }
-
-                                                                for (var i = 0; i < displayCategory.length; i++) {
-                                                                    var catArr = product_categories.filter(val => val.category == category[i])
-                                                                    var subCategory = {}
-
-                                                                    catArr.map(val => {
-                                                                        if (val.displaySubCategory.length > 0) {
-                                                                            subCategory[val.displaySubCategory] = val.subCategory
-                                                                        }
-                                                                    })
-
-                                                                    productCategoryList.push({
-                                                                        displayName: displayCategory[i],
-                                                                        name: category[i],
-                                                                        subCategory: subCategory
-                                                                    })
-                                                                }
-
-                                                                var activeLinkName = req.originalUrl.split('/')
-
-                                                                if (subCategoryId) {
-                                                                    var sql = `SELECT * FROM ${categoryId} where subCategory = "${subCategoryId}"`;
-                                                                    var query = db.query(sql, function (err, subCategoryList) {
-                                                                        if (err) {
-                                                                            return res.status(500).send(err);
-                                                                        }
-                                                                        else {
-                                                                            res.render('products', {
-                                                                                message,
-                                                                                productCategoryList,
-                                                                                products: subCategoryList,
-                                                                                activeLinkName,
-                                                                                logo,
-                                                                                brands,
-                                                                                career,
-                                                                                faq,
-                                                                                brandsHeader,
-                                                                                landing,
-                                                                                about
-                                                                            });
-                                                                        }
-                                                                    })
+                                                            var sql = 'SELECT * FROM product_categories';
+                                                            var query = db.query(sql, function (err, product_categories) {
+                                                                if (err) {
+                                                                    return res.status(500).send(err);
                                                                 }
                                                                 else {
-                                                                    var sql = `SELECT * FROM ${categoryId}`;
-                                                                    var query = db.query(sql, function (err, categoryList) {
-                                                                        if (err) {
-                                                                            return res.status(500).send(err);
-                                                                        }
-                                                                        else {
-                                                                            res.render('products', {
-                                                                                message,
-                                                                                productCategoryList,
-                                                                                products: categoryList,
-                                                                                activeLinkName,
-                                                                                brands,
-                                                                                logo,
-                                                                                contact,
-                                                                                career,
-                                                                                faq,
-                                                                                brandsHeader,
-                                                                                landing,
-                                                                                about
-                                                                            });
-                                                                        }
-                                                                    })
+
+                                                                    var displayCategory = []
+                                                                    for (var i in product_categories) {
+                                                                        displayCategory.push(product_categories[i].displayCategory)
+                                                                        displayCategory = [...new Set(displayCategory)]
+                                                                    }
+
+                                                                    var category = []
+                                                                    for (var i in product_categories) {
+                                                                        category.push(product_categories[i].category)
+                                                                        category = [...new Set(category)]
+                                                                    }
+
+                                                                    for (var i = 0; i < displayCategory.length; i++) {
+                                                                        var catArr = product_categories.filter(val => val.category == category[i])
+                                                                        var subCategory = {}
+
+                                                                        catArr.map(val => {
+                                                                            if (val.displaySubCategory.length > 0) {
+                                                                                subCategory[val.displaySubCategory] = val.subCategory
+                                                                            }
+                                                                        })
+
+                                                                        productCategoryList.push({
+                                                                            displayName: displayCategory[i],
+                                                                            name: category[i],
+                                                                            subCategory: subCategory
+                                                                        })
+                                                                    }
+
+                                                                    var activeLinkName = req.originalUrl.split('/')
+
+                                                                    if (subCategoryId) {
+                                                                        var sql = `SELECT * FROM ${categoryId} where subCategory = "${subCategoryId}"`;
+                                                                        var query = db.query(sql, function (err, subCategoryList) {
+                                                                            if (err) {
+                                                                                return res.status(500).send(err);
+                                                                            }
+                                                                            else {
+                                                                                res.render('products', {
+                                                                                    message,
+                                                                                    productCategoryList,
+                                                                                    products: subCategoryList,
+                                                                                    activeLinkName,
+                                                                                    logo,
+                                                                                    brands,
+                                                                                    career,
+                                                                                    faq,
+                                                                                    brandsHeader,
+                                                                                    landing,
+                                                                                    about,
+                                                                                    session
+                                                                                });
+                                                                            }
+                                                                        })
+                                                                    }
+                                                                    else {
+                                                                        var sql = `SELECT * FROM ${categoryId}`;
+                                                                        var query = db.query(sql, function (err, categoryList) {
+                                                                            if (err) {
+                                                                                return res.status(500).send(err);
+                                                                            }
+                                                                            else {
+                                                                                res.render('products', {
+                                                                                    message,
+                                                                                    productCategoryList,
+                                                                                    products: categoryList,
+                                                                                    activeLinkName,
+                                                                                    brands,
+                                                                                    logo,
+                                                                                    contact,
+                                                                                    career,
+                                                                                    faq,
+                                                                                    brandsHeader,
+                                                                                    landing,
+                                                                                    about,
+                                                                                    session
+                                                                                });
+                                                                            }
+                                                                        })
+                                                                    }
                                                                 }
-                                                            }
-                                                        })
+                                                            })
 
-                                                    }
-                                                })
+                                                        }
+                                                    })
 
-                                            }
-                                        })
-                                    }
-                                })
-                            }
-                        })
-                    }
-                })
-            }
-        })
+                                                }
+                                            })
+                                        }
+                                    })
+                                }
+                            })
+                        }
+                    })
+                }
+            })
+        }
+        else {
+            res.redirect("/login");
+        }
     },
 
 
@@ -1058,42 +1120,67 @@ module.exports = {
     },
 
     showForgotPassword: (req, res, next) => {
-        var message = ""
-        res.render('forgotPassword', {
-            message,
-            success: false
-        });
-    },
 
-    postForgotPassword: (req, res, next) => {
-        var email = req.body.emailId
-
-        var sql = "select * from login_cred";
-        var query = db.query(sql, function (err, rows) {
+        var sql = "select * from home";
+        var query = db.query(sql, function (err, home) {
             if (err) {
                 return res.status(500).send(err);
             }
             else {
-                if (rows[0].email === email) {
-                    message = "Password send to your registered Email-id.";
-
-                    res.render('forgotPassword', {
-                        message,
-                        success: true
-                    });
-
-                    var messageBody = "\n Hello There, Your password is" + rows[0].password
-                    mailUtils.sendMail('info@sochglobal.com', "Password Request", messageBody)
-                }
-                else {
-                    message = "Email id does not exist.";
-                    res.render('forgotPassword', {
-                        message,
-                        success: false
-                    });
-                }
+                var logo = home.find(val => val.type == "logo") ? home.find(val => val.type == "logo").img : "noImage.jpg"
+                var session = sessionStorage.getItem('username')
+                var message = ""
+                res.render('forgotPassword', {
+                    message,
+                    success: false,
+                    logo,
+                    session
+                });
             }
         })
+    },
+
+    postForgotPassword: (req, res, next) => {
+        var email = req.body.emailId
+        var sql = "select * from home";
+        var query = db.query(sql, function (err, home) {
+            if (err) {
+                return res.status(500).send(err);
+            }
+            else {
+                var logo = home.find(val => val.type == "logo") ? home.find(val => val.type == "logo").img : "noImage.jpg"
+                var session = sessionStorage.getItem('username')
+
+                var sql = "select * from login_cred";
+                var query = db.query(sql, function (err, rows) {
+                    if (err) {
+                        return res.status(500).send(err);
+                    }
+                    else {
+                        if (rows.find(val => val.email === email)) {
+                            message = "Password send to your registered Email-id.";
+                            res.render('forgotPassword', {
+                                message,
+                                success: true,
+                                session
+                            });
+
+                            var messageBody = "\n Hello There, Your password is" + rows.find(val => val.email === email).password
+                            mailUtils.sendMail('info@sochglobal.com', "Password Request", messageBody)
+                        }
+                        else {
+                            message = "Email id does not exist.";
+                            res.render('forgotPassword', {
+                                message,
+                                success: false,
+                                logo,
+                                session
+                            });
+                        }
+                    }
+                })
+            }
+        });
     },
 
     postContact: (req, res, next) => {
@@ -1102,12 +1189,25 @@ module.exports = {
         var subject = req.body.subject
         var message = req.body.message
 
-        var messageBody = "\n Name : " + name + "\n Email-id : " + email + "\n subject : " + subject + "\n Message : " + message
+        var sql = "select * from home";
+        var query = db.query(sql, function (err, home) {
+            if (err) {
+                return res.status(500).send(err);
+            }
+            else {
+                var logo = home.find(val => val.type == "logo") ? home.find(val => val.type == "logo").img : "noImage.jpg"
+                var messageBody = "\n Name : " + name + "\n Email-id : " + email + "\n subject : " + subject + "\n Message : " + message
+                var session = sessionStorage.getItem('username')
 
-        mailUtils.sendMail('info@sochglobal.com', "Enquiry Mail", messageBody)
-        message = "Message send successfully. Please wait we will contact you soon."
-        res.render('contact', {
-            message
+                mailUtils.sendMail('info@sochglobal.com', "Enquiry Mail", messageBody)
+                message = "Message send successfully. Please wait we will contact you soon."
+
+                res.render('contact', {
+                    message,
+                    logo,
+                    session
+                });
+            }
         });
     },
 
@@ -1526,5 +1626,62 @@ module.exports = {
             }
         })
     },
+
+    registerUser: (req, res, next) => {
+        var username = req.body.username
+        var email = req.body.emailId
+        var password = req.body.password
+
+        var sql = "select * from home";
+        var query = db.query(sql, function (err, home) {
+            if (err) {
+                return res.status(500).send(err);
+            }
+            else {
+                var logo = home.find(val => val.type == "logo") ? home.find(val => val.type == "logo").img : "noImage.jpg"
+                var session = sessionStorage.getItem('username')
+
+                var sql = "select * from login_cred";
+                var query = db.query(sql, function (err, rows) {
+                    if (err) {
+                        return res.status(500).send(err);
+                    }
+                    else {
+                        if (rows.find(val => val.email === email)) {
+                            var registerMessage = "user already Exist";
+                            var message = ""
+                            res.render('login', {
+                                registerMessage,
+                                success: false,
+                                session,
+                                message,
+                                logo
+                            });
+                        }
+                        else {
+                            var sql = `INSERT INTO login_cred (name,email,password, type, status)VALUES ('${username}','${email}','${password}','user',${0})`;
+                            var query = db.query(sql, function (err, rows) {
+                                if (err) {
+                                    return res.status(500).send(err);
+                                }
+                                else {
+                                    var registerMessage = "Application Recieved, Please Wait for approval.";
+                                    var message = ""
+                                    res.render('login', {
+                                        registerMessage,
+                                        success: true,
+                                        logo,
+                                        session,
+                                        message
+                                    });
+                                }
+                            })
+                        }
+                    }
+                })
+
+            }
+        })
+    }
 
 }
