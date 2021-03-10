@@ -195,7 +195,7 @@ module.exports = {
     postLogin: (req, res, next) => {
         var email = req.body.emailId
         var password = req.body.password
-        
+
         var sql = "select * from home";
         var query = db.query(sql, function (err, home) {
             if (err) {
@@ -233,8 +233,22 @@ module.exports = {
                                 }
                             }
                             else {
-                                sessionStorage.setItem('username', selectedObject.email)
-                                res.redirect("/user/computers");
+
+                                if (selectedObject.status) {
+                                    sessionStorage.setItem('username', selectedObject.email)
+                                    res.redirect("/user/computers");
+                                }
+                                else {
+                                    message = "Your account is not activated yet.";
+                                    var registerMessage = ""
+                                    var session = sessionStorage.getItem('username')
+                                    res.render('login', {
+                                        message,
+                                        logo,
+                                        registerMessage,
+                                        session
+                                    });
+                                }
                             }
                         }
                         else {
@@ -279,152 +293,190 @@ module.exports = {
         var dropdownListCategory = []
         var dropdownListCategoryUpdated = []
 
-        var sql = "select * from brandsHeader";
-        var query = db.query(sql, function (err, brandsHeader) {
+        var sql = "select * from login_cred";
+        var query = db.query(sql, function (err, adminUsers) {
             if (err) {
                 return res.status(500).send(err);
             }
             else {
-                brandsHeader = brandsHeader[0] ? brandsHeader[0].img : "noImage.jpg"
 
-                var sql = "select * from faq";
-                var query = db.query(sql, function (err, faq) {
+                adminUsers = adminUsers.filter(val => val.type === "user")
+
+
+                var sql = "select * from brandsHeader";
+                var query = db.query(sql, function (err, brandsHeader) {
                     if (err) {
                         return res.status(500).send(err);
                     }
                     else {
-                        faq = faq[0] ? faq[0].img : "noImage.jpg"
+                        brandsHeader = brandsHeader[0] ? brandsHeader[0].img : "noImage.jpg"
 
-                        var sql = "select * from career";
-                        var query = db.query(sql, function (err, career) {
+                        var sql = "select * from faq";
+                        var query = db.query(sql, function (err, faq) {
                             if (err) {
                                 return res.status(500).send(err);
                             }
                             else {
-                                career = career[0] ? career[0].img : "noImage.jpg"
+                                faq = faq[0] ? faq[0].img : "noImage.jpg"
 
-                                var sql = "select * from contact";
-                                var query = db.query(sql, function (err, contact) {
+                                var sql = "select * from career";
+                                var query = db.query(sql, function (err, career) {
                                     if (err) {
                                         return res.status(500).send(err);
                                     }
                                     else {
-                                        contact = contact[0] ? contact[0].img : "noImage.jpg"
+                                        career = career[0] ? career[0].img : "noImage.jpg"
 
-                                        var sql = "select * from home";
-                                        var query = db.query(sql, function (err, home) {
+                                        var sql = "select * from contact";
+                                        var query = db.query(sql, function (err, contact) {
                                             if (err) {
                                                 return res.status(500).send(err);
                                             }
                                             else {
-                                                var logo = home.find(val => val.type == "logo") ? home.find(val => val.type == "logo").img : "noImage.jpg"
-                                                var landing = home.find(val => val.type == "landing") ? home.find(val => val.type == "landing").img : "noImage.jpg"
-                                                var about = home.find(val => val.type == "about") ? home.find(val => val.type == "about").img : "noImage.jpg"
+                                                contact = contact[0] ? contact[0].img : "noImage.jpg"
 
-                                                var sql = "select * from brands";
-                                                var query = db.query(sql, function (err, brands) {
+                                                var sql = "select * from home";
+                                                var query = db.query(sql, function (err, home) {
                                                     if (err) {
                                                         return res.status(500).send(err);
                                                     }
                                                     else {
+                                                        var logo = home.find(val => val.type == "logo") ? home.find(val => val.type == "logo").img : "noImage.jpg"
+                                                        var landing = home.find(val => val.type == "landing") ? home.find(val => val.type == "landing").img : "noImage.jpg"
+                                                        var about = home.find(val => val.type == "about") ? home.find(val => val.type == "about").img : "noImage.jpg"
 
-                                                        var productCategoryList = []
-
-                                                        var sql = 'SELECT * FROM product_categories';
-                                                        var query = db.query(sql, function (err, product_categories) {
+                                                        var sql = "select * from brands";
+                                                        var query = db.query(sql, function (err, brands) {
                                                             if (err) {
                                                                 return res.status(500).send(err);
                                                             }
                                                             else {
 
-                                                                var displayCategory = []
-                                                                for (var i in product_categories) {
-                                                                    displayCategory.push(product_categories[i].displayCategory)
-                                                                    displayCategory = [...new Set(displayCategory)]
-                                                                }
+                                                                var productCategoryList = []
 
-                                                                var category = []
-                                                                for (var i in product_categories) {
-                                                                    category.push(product_categories[i].category)
-                                                                    category = [...new Set(category)]
-                                                                }
-
-                                                                for (var i = 0; i < displayCategory.length; i++) {
-                                                                    var catArr = product_categories.filter(val => val.category == category[i])
-                                                                    var subCategory = {}
-
-                                                                    catArr.map(val => {
-                                                                        if (val.displaySubCategory.length > 0) {
-                                                                            subCategory[val.displaySubCategory] = val.subCategory
-                                                                        }
-                                                                    })
-
-                                                                    productCategoryList.push({
-                                                                        displayName: displayCategory[i],
-                                                                        name: category[i],
-                                                                        subCategory: subCategory
-                                                                    })
-                                                                }
-
-                                                                var dropdownlistObject = productCategoryList.find(val => val.name == categoryId)
-
-                                                                if (dropdownlistObject) {
-                                                                    var requiredPair = Object.entries(dropdownlistObject.subCategory)
-                                                                    dropdownList = []
-
-                                                                    for (var i = 0; i < requiredPair.length; i++) {
-                                                                        dropdownList.push({
-                                                                            displayName: requiredPair[i][0],
-                                                                            name: requiredPair[i][1]
-                                                                        })
+                                                                var sql = 'SELECT * FROM product_categories';
+                                                                var query = db.query(sql, function (err, product_categories) {
+                                                                    if (err) {
+                                                                        return res.status(500).send(err);
                                                                     }
-                                                                    displayCategoryId = productCategoryList.find(val => val.name == categoryId).displayName
+                                                                    else {
 
-                                                                    var sql = `SELECT * FROM ${categoryId}`;
-                                                                    var query = db.query(sql, function (err, categoryList) {
-                                                                        if (err) {
-                                                                            return res.status(500).send(err);
+                                                                        var displayCategory = []
+                                                                        for (var i in product_categories) {
+                                                                            displayCategory.push(product_categories[i].displayCategory)
+                                                                            displayCategory = [...new Set(displayCategory)]
                                                                         }
-                                                                        else {
 
-                                                                            if (editId.length > 0) {
-                                                                                editProduct = categoryList.find(val => {
-                                                                                    if (val.id == editId) {
-                                                                                        return val
-                                                                                    }
-                                                                                })
-                                                                                if (!editProduct) {
-                                                                                    editRedirect = true;
-                                                                                    message = "Edit Id does not exists";
+                                                                        var category = []
+                                                                        for (var i in product_categories) {
+                                                                            category.push(product_categories[i].category)
+                                                                            category = [...new Set(category)]
+                                                                        }
+
+                                                                        for (var i = 0; i < displayCategory.length; i++) {
+                                                                            var catArr = product_categories.filter(val => val.category == category[i])
+                                                                            var subCategory = {}
+
+                                                                            catArr.map(val => {
+                                                                                if (val.displaySubCategory.length > 0) {
+                                                                                    subCategory[val.displaySubCategory] = val.subCategory
                                                                                 }
-                                                                            }
-
-                                                                            product_categories.map((val, index) => {
-                                                                                dropdownListCategory.push({
-                                                                                    category: val.category,
-                                                                                    displayCategory: val.displayCategory
-                                                                                })
                                                                             })
 
-                                                                            product_categories.map((val, index) => {
+                                                                            productCategoryList.push({
+                                                                                displayName: displayCategory[i],
+                                                                                name: category[i],
+                                                                                subCategory: subCategory
+                                                                            })
+                                                                        }
 
-                                                                                if (dropdownListCategory[index]) {
-                                                                                    if (!dropdownListCategoryUpdated.find(value => value.category == val.category)) {
-                                                                                        dropdownListCategoryUpdated.push({
+                                                                        var dropdownlistObject = productCategoryList.find(val => val.name == categoryId)
+
+                                                                        if (dropdownlistObject) {
+                                                                            var requiredPair = Object.entries(dropdownlistObject.subCategory)
+                                                                            dropdownList = []
+
+                                                                            for (var i = 0; i < requiredPair.length; i++) {
+                                                                                dropdownList.push({
+                                                                                    displayName: requiredPair[i][0],
+                                                                                    name: requiredPair[i][1]
+                                                                                })
+                                                                            }
+                                                                            displayCategoryId = productCategoryList.find(val => val.name == categoryId).displayName
+
+                                                                            var sql = `SELECT * FROM ${categoryId}`;
+                                                                            var query = db.query(sql, function (err, categoryList) {
+                                                                                if (err) {
+                                                                                    return res.status(500).send(err);
+                                                                                }
+                                                                                else {
+
+                                                                                    if (editId.length > 0) {
+                                                                                        editProduct = categoryList.find(val => {
+                                                                                            if (val.id == editId) {
+                                                                                                return val
+                                                                                            }
+                                                                                        })
+                                                                                        if (!editProduct) {
+                                                                                            editRedirect = true;
+                                                                                            message = "Edit Id does not exists";
+                                                                                        }
+                                                                                    }
+
+                                                                                    product_categories.map((val, index) => {
+                                                                                        dropdownListCategory.push({
                                                                                             category: val.category,
                                                                                             displayCategory: val.displayCategory
                                                                                         })
-                                                                                    }
+                                                                                    })
+
+                                                                                    product_categories.map((val, index) => {
+
+                                                                                        if (dropdownListCategory[index]) {
+                                                                                            if (!dropdownListCategoryUpdated.find(value => value.category == val.category)) {
+                                                                                                dropdownListCategoryUpdated.push({
+                                                                                                    category: val.category,
+                                                                                                    displayCategory: val.displayCategory
+                                                                                                })
+                                                                                            }
+                                                                                        }
+                                                                                    })
+
+
+                                                                                    var session = req.session.userId;
+                                                                                    res.render('admin', {
+                                                                                        message,
+                                                                                        productCategoryList,
+                                                                                        products: categoryList,
+                                                                                        editProduct,
+                                                                                        categoryId,
+                                                                                        subCategoryId,
+                                                                                        displayCategoryId,
+                                                                                        displaySubCategoryId,
+                                                                                        dropdownList,
+                                                                                        session,
+                                                                                        editRedirect,
+                                                                                        categoryRedirect,
+                                                                                        brands,
+                                                                                        logo,
+                                                                                        contact,
+                                                                                        career,
+                                                                                        faq,
+                                                                                        brandsHeader,
+                                                                                        landing,
+                                                                                        about,
+                                                                                        dropdownListCategoryUpdated,
+                                                                                        adminUsers
+                                                                                    });
                                                                                 }
                                                                             })
-
-
+                                                                        }
+                                                                        else {
+                                                                            message = "Category does not exist"
                                                                             var session = req.session.userId;
                                                                             res.render('admin', {
                                                                                 message,
                                                                                 productCategoryList,
-                                                                                products: categoryList,
-                                                                                editProduct,
                                                                                 categoryId,
                                                                                 subCategoryId,
                                                                                 displayCategoryId,
@@ -432,6 +484,8 @@ module.exports = {
                                                                                 dropdownList,
                                                                                 session,
                                                                                 editRedirect,
+                                                                                editProduct,
+                                                                                products: [],
                                                                                 categoryRedirect,
                                                                                 brands,
                                                                                 logo,
@@ -442,42 +496,16 @@ module.exports = {
                                                                                 landing,
                                                                                 about,
                                                                                 dropdownListCategoryUpdated,
+                                                                                adminUsers
                                                                             });
-                                                                        }
-                                                                    })
-                                                                }
-                                                                else {
-                                                                    message = "Category does not exist"
-                                                                    var session = req.session.userId;
-                                                                    res.render('admin', {
-                                                                        message,
-                                                                        productCategoryList,
-                                                                        categoryId,
-                                                                        subCategoryId,
-                                                                        displayCategoryId,
-                                                                        displaySubCategoryId,
-                                                                        dropdownList,
-                                                                        session,
-                                                                        editRedirect,
-                                                                        editProduct,
-                                                                        products: [],
-                                                                        categoryRedirect,
-                                                                        brands,
-                                                                        logo,
-                                                                        contact,
-                                                                        career,
-                                                                        faq,
-                                                                        brandsHeader,
-                                                                        landing,
-                                                                        about,
-                                                                        dropdownListCategoryUpdated,
-                                                                    });
 
-                                                                }
+                                                                        }
+                                                                    }
+                                                                })
                                                             }
+
                                                         })
                                                     }
-
                                                 })
                                             }
                                         })
@@ -504,169 +532,182 @@ module.exports = {
         var dropdownListCategoryUpdated = []
         message = ""
 
-        var sql = "select * from brandsHeader";
-        var query = db.query(sql, function (err, brandsHeader) {
+        var sql = "select * from login_cred";
+        var query = db.query(sql, function (err, adminUsers) {
             if (err) {
                 return res.status(500).send(err);
             }
             else {
-                brandsHeader = brandsHeader[0] ? brandsHeader[0].img : "noImage.jpg"
 
-                var sql = "select * from faq";
-                var query = db.query(sql, function (err, faq) {
+                adminUsers = adminUsers.filter(val => val.type === "user")
+
+
+                var sql = "select * from brandsHeader";
+                var query = db.query(sql, function (err, brandsHeader) {
                     if (err) {
                         return res.status(500).send(err);
                     }
                     else {
-                        faq = faq[0] ? faq[0].img : "noImage.jpg"
+                        brandsHeader = brandsHeader[0] ? brandsHeader[0].img : "noImage.jpg"
 
-                        var sql = "select * from career";
-                        var query = db.query(sql, function (err, career) {
+                        var sql = "select * from faq";
+                        var query = db.query(sql, function (err, faq) {
                             if (err) {
                                 return res.status(500).send(err);
                             }
                             else {
-                                career = career[0] ? career[0].img : "noImage.jpg"
+                                faq = faq[0] ? faq[0].img : "noImage.jpg"
 
-                                var sql = "select * from contact";
-                                var query = db.query(sql, function (err, contact) {
+                                var sql = "select * from career";
+                                var query = db.query(sql, function (err, career) {
                                     if (err) {
                                         return res.status(500).send(err);
                                     }
                                     else {
-                                        contact = contact[0] ? contact[0].img : "noImage.jpg"
+                                        career = career[0] ? career[0].img : "noImage.jpg"
 
-
-                                        var sql = "select * from home";
-                                        var query = db.query(sql, function (err, home) {
+                                        var sql = "select * from contact";
+                                        var query = db.query(sql, function (err, contact) {
                                             if (err) {
                                                 return res.status(500).send(err);
                                             }
                                             else {
-                                                var logo = home.find(val => val.type == "logo") ? home.find(val => val.type == "logo").img : "noImage.jpg"
-                                                var landing = home.find(val => val.type == "landing") ? home.find(val => val.type == "landing").img : "noImage.jpg"
-                                                var about = home.find(val => val.type == "about") ? home.find(val => val.type == "about").img : "noImage.jpg"
+                                                contact = contact[0] ? contact[0].img : "noImage.jpg"
 
-                                                var sql = "select * from brands";
-                                                var query = db.query(sql, function (err, brands) {
+
+                                                var sql = "select * from home";
+                                                var query = db.query(sql, function (err, home) {
                                                     if (err) {
                                                         return res.status(500).send(err);
                                                     }
                                                     else {
+                                                        var logo = home.find(val => val.type == "logo") ? home.find(val => val.type == "logo").img : "noImage.jpg"
+                                                        var landing = home.find(val => val.type == "landing") ? home.find(val => val.type == "landing").img : "noImage.jpg"
+                                                        var about = home.find(val => val.type == "about") ? home.find(val => val.type == "about").img : "noImage.jpg"
 
-                                                        var productCategoryList = []
-
-                                                        var sql = 'SELECT * FROM product_categories';
-                                                        var query = db.query(sql, function (err, product_categories) {
+                                                        var sql = "select * from brands";
+                                                        var query = db.query(sql, function (err, brands) {
                                                             if (err) {
                                                                 return res.status(500).send(err);
                                                             }
                                                             else {
 
-                                                                var displayCategory = []
-                                                                for (var i in product_categories) {
-                                                                    displayCategory.push(product_categories[i].displayCategory)
-                                                                    displayCategory = [...new Set(displayCategory)]
-                                                                }
+                                                                var productCategoryList = []
 
-                                                                var category = []
-                                                                for (var i in product_categories) {
-                                                                    category.push(product_categories[i].category)
-                                                                    category = [...new Set(category)]
-                                                                }
-
-                                                                for (var i = 0; i < displayCategory.length; i++) {
-                                                                    var catArr = product_categories.filter(val => val.category == category[i])
-                                                                    var subCategory = {}
-
-                                                                    catArr.map(val => {
-                                                                        if (val.displaySubCategory.length > 0) {
-                                                                            subCategory[val.displaySubCategory] = val.subCategory
-                                                                        }
-                                                                    })
-
-                                                                    productCategoryList.push({
-                                                                        displayName: displayCategory[i],
-                                                                        name: category[i],
-                                                                        subCategory: subCategory
-                                                                    })
-                                                                }
-                                                                displayCategoryId = productCategoryList.find(val => val.name == categoryId).displayName
-
-                                                                var categoryObject = productCategoryList.find(val => val.name == categoryId)
-                                                                var requiredPair = Object.entries(categoryObject.subCategory).find(key => {
-                                                                    if (key[1] == subCategoryId) {
-                                                                        return key
-                                                                    }
-                                                                })
-                                                                if (requiredPair) {
-                                                                    displaySubCategoryId = requiredPair[0];
-                                                                }
-                                                                else {
-                                                                    message = "Sub Category does not exist"
-                                                                }
-
-                                                                var sql = `SELECT * FROM ${categoryId} where subCategory ='${subCategoryId}'`;
-                                                                var query = db.query(sql, function (err, categoryList) {
+                                                                var sql = 'SELECT * FROM product_categories';
+                                                                var query = db.query(sql, function (err, product_categories) {
                                                                     if (err) {
                                                                         return res.status(500).send(err);
                                                                     }
                                                                     else {
 
-                                                                        if (editId.length > 0) {
-                                                                            editProduct = categoryList.find(val => {
-                                                                                if (val.id == editId) {
-                                                                                    return val
+                                                                        var displayCategory = []
+                                                                        for (var i in product_categories) {
+                                                                            displayCategory.push(product_categories[i].displayCategory)
+                                                                            displayCategory = [...new Set(displayCategory)]
+                                                                        }
+
+                                                                        var category = []
+                                                                        for (var i in product_categories) {
+                                                                            category.push(product_categories[i].category)
+                                                                            category = [...new Set(category)]
+                                                                        }
+
+                                                                        for (var i = 0; i < displayCategory.length; i++) {
+                                                                            var catArr = product_categories.filter(val => val.category == category[i])
+                                                                            var subCategory = {}
+
+                                                                            catArr.map(val => {
+                                                                                if (val.displaySubCategory.length > 0) {
+                                                                                    subCategory[val.displaySubCategory] = val.subCategory
                                                                                 }
                                                                             })
-                                                                            if (!editProduct) {
-                                                                                editRedirect = true;
-                                                                                message = "Edit Id does not exists";
-                                                                            }
-                                                                        }
-                                                                        var session = req.session.userId;
 
-                                                                        product_categories.map((val, index) => {
-                                                                            dropdownListCategory.push({
-                                                                                category: val.category,
-                                                                                displayCategory: val.displayCategory
+                                                                            productCategoryList.push({
+                                                                                displayName: displayCategory[i],
+                                                                                name: category[i],
+                                                                                subCategory: subCategory
                                                                             })
+                                                                        }
+                                                                        displayCategoryId = productCategoryList.find(val => val.name == categoryId).displayName
+
+                                                                        var categoryObject = productCategoryList.find(val => val.name == categoryId)
+                                                                        var requiredPair = Object.entries(categoryObject.subCategory).find(key => {
+                                                                            if (key[1] == subCategoryId) {
+                                                                                return key
+                                                                            }
                                                                         })
+                                                                        if (requiredPair) {
+                                                                            displaySubCategoryId = requiredPair[0];
+                                                                        }
+                                                                        else {
+                                                                            message = "Sub Category does not exist"
+                                                                        }
 
-                                                                        product_categories.map((val, index) => {
+                                                                        var sql = `SELECT * FROM ${categoryId} where subCategory ='${subCategoryId}'`;
+                                                                        var query = db.query(sql, function (err, categoryList) {
+                                                                            if (err) {
+                                                                                return res.status(500).send(err);
+                                                                            }
+                                                                            else {
 
-                                                                            if (dropdownListCategory[index]) {
-                                                                                if (!dropdownListCategoryUpdated.find(value => value.category == val.category)) {
-                                                                                    dropdownListCategoryUpdated.push({
+                                                                                if (editId.length > 0) {
+                                                                                    editProduct = categoryList.find(val => {
+                                                                                        if (val.id == editId) {
+                                                                                            return val
+                                                                                        }
+                                                                                    })
+                                                                                    if (!editProduct) {
+                                                                                        editRedirect = true;
+                                                                                        message = "Edit Id does not exists";
+                                                                                    }
+                                                                                }
+                                                                                var session = req.session.userId;
+
+                                                                                product_categories.map((val, index) => {
+                                                                                    dropdownListCategory.push({
                                                                                         category: val.category,
                                                                                         displayCategory: val.displayCategory
                                                                                     })
-                                                                                }
+                                                                                })
+
+                                                                                product_categories.map((val, index) => {
+
+                                                                                    if (dropdownListCategory[index]) {
+                                                                                        if (!dropdownListCategoryUpdated.find(value => value.category == val.category)) {
+                                                                                            dropdownListCategoryUpdated.push({
+                                                                                                category: val.category,
+                                                                                                displayCategory: val.displayCategory
+                                                                                            })
+                                                                                        }
+                                                                                    }
+                                                                                })
+
+                                                                                res.render('admin', {
+                                                                                    message,
+                                                                                    productCategoryList,
+                                                                                    products: categoryList,
+                                                                                    editProduct,
+                                                                                    categoryId,
+                                                                                    subCategoryId,
+                                                                                    displayCategoryId,
+                                                                                    displaySubCategoryId,
+                                                                                    session,
+                                                                                    editRedirect,
+                                                                                    categoryRedirect,
+                                                                                    brands,
+                                                                                    logo,
+                                                                                    contact,
+                                                                                    career,
+                                                                                    faq,
+                                                                                    brandsHeader,
+                                                                                    landing,
+                                                                                    about,
+                                                                                    dropdownListCategoryUpdated,
+                                                                                    adminUsers
+                                                                                });
                                                                             }
                                                                         })
-
-                                                                        res.render('admin', {
-                                                                            message,
-                                                                            productCategoryList,
-                                                                            products: categoryList,
-                                                                            editProduct,
-                                                                            categoryId,
-                                                                            subCategoryId,
-                                                                            displayCategoryId,
-                                                                            displaySubCategoryId,
-                                                                            session,
-                                                                            editRedirect,
-                                                                            categoryRedirect,
-                                                                            brands,
-                                                                            logo,
-                                                                            contact,
-                                                                            career,
-                                                                            faq,
-                                                                            brandsHeader,
-                                                                            landing,
-                                                                            about,
-                                                                            dropdownListCategoryUpdated,
-                                                                        });
                                                                     }
                                                                 })
                                                             }
@@ -955,7 +996,6 @@ module.exports = {
         });
 
     },
-
 
     addCategoryProduct: (req, res, next) => {
         var editID = req.params.editId
@@ -1260,7 +1300,6 @@ module.exports = {
             }
         })
     },
-
 
     addLogo: (req, res, next) => {
 
@@ -1680,6 +1719,21 @@ module.exports = {
                     }
                 })
 
+            }
+        })
+    },
+
+    adminUserUpdate: (req, res, next) => {
+        var id = req.body.id
+        var status = req.body.status
+
+        var sql = `update login_cred set status=${status} where id=${id}`;
+        var query = db.query(sql, function (err, rows) {
+            if (err) {
+                return res.status(500).send(err);
+            }
+            else {
+                res.redirect(`/admin-category/computers`);
             }
         })
     }

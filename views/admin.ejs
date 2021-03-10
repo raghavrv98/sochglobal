@@ -89,6 +89,7 @@
 						<a class="nav-link admin-sub-tabs" id="v-pills-faq-tab" data-toggle="pill" href="#v-pills-faq" role="tab" aria-controls="v-pills-faq" aria-selected="false">FAQ</a>
 						<a class="nav-link admin-sub-tabs" id="v-pills-career-tab" data-toggle="pill" href="#v-pills-career" role="tab" aria-controls="v-pills-career" aria-selected="false">Career</a>
 						<a class="nav-link admin-sub-tabs" id="v-pills-contact-tab" data-toggle="pill" href="#v-pills-contact" role="tab" aria-controls="v-pills-contact" aria-selected="false">Contact</a>
+						<a class="nav-link admin-sub-tabs" id="v-pills-user-tab" data-toggle="pill" href="#v-pills-user" role="tab" aria-controls="v-pills-user" aria-selected="false">Users</a>
 					  </div>
 					  
 					  <div class="tab-content" id="v-pills-tabContent">
@@ -210,7 +211,7 @@
 												<input style="display: none;" type="text" value="<%= subCategoryId %>" name="subCategoryId" required>
 												<input style="display: none;" type="text" value="<%= categoryId %>" name="categoryId" required>
 												<input style="display: none;" type="text" value="<%= displaySubCategoryId %>" name="displaySubCategoryId" required>
-												<input type="file" name="multipleRecord" required>
+												<input style="display: inline;" type="file" name="multipleRecord" required>
 												<% if (message.length > 0) { %>
 													<input disabled type="submit" value="Add">
 													<% } else { %>
@@ -471,7 +472,6 @@
 								<p class="cat-heading-text">FAQ</p>
 								<hr>
 								<div class="col-md-4">
-									<p class="cat-heading-text">FAQ</p>
 									<form role="form" method="post" action="/addFaq" enctype="multipart/form-data">
 										<span><input type="file" class="admin-fileWidth" accept="image/*" name="img" required></span>
 										<span><input type="submit" value="Add Image"></span>
@@ -489,7 +489,6 @@
 								<p class="cat-heading-text">Career</p>
 								<hr>
 								<div class="col-md-4">
-									<p class="cat-heading-text">Career</p>
 									<form role="form" method="post" action="/addCareer" enctype="multipart/form-data">
 										<span><input type="file" class="admin-fileWidth" accept="image/*" name="img" required></span>
 										<span><input type="submit" value="Add Image"></span>
@@ -507,7 +506,6 @@
 								<p class="cat-heading-text">Contact</p>
 								<hr>
 								<div class="col-md-4">
-									<p class="cat-heading-text">Contact</p>
 									<form role="form" method="post" action="/addContact" enctype="multipart/form-data">
 										<span><input type="file" class="admin-fileWidth" accept="image/*" name="img" required></span>
 										<span><input type="submit" value="Add Image"></span>
@@ -517,6 +515,46 @@
 									<button type="submit" class="admin-home-times" onclick="return confirm('Are you sure you want to Delete?')" ><i class="fas fa-times-circle"></i></button>
 									</form>
 										<img src="http://localhost:3001/uploads/<%= contact%>" class="brands-admin-img-height" alt="image">
+								</div>
+						</div>
+						</div>
+
+						<div class="tab-pane fade" id="v-pills-user">
+							<div class="row">
+								<p class="cat-heading-text">Users</p>
+								<hr>
+
+								<div class="table-responsive">
+									<table class="table">
+										<thead>
+											<tr>
+												<th>Name</th>
+												<th>Email-id</th>
+												<th>Status</th>
+												<th>Action</th>
+											</tr>
+										</thead>
+										<tbody>
+
+											<% if (adminUsers.length> 0 ){ %>
+		
+												<% for (var i=0; i < adminUsers.length; i++) { %>
+													<tr>
+														<form action="/adminUserUpdate" method="POST" enctype="multipart/form-data">
+														<input style="display: none;" name="id" value="<%= adminUsers[i].id%>">
+														<td><p class="admin-user-name"><%= adminUsers[i].name%></p></td>
+														<td><p class="admin-user-email"><%= adminUsers[i].email%></p></td>
+														<td><input class="admin-user-checkbox" name="status" type="checkbox" value= <%= adminUsers[i].status ? 0 : 1 %> <%= adminUsers[i].status ? "checked" : "" %> ></td>
+														<td><input type="submit" onclick="return confirm('Are you sure you want to update?')" value="Update"></td>
+														</form>
+													</tr>
+											<% } %>
+												<% } else { %>
+													<p>No Data Found</p>
+													<% } %>
+
+											</tbody>
+											</table>
 								</div>
 						</div>
 						</div>

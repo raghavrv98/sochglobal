@@ -18,8 +18,9 @@ router.get('/notFound', homeCtrl.showNotFound);
 
 //dynamic routes
 
-router.post('/registerUser', homeCtrl.registerUser);
+router.post('/adminUserUpdate', homeCtrl.adminUserUpdate);
 
+router.post('/registerUser', homeCtrl.registerUser);
 
 router.post('/addBrands', homeCtrl.addBrands);
 router.post('/deleteBrands', homeCtrl.deleteBrands);
