@@ -9,6 +9,9 @@ var homeCtrl = require('../controllers/homeCtrl')
 router.get('/', homeCtrl.showHome);
 router.get('/logout', homeCtrl.logout);
 router.get('/login', homeCtrl.showLogin);
+router.get('/register', homeCtrl.showRegister);
+router.get('/education', homeCtrl.showEducation);
+router.get('/caution', homeCtrl.showCaution);
 router.get('/contact', homeCtrl.showContact);
 router.get('/brands', homeCtrl.showBrands);
 router.get('/faq', homeCtrl.showFaq);
@@ -39,6 +42,7 @@ router.post('/deleteContact', homeCtrl.deleteContact);
 
 router.post('/addCareer', homeCtrl.addCareer);
 router.post('/deleteCareer', homeCtrl.deleteCareer);
+router.post('/addCareerDescription', homeCtrl.addCareerDescription);
 
 router.post('/addFaq', homeCtrl.addFaq);
 router.post('/deleteFaq', homeCtrl.deleteFaq);

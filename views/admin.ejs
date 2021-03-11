@@ -90,7 +90,7 @@
 						<a class="nav-link admin-sub-tabs" id="v-pills-career-tab" data-toggle="pill" href="#v-pills-career" role="tab" aria-controls="v-pills-career" aria-selected="false">Career</a>
 						<a class="nav-link admin-sub-tabs" id="v-pills-contact-tab" data-toggle="pill" href="#v-pills-contact" role="tab" aria-controls="v-pills-contact" aria-selected="false">Contact</a>
 						<a class="nav-link admin-sub-tabs" id="v-pills-user-tab" data-toggle="pill" href="#v-pills-user" role="tab" aria-controls="v-pills-user" aria-selected="false">Users</a>
-					  </div>
+					</div>
 					  
 					  <div class="tab-content" id="v-pills-tabContent">
 						<div class="tab-pane" id="v-pills-home">
@@ -100,36 +100,39 @@
 								<div class="col-md-4">
 									<p class="cat-heading-text">Logo</p>
 									<form role="form" method="post" action="/addLogo" enctype="multipart/form-data">
+										<input style="display: none;" name="id" value="28">
 										<span><input type="file" class="admin-fileWidth" accept="image/*" name="img" required></span>
 										<span><input type="submit" value="Add Logo"></span>
 									</form>
 									<form role="form" method="post" action="/deleteLogo" enctype="multipart/form-data">
 									<input style="display: none;" name="id" value="logo">
-									<button type="submit" class="admin-home-times" onclick="return confirm('Are you sure you want to Delete?')" ><i class="fas fa-times-circle"></i></button>
+									<button type="submit" class="admin-home-times" onclick="return confirm('Are you sure you want to delete?')" ><i class="fas fa-times-circle"></i></button>
 									</form>
 										<img src="http://localhost:3001/uploads/<%= logo%>" class="brands-admin-img-height" alt="image">
 								</div>
 								<div class="col-md-4">
 									<p class="cat-heading-text">Landing Image</p>
 									<form role="form" method="post" action="/addLanding" enctype="multipart/form-data">
+										<input style="display: none;" name="id" value="29">	
 										<span><input type="file" class="admin-fileWidth" accept="image/*" name="img" required></span>
 										<span><input type="submit" value="Add Image"></span>
 									</form>
 									<form role="form" method="post" action="/deleteLanding" enctype="multipart/form-data">
 									<input style="display: none;" name="id" value="landing">
-									<button type="submit" class="admin-home-times" onclick="return confirm('Are you sure you want to Delete?')" ><i class="fas fa-times-circle"></i></button>
+									<button type="submit" class="admin-home-times" onclick="return confirm('Are you sure you want to delete?')" ><i class="fas fa-times-circle"></i></button>
 									</form>
 										<img src="http://localhost:3001/uploads/<%= landing%>" class="brands-admin-img-height" alt="image">
 								</div>
 								<div class="col-md-4">
 									<p class="cat-heading-text">About Image</p>
 									<form role="form" method="post" action="/addAbout" enctype="multipart/form-data">
+										<input style="display: none;" name="id" value="24">	
 										<span><input type="file" class="admin-fileWidth" accept="image/*" name="img" required></span>
 										<span><input type="submit" value="Add Image"></span>
 									</form>
 									<form role="form" method="post" action="/deleteAbout" enctype="multipart/form-data">
 									<input style="display: none;" name="id" value="about">
-									<button type="submit" class="admin-home-times" onclick="return confirm('Are you sure you want to Delete?')" ><i class="fas fa-times-circle"></i></button>
+									<button type="submit" class="admin-home-times" onclick="return confirm('Are you sure you want to delete?')" ><i class="fas fa-times-circle"></i></button>
 									</form>
 										<img src="http://localhost:3001/uploads/<%= about%>" class="brands-admin-img-height" alt="image">
 								</div>
@@ -164,7 +167,7 @@
 											<% if (message.length > 0) { %>
 												<input disabled type="submit" value="Delete">
 												<% } else { %>
-													<input type="submit" onclick="return confirm('Are you sure you want to Delete?')" value="Delete">
+													<input type="submit" onclick="return confirm('Are you sure you want to delete?')" value="Delete">
 												<% } %>
 										</form>
 									</div>
@@ -247,7 +250,7 @@
 										<% if (message.length > 0) { %>
 											<input disabled type="submit" value="Delete">
 											<% } else { %>
-												<input type="submit" onclick="return confirm('Are you sure you want to Delete?')" value="Delete" required>
+												<input type="submit" onclick="return confirm('Are you sure you want to delete?')" value="Delete" required>
 											<% } %>
 									</form>
 								</div>
@@ -397,7 +400,7 @@
 												<% if (message.length > 0) { %>
 												<td><button disabled type="submit">Delete</button></td>
 												<% } else { %>
-												<input type="submit" onclick="return confirm('Are you sure you want to Delete?')" class="admin-delete-button" value="Delete">
+												<input type="submit" onclick="return confirm('Are you sure you want to delete?')" class="admin-delete-button" value="Delete">
 												<% } %>
 												</form>
 												</div>
@@ -432,12 +435,13 @@
 								<hr>
 								<div class="col-md-4">
 									<form role="form" method="post" action="/addBrandsHeader" enctype="multipart/form-data">
+										<input style="display: none;" name="id" value="4">
 										<span><input type="file" class="admin-fileWidth" accept="image/*" name="img" required></span>
 										<span><input type="submit" value="Add Image"></span>
 									</form>
 									<form role="form" method="post" action="/deleteBrandsHeader" enctype="multipart/form-data">
 									<input style="display: none;" name="id" value="brands">
-									<button type="submit" class="admin-home-times" onclick="return confirm('Are you sure you want to Delete?')" ><i class="fas fa-times-circle"></i></button>
+									<button type="submit" class="admin-home-times" onclick="return confirm('Are you sure you want to delete?')" ><i class="fas fa-times-circle"></i></button>
 									</form>
 										<img src="http://localhost:3001/uploads/<%= brandsHeader%>" class="brands-admin-img-height" alt="image">
 								</div>
@@ -453,7 +457,7 @@
 		
 									<span class="admin-brands-img"><form role="form" method="post" action="/deleteBrands" enctype="multipart/form-data">
 									<input style="display: none;" name="id" value="<%= brands[i].id%>">
-									<button type="submit" class="admin-brands-times" onclick="return confirm('Are you sure you want to Delete?')" ><i class="fas fa-times-circle"></i></button>
+									<button type="submit" class="admin-brands-times" onclick="return confirm('Are you sure you want to delete?')" ><i class="fas fa-times-circle"></i></button>
 									</form>
 									<img src="http://localhost:3001/uploads/<%= brands[i].img%>" class="brands-admin-img-height" alt="image">
 									</span>	
@@ -473,12 +477,13 @@
 								<hr>
 								<div class="col-md-4">
 									<form role="form" method="post" action="/addFaq" enctype="multipart/form-data">
+										<input style="display: none;" name="id" value="2">
 										<span><input type="file" class="admin-fileWidth" accept="image/*" name="img" required></span>
 										<span><input type="submit" value="Add Image"></span>
 									</form>
 									<form role="form" method="post" action="/deleteFaq" enctype="multipart/form-data">
 									<input style="display: none;" name="id" value="faq">
-									<button type="submit" class="admin-home-times" onclick="return confirm('Are you sure you want to Delete?')" ><i class="fas fa-times-circle"></i></button>
+									<button type="submit" class="admin-home-times" onclick="return confirm('Are you sure you want to delete?')" ><i class="fas fa-times-circle"></i></button>
 									</form>
 										<img src="http://localhost:3001/uploads/<%= faq%>" class="brands-admin-img-height" alt="image">
 								</div>
@@ -490,14 +495,24 @@
 								<hr>
 								<div class="col-md-4">
 									<form role="form" method="post" action="/addCareer" enctype="multipart/form-data">
+										<input style="display: none;" name="id" value="7">
 										<span><input type="file" class="admin-fileWidth" accept="image/*" name="img" required></span>
 										<span><input type="submit" value="Add Image"></span>
 									</form>
 									<form role="form" method="post" action="/deleteCareer" enctype="multipart/form-data">
 									<input style="display: none;" name="id" value="career">
-									<button type="submit" class="admin-home-times" onclick="return confirm('Are you sure you want to Delete?')" ><i class="fas fa-times-circle"></i></button>
+									<button type="submit" class="admin-home-times" onclick="return confirm('Are you sure you want to delete?')" ><i class="fas fa-times-circle"></i></button>
 									</form>
 										<img src="http://localhost:3001/uploads/<%= career%>" class="brands-admin-img-height" alt="image">
+								</div>
+								
+								<div class="col-md-8">
+									<p>Career Positions</p>
+									<form role="form" method="POST" action="/addCareerDescription" enctype="multipart/form-data">
+										<input style="display: none;" name="id" value="1">
+										<textarea class="career-text-area" cols="83" rows="6" name="description" required><%= description %></textarea>
+										<input class="float-right" type="submit" onclick="return confirm('Are you sure you want to update?')" value="Update">
+									</form>
 								</div>
 						</div>
 						</div>
@@ -507,12 +522,13 @@
 								<hr>
 								<div class="col-md-4">
 									<form role="form" method="post" action="/addContact" enctype="multipart/form-data">
+										<input style="display: none;" name="id" value="5">
 										<span><input type="file" class="admin-fileWidth" accept="image/*" name="img" required></span>
 										<span><input type="submit" value="Add Image"></span>
 									</form>
 									<form role="form" method="post" action="/deleteContact" enctype="multipart/form-data">
 									<input style="display: none;" name="id" value="contact">
-									<button type="submit" class="admin-home-times" onclick="return confirm('Are you sure you want to Delete?')" ><i class="fas fa-times-circle"></i></button>
+									<button type="submit" class="admin-home-times" onclick="return confirm('Are you sure you want to delete?')" ><i class="fas fa-times-circle"></i></button>
 									</form>
 										<img src="http://localhost:3001/uploads/<%= contact%>" class="brands-admin-img-height" alt="image">
 								</div>
@@ -528,9 +544,10 @@
 									<table class="table">
 										<thead>
 											<tr>
-												<th>Name</th>
+												<th>First Name</th>
+												<th>Last Name</th>
 												<th>Email-id</th>
-												<th>Status</th>
+												<th>API Access</th>
 												<th>Action</th>
 											</tr>
 										</thead>
@@ -542,10 +559,12 @@
 													<tr>
 														<form action="/adminUserUpdate" method="POST" enctype="multipart/form-data">
 														<input style="display: none;" name="id" value="<%= adminUsers[i].id%>">
-														<td><p class="admin-user-name"><%= adminUsers[i].name%></p></td>
+														<td><p class="admin-user-name"><%= adminUsers[i].first%></p></td>
+														<td><p class="admin-user-name"><%= adminUsers[i].last%></p></td>
 														<td><p class="admin-user-email"><%= adminUsers[i].email%></p></td>
-														<td><input class="admin-user-checkbox" name="status" type="checkbox" value= <%= adminUsers[i].status ? 0 : 1 %> <%= adminUsers[i].status ? "checked" : "" %> ></td>
-														<td><input type="submit" onclick="return confirm('Are you sure you want to update?')" value="Update"></td>
+														<input style="display: none;" type="text" name="status" value=<%= adminUsers[i].status ? 0 : 1 %>>
+														<td><input class="admin-user-checkbox" type="checkbox" value= <%= adminUsers[i].status ? 0 : 1 %> <%= adminUsers[i].status ? "checked" : "" %> ></td>
+														<td><input class="mr-0" type="submit" onclick="return confirm('Are you sure you want to update?')" value="Update"></td>
 														</form>
 													</tr>
 											<% } %>
