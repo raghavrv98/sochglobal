@@ -79,7 +79,7 @@ module.exports = {
 
     showCareer: (req, res, next) => {
 
-        var sql = "select * from careerDescription";
+        var sql = "select * from career_description";
         var query = db.query(sql, function (err, description) {
             if (err) {
                 return res.status(500).send(err);
@@ -165,7 +165,7 @@ module.exports = {
 
     showBrands: (req, res, next) => {
 
-        var sql = "select * from brandsHeader";
+        var sql = "select * from brands_header";
         var query = db.query(sql, function (err, brandsHeader) {
             if (err) {
                 return res.status(500).send(err);
@@ -303,7 +303,7 @@ module.exports = {
         var dropdownListCategory = []
         var dropdownListCategoryUpdated = []
 
-        var sql = "select * from careerDescription";
+        var sql = "select * from career_description";
         var query = db.query(sql, function (err, description) {
             if (err) {
                 return res.status(500).send(err);
@@ -320,7 +320,7 @@ module.exports = {
 
                         adminUsers = adminUsers.filter(val => val.type === "user")
 
-                        var sql = "select * from brandsHeader";
+                        var sql = "select * from brands_header";
                         var query = db.query(sql, function (err, brandsHeader) {
                             if (err) {
                                 return res.status(500).send(err);
@@ -553,7 +553,7 @@ module.exports = {
         var dropdownListCategoryUpdated = []
         message = ""
 
-        var sql = "select * from careerDescription";
+        var sql = "select * from career_description";
         var query = db.query(sql, function (err, description) {
             if (err) {
                 return res.status(500).send(err);
@@ -570,7 +570,7 @@ module.exports = {
 
                         adminUsers = adminUsers.filter(val => val.type === "user")
 
-                        var sql = "select * from brandsHeader";
+                        var sql = "select * from brands_header";
                         var query = db.query(sql, function (err, brandsHeader) {
                             if (err) {
                                 return res.status(500).send(err);
@@ -767,7 +767,7 @@ module.exports = {
 
         if (session || req.session.userId) {
 
-            var sql = "select * from careerDescription";
+            var sql = "select * from career_description";
             var query = db.query(sql, function (err, description) {
                 if (err) {
                     return res.status(500).send(err);
@@ -775,7 +775,7 @@ module.exports = {
                 else {
                     description = description[0] ? description[0].description : "Currently No Positions"
 
-                    var sql = "select * from brandsHeader";
+                    var sql = "select * from brands_header";
                     var query = db.query(sql, function (err, brandsHeader) {
                         if (err) {
                             return res.status(500).send(err);
@@ -1687,7 +1687,7 @@ module.exports = {
             });
         } else {
 
-            var sql = "select * from brandsHeader";
+            var sql = "select * from brands_header";
             var query = db.query(sql, function (err, brandsHeader) {
                 brandsHeader = brandsHeader[0] ? brandsHeader[0].img : "noImage.jpg"
                 if (err) {
