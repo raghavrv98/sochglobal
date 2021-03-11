@@ -1674,7 +1674,7 @@ module.exports = {
 
             file.mv('public/uploads/' + file.name, function (err) {
 
-                var sql = `update brandsHeader set img ='${img_name}' where id = ${id}`
+                var sql = `update brands_header set img ='${img_name}' where id = ${id}`
                 var query = db.query(sql, function (err) {
                     if (err) {
                         return res.status(500).send(err);
@@ -1705,7 +1705,7 @@ module.exports = {
 
         var type = req.body.id;
 
-        var sql = `DELETE FROM brandsHeader where type="${type}"`;
+        var sql = `DELETE FROM brands_header where type="${type}"`;
         var query = db.query(sql, function (err) {
             if (err) {
                 return res.status(500).send(err);
@@ -1850,7 +1850,7 @@ module.exports = {
         var description = req.body.description;
         var id = req.body.id;
 
-        var sql = `update careerDescription set description='${description}' where id = ${id}`;
+        var sql = `update career_description set description='${description}' where id = ${id}`;
         var query = db.query(sql, function (err) {
             if (err) {
                 return res.status(500).send(err);
