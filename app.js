@@ -17,6 +17,13 @@ var connection = mysql.createConnection({
   database: 'sochglobal'
 });
 
+// var connection = mysql.createConnection({
+//   host: 'localhost',
+//   user: 'sochglobaluser',
+//   password: 'sochglobal@123',
+//   database: 'sochglobal'
+// });
+
 connection.connect();
 
 global.db = connection;
