@@ -79,7 +79,7 @@ module.exports = {
 
     showCareer: (req, res, next) => {
 
-        var sql = "select * from careerDescription";
+        var sql = "select * from career_description";
         var query = db.query(sql, function (err, description) {
             if (err) {
                 return res.status(500).send(err);
