@@ -87,7 +87,6 @@
 						<a class="nav-link admin-sub-tabs" id="v-pills-products-tab" data-toggle="pill" href="#v-pills-products" role="tab" aria-controls="v-pills-products" aria-selected="false">Products</a>
 						<a class="nav-link admin-sub-tabs" id="v-pills-brands-tab" data-toggle="pill" href="#v-pills-brands" role="tab" aria-controls="v-pills-brands" aria-selected="false">Brands</a>
 						<a class="nav-link admin-sub-tabs" id="v-pills-faq-tab" data-toggle="pill" href="#v-pills-faq" role="tab" aria-controls="v-pills-faq" aria-selected="false">FAQ</a>
-						<a class="nav-link admin-sub-tabs" id="v-pills-career-tab" data-toggle="pill" href="#v-pills-career" role="tab" aria-controls="v-pills-career" aria-selected="false">Career</a>
 						<a class="nav-link admin-sub-tabs" id="v-pills-contact-tab" data-toggle="pill" href="#v-pills-contact" role="tab" aria-controls="v-pills-contact" aria-selected="false">Contact</a>
 						<a class="nav-link admin-sub-tabs" id="v-pills-user-tab" data-toggle="pill" href="#v-pills-user" role="tab" aria-controls="v-pills-user" aria-selected="false">Users</a>
 					</div>
@@ -486,33 +485,6 @@
 									<button type="submit" class="admin-home-times" onclick="return confirm('Are you sure you want to delete?')" ><i class="fas fa-times-circle"></i></button>
 									</form>
 										<img src="http://15.206.74.51:3001/uploads/<%= faq%>" class="brands-admin-img-height" alt="image">
-								</div>
-						</div>
-						</div>
-						<div class="tab-pane fade" id="v-pills-career">
-							<div class="row">
-								<p class="cat-heading-text">Career</p>
-								<hr>
-								<div class="col-md-4">
-									<form role="form" method="post" action="/addCareer" enctype="multipart/form-data">
-										<input style="display: none;" name="id" value="7">
-										<span><input type="file" class="admin-fileWidth" accept="image/*" name="img" required></span>
-										<span><input type="submit" value="Add Image"></span>
-									</form>
-									<form role="form" method="post" action="/deleteCareer" enctype="multipart/form-data">
-									<input style="display: none;" name="id" value="career">
-									<button type="submit" class="admin-home-times" onclick="return confirm('Are you sure you want to delete?')" ><i class="fas fa-times-circle"></i></button>
-									</form>
-										<img src="http://15.206.74.51:3001/uploads/<%= career%>" class="brands-admin-img-height" alt="image">
-								</div>
-								
-								<div class="col-md-8">
-									<p>Career Positions</p>
-									<form role="form" method="POST" action="/addCareerDescription" enctype="multipart/form-data">
-										<input style="display: none;" name="id" value="1">
-										<textarea class="career-text-area" cols="83" rows="6" name="description" required><%= description %></textarea>
-										<input class="float-right" type="submit" onclick="return confirm('Are you sure you want to update?')" value="Update">
-									</form>
 								</div>
 						</div>
 						</div>

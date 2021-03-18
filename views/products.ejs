@@ -53,61 +53,62 @@
 					<div class="cat-outer col-md-3">
 						<p class="cat-heading-text">Categories</p>
 						<hr>
-						<% if(productCategoryList.length > 0) { %>
-						<% for (var i=0; i < productCategoryList.length; i++) { %>
-							<div class="cat-link">
+						<% if(productCategoryList.length> 0) { %>
+							<% for (var i=0; i < productCategoryList.length; i++) { %>
+								<div class="cat-link">
 
-								<% if (productCategoryList[i].name==activeLinkName[2]) { %>
-									<a style="color: #742E2E;" class="cat-li-text"
-										href='/user/<%= productCategoryList[i].name%>' role="button">
-										<i class="fas fa-caret-right mr-10"></i>
-										<%= productCategoryList[i].displayName%>
-									</a>
-									<% } else { %>
-										<a class="cat-li-text" href='/user/<%= productCategoryList[i].name%>'
-											role="button">
+									<% if (productCategoryList[i].name==activeLinkName[2]) { %>
+										<a style="color: #742E2E;" class="cat-li-text"
+											href='/user/<%= productCategoryList[i].name%>' role="button">
 											<i class="fas fa-caret-right mr-10"></i>
 											<%= productCategoryList[i].displayName%>
 										</a>
-										<% } %>
+										<% } else { %>
+											<a class="cat-li-text" href='/user/<%= productCategoryList[i].name%>'
+												role="button">
+												<i class="fas fa-caret-right mr-10"></i>
+												<%= productCategoryList[i].displayName%>
+											</a>
+											<% } %>
 
-											<% if(Object.keys(productCategoryList[i].subCategory).length> 0) { %>
-												<a data-toggle="collapse" href="#<%= productCategoryList[i].name%>"><i
-														class="fa fa-angle-down" aria-hidden="true"></i></a>
-												<% } %>
+												<% if(Object.keys(productCategoryList[i].subCategory).length> 0) { %>
+													<a data-toggle="collapse"
+														href="#<%= productCategoryList[i].name%>"><i
+															class="fa fa-angle-down" aria-hidden="true"></i></a>
+													<% } %>
 
-													<% if(Object.keys(productCategoryList[i].subCategory).length> 0)
-														{ %>
-														<div class="collapse" id=<%=productCategoryList[i].name%>>
-															<div class="card card-body ml-20">
-																<% for (var [key, value] of
-																	Object.entries(productCategoryList[i].subCategory))
-																	{ %>
+														<% if(Object.keys(productCategoryList[i].subCategory).length> 0)
+															{ %>
+															<div class="collapse" id=<%=productCategoryList[i].name%>>
+																<div class="card card-body ml-20">
+																	<% for (var [key, value] of
+																		Object.entries(productCategoryList[i].subCategory))
+																		{ %>
 
-																	<% if (value==activeLinkName[3]) { %>
-																		<a style="color: #FE9126;"
-																			class="card-sub-li-text"
-																			href="/user/<%= productCategoryList[i].name%>/<%= value%>">
-																			<%= key%>
-																		</a>
-																		<% } else { %>
-
-																			<a class="card-sub-li-text"
+																		<% if (value==activeLinkName[3]) { %>
+																			<a style="color: #FE9126;"
+																				class="card-sub-li-text"
 																				href="/user/<%= productCategoryList[i].name%>/<%= value%>">
 																				<%= key%>
 																			</a>
+																			<% } else { %>
 
-																			<% } %>
+																				<a class="card-sub-li-text"
+																					href="/user/<%= productCategoryList[i].name%>/<%= value%>">
+																					<%= key%>
+																				</a>
+
 																				<% } %>
+																					<% } %>
+																</div>
 															</div>
-														</div>
-														<% } %>
-							</div>
-							<% } %>
-							
-							<% } else {%>
-								<p>No Data Found</p>	
+															<% } %>
+								</div>
 								<% } %>
+
+									<% } else {%>
+										<p>No Data Found</p>
+										<% } %>
 
 					</div>
 
@@ -115,26 +116,26 @@
 						<%= products.length %>
 					</div><br><br>
 					<div class="prod-outer col-md-9">
-						<% if (products.length > 0) { %>
-						<% for(var i in products) { %>
-							<div>
-								<p class="prod-li-head-text">
-									<%= products[i].name%>
-								</p>
-								<p class="prod-li-text">
-									<%= products[i].description%>
-								</p>
-								<p class="prod-li-stock-text">
-									<%= products[i].stockCount%> In Stock
-								</p>
-								</p>
-								<hr>
-							</div>
-							<% } %>
-
-							<% } else {%>
-								<p>No Data Found</p>	
+						<% if (products.length> 0) { %>
+							<% for(var i in products) { %>
+								<div>
+									<p class="prod-li-head-text">
+										<%= products[i].name%>
+									</p>
+									<p class="prod-li-text">
+										<%= products[i].description%>
+									</p>
+									<p class="prod-li-stock-text">
+										<%= products[i].stockCount%> In Stock
+									</p>
+									</p>
+									<hr>
+								</div>
 								<% } %>
+
+									<% } else {%>
+										<p>No Data Found</p>
+										<% } %>
 					</div>
 				</div>
 
