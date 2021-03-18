@@ -13,21 +13,21 @@
 		integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
 	<!-- owl carousel CSS -->
-	<link rel="stylesheet" href="http://15.206.74.51:3001/css/owl.carousel.min.css">
-	<link rel="stylesheet" href="http://15.206.74.51:3001/css/owl.theme.default.min.css">
+	<link rel="stylesheet" href="http://15.206.74.51/css/owl.carousel.min.css">
+	<link rel="stylesheet" href="http://15.206.74.51/css/owl.theme.default.min.css">
 
 	<!-- magnific-popup CSS -->
-	<link rel="stylesheet" href="http://15.206.74.51:3001/css/magnific-popup.css">
+	<link rel="stylesheet" href="http://15.206.74.51/css/magnific-popup.css">
 
 	<!--- Font Awesome Icos CDN-->
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
 		integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 
 	<!-- Core Style Css -->
-	<link rel="stylesheet" href="http://15.206.74.51:3001/css/style.css">
+	<link rel="stylesheet" href="http://15.206.74.51/css/style.css">
 
 	<!--[if lt IE 9]-->
-	<script src="http://15.206.74.51:3001/js/html5shiv.min.js"></script>
+	<script src="http://15.206.74.51/js/html5shiv.min.js"></script>
 	<!--[endif]-->
 
 
@@ -43,536 +43,1190 @@
 
 		<% if (session) { %>
 
-		<!--====== Products Page ======-->
+			<!--====== Products Page ======-->
 
-		<section class="contact section-padding">
-			<div class="container">
+			<section class="contact section-padding">
+				<div class="container">
 
-				<div class="section-head spac">
-					<div>
-						<span><h3>Admin Dashboard</h3></span>
+					<div class="section-head spac">
+						<div>
+							<span>
+								<h3>Admin Dashboard</h3>
+							</span>
+						</div>
 					</div>
+
+					<% if (message.length> 0) { %>
+						<% if (categoryRedirect) { %>
+							<% if (editRedirect) { %>
+								<div class="alert alert-danger col-sm-12">
+									<%= message %><span style="float: right; cursor: pointer;"
+											onclick="location.href='/admin-category/<%= categoryId%>'"><i
+												class="fa fa-times" aria-hidden="true"></span></i>
+								</div>
+								<% } else { %>
+									<div class="alert alert-danger col-sm-12">
+										<%= message %><span style="float: right; cursor: pointer;"
+												onclick="location.href='/admin-category/computers'"><i
+													class="fa fa-times" aria-hidden="true"></span></i>
+									</div>
+									<% } %>
+										<% } else { %>
+											<% if (editRedirect) { %>
+												<div class="alert alert-danger col-sm-12">
+													<%= message %><span style="float: right; cursor: pointer;"
+															onclick="location.href='/admin-subCategory/<%= categoryId%>/<%= subCategoryId%>'"><i
+																class="fa fa-times" aria-hidden="true"></span></i>
+												</div>
+												<% } else { %>
+													<div class="alert alert-danger col-sm-12">
+														<%= message %><span style="float: right; cursor: pointer;"
+																onclick="location.href='/admin-category/<%= categoryId%>'"><i
+																	class="fa fa-times" aria-hidden="true"></span></i>
+													</div>
+													<% } %>
+														<% } %>
+															<% } %>
+
+																<div class="nav flex-column nav-pills mb-30"
+																	id="v-pills-tab" role="tablist"
+																	aria-orientation="vertical">
+																	<a class="nav-link admin-sub-tabs"
+																		id="v-pills-home-tab" data-toggle="pill"
+																		href="#v-pills-home" role="tab"
+																		aria-controls="v-pills-home"
+																		aria-selected="false">Home</a>
+																	<a class="nav-link admin-sub-tabs"
+																		id="v-pills-products-tab" data-toggle="pill"
+																		href="#v-pills-products" role="tab"
+																		aria-controls="v-pills-products"
+																		aria-selected="false">Products</a>
+																	<a class="nav-link admin-sub-tabs"
+																		id="v-pills-brands-tab" data-toggle="pill"
+																		href="#v-pills-brands" role="tab"
+																		aria-controls="v-pills-brands"
+																		aria-selected="false">Brands</a>
+																	<a class="nav-link admin-sub-tabs"
+																		id="v-pills-faq-tab" data-toggle="pill"
+																		href="#v-pills-faq" role="tab"
+																		aria-controls="v-pills-faq"
+																		aria-selected="false">FAQ</a>
+																	<a class="nav-link admin-sub-tabs"
+																		id="v-pills-contact-tab" data-toggle="pill"
+																		href="#v-pills-contact" role="tab"
+																		aria-controls="v-pills-contact"
+																		aria-selected="false">Contact</a>
+																	<a class="nav-link admin-sub-tabs"
+																		id="v-pills-user-tab" data-toggle="pill"
+																		href="#v-pills-user" role="tab"
+																		aria-controls="v-pills-user"
+																		aria-selected="false">Users</a>
+																</div>
+
+																<div class="tab-content" id="v-pills-tabContent">
+																	<div class="tab-pane" id="v-pills-home">
+																		<div class="row">
+																			<p class="cat-heading-text">Home</p>
+																			<hr>
+																			<div class="col-md-4">
+																				<p class="cat-heading-text">Logo</p>
+																				<form role="form" method="post"
+																					action="/addLogo"
+																					enctype="multipart/form-data">
+																					<input style="display: none;"
+																						name="id" value="28">
+																					<span><input type="file"
+																							class="admin-fileWidth"
+																							accept="image/*" name="img"
+																							required></span>
+																					<span><input type="submit"
+																							value="Add Logo"></span>
+																				</form>
+																				<form role="form" method="post"
+																					action="/deleteLogo"
+																					enctype="multipart/form-data">
+																					<input style="display: none;"
+																						name="id" value="logo">
+																					<button type="submit"
+																						class="admin-home-times"
+																						onclick="return confirm('Are you sure you want to delete?')"><i
+																							class="fas fa-times-circle"></i></button>
+																				</form>
+																				<img src="http://15.206.74.51/uploads/<%= logo%>"
+																					class="brands-admin-img-height"
+																					alt="image">
+																			</div>
+																			<div class="col-md-4">
+																				<p class="cat-heading-text">Landing
+																					Image</p>
+																				<form role="form" method="post"
+																					action="/addLanding"
+																					enctype="multipart/form-data">
+																					<input style="display: none;"
+																						name="id" value="29">
+																					<span><input type="file"
+																							class="admin-fileWidth"
+																							accept="image/*" name="img"
+																							required></span>
+																					<span><input type="submit"
+																							value="Add Image"></span>
+																				</form>
+																				<form role="form" method="post"
+																					action="/deleteLanding"
+																					enctype="multipart/form-data">
+																					<input style="display: none;"
+																						name="id" value="landing">
+																					<button type="submit"
+																						class="admin-home-times"
+																						onclick="return confirm('Are you sure you want to delete?')"><i
+																							class="fas fa-times-circle"></i></button>
+																				</form>
+																				<img src="http://15.206.74.51/uploads/<%= landing%>"
+																					class="brands-admin-img-height"
+																					alt="image">
+																			</div>
+																			<div class="col-md-4">
+																				<p class="cat-heading-text">About Image
+																				</p>
+																				<form role="form" method="post"
+																					action="/addAbout"
+																					enctype="multipart/form-data">
+																					<input style="display: none;"
+																						name="id" value="24">
+																					<span><input type="file"
+																							class="admin-fileWidth"
+																							accept="image/*" name="img"
+																							required></span>
+																					<span><input type="submit"
+																							value="Add Image"></span>
+																				</form>
+																				<form role="form" method="post"
+																					action="/deleteAbout"
+																					enctype="multipart/form-data">
+																					<input style="display: none;"
+																						name="id" value="about">
+																					<button type="submit"
+																						class="admin-home-times"
+																						onclick="return confirm('Are you sure you want to delete?')"><i
+																							class="fas fa-times-circle"></i></button>
+																				</form>
+																				<img src="http://15.206.74.51/uploads/<%= about%>"
+																					class="brands-admin-img-height"
+																					alt="image">
+																			</div>
+																		</div>
+																	</div>
+
+																	<div class="tab-pane fade active in"
+																		id="v-pills-products">
+																		<div class="row">
+																			<div class="col-md-3">
+																				<p class="cat-heading-text">Products</p>
+																			</div>
+																			<div class="col-md-4">
+																				<form style="float: right;" role="form"
+																					method="post" action="/addCategory"
+																					enctype="multipart/form-data">
+																					<span>Category : </span>
+																					<input
+																						style="width: 40%; height: 20px;"
+																						title="Start and end with character and use only alphabets, &, -, spaces and / between characters."
+																						pattern="[a-zA-Z][a-zA-Z &/-]+[a-zA-Z]$"
+																						type="text" name="addCategory"
+																						required>
+																					<input type="submit" value="Add">
+																				</form>
+																			</div>
+																			<div class="col-md-5">
+																				<form role="form" method="post"
+																					class="float-right"
+																					action="/deleteCategory"
+																					enctype="multipart/form-data">
+																					<span>Category : </span>
+																					<select class="pd-0" value=""
+																						name="deleteCategory" required>
+																						<option value="">Select</option>
+																						<% for (var i=0; i <
+																							dropdownListCategoryUpdated.length;
+																							i++) { %>
+																							<option
+																								value="<%= dropdownListCategoryUpdated[i].category%>">
+																								<%=
+																									dropdownListCategoryUpdated[i].displayCategory%>
+																							</option>
+																							<% } %>
+																					</select>
+																					<% if (message.length> 0) { %>
+																						<input disabled type="submit"
+																							value="Delete">
+																						<% } else { %>
+																							<input type="submit"
+																								onclick="return confirm('Are you sure you want to delete?')"
+																								value="Delete">
+																							<% } %>
+																				</form>
+																			</div>
+																		</div>
+																		<hr>
+																		<div class="row">
+																			<div class="cat-outer col-md-3">
+																				<p class="cat-heading-text">Categories
+																				</p>
+																				<hr>
+
+																				<% for (var i=0; i <
+																					productCategoryList.length; i++) {
+																					%>
+																					<div class="cat-link">
+																						<a class="cat-li-text"
+																							href='/admin-category/<%= productCategoryList[i].name%>'
+																							role="button">
+																							<i
+																								class="fas fa-caret-right mr-10"></i>
+																							<%=
+																								productCategoryList[i].displayName%>
+																						</a>
+																						<%
+																							if(Object.keys(productCategoryList[i].subCategory).length>
+																							0) { %>
+																							<a data-toggle="collapse"
+																								href="#<%= productCategoryList[i].name%>"><i
+																									class="fa fa-angle-down"
+																									aria-hidden="true"></i></a>
+																							<% } %>
+																								<%
+																									if(Object.keys(productCategoryList[i].subCategory).length>
+																									0) { %>
+																									<div class="collapse"
+																										id=<%=productCategoryList[i].name%>
+																										>
+																										<div
+																											class="card card-body ml-20">
+																											<% for (var
+																												[key,
+																												value]
+																												of
+																												Object.entries(productCategoryList[i].subCategory))
+																												{ %>
+																												<a class="card-sub-li-text"
+																													href="/admin-subCategory/<%= productCategoryList[i].name%>/<%= value%>">
+																													<%=
+																														key%>
+																												</a>
+																												<% } %>
+																										</div>
+																									</div>
+																									<% } %>
+																					</div>
+																					<% } %>
+
+																			</div>
+																			<div class="col-md-9">
+																				<span class="prod-heading-text"><span
+																						class="admin-product-heading">Main
+																						Heading: </span>
+																					<%= displayCategoryId%> &nbsp;&nbsp;
+																				</span>
+																				<span class="cat-total-text"><span
+																						class="admin-product-heading">Total
+																						Products: </span>
+																					<%= products.length %>
+																				</span>
+
+																				<% if(subCategoryId.length !=0) { %>
+																					<span
+																						class="prod-heading-text"><span
+																							class="admin-product-heading">Sub
+																							Heading: </span>
+																						<%= displaySubCategoryId%>
+																					</span>
+																					<form role="form" method="post"
+																						action="/admin-subCategory-add/multiple"
+																						enctype="multipart/form-data">
+																						<input style="display: none;"
+																							type="text"
+																							value="<%= subCategoryId %>"
+																							name="subCategoryId"
+																							required>
+																						<input style="display: none;"
+																							type="text"
+																							value="<%= categoryId %>"
+																							name="categoryId" required>
+																						<input style="display: none;"
+																							type="text"
+																							value="<%= displaySubCategoryId %>"
+																							name="displaySubCategoryId"
+																							required>
+																						<input style="display: inline;"
+																							type="file"
+																							name="multipleRecord"
+																							required>
+																						<% if (message.length> 0) { %>
+																							<input disabled
+																								type="submit"
+																								value="Add">
+																							<% } else { %>
+																								<input type="submit"
+																									value="Add">
+																								<% } %>
+																					</form>
+																					<% } else {%>
+
+																						<div class="row">
+																							<div class="col-md-6">
+																								<form role="form"
+																									method="post"
+																									action="/addSubCategory/<%= categoryId %>"
+																									enctype="multipart/form-data">
+																									<span>Sub Category :
+																									</span>
+																									<input
+																										style="width: 40%; height: 20px;"
+																										title="Start and end with character and use only alphabets, &, -, spaces and / between characters."
+																										pattern="[a-zA-Z][a-zA-Z &/-]+[a-zA-Z]$"
+																										type="text"
+																										name="addSubCategory"
+																										required>
+																									<% if
+																										(message.length>
+																										0) { %>
+																										<input disabled
+																											type="submit"
+																											value="Add">
+																										<% } else { %>
+																											<input
+																												type="submit"
+																												value="Add">
+																											<% } %>
+																								</form>
+																							</div>
+																							<div class="col-md-6">
+																								<form role="form"
+																									method="post"
+																									class="float-right"
+																									action="/deleteSubCategory/<%= categoryId %>"
+																									enctype="multipart/form-data">
+																									<span>Sub Category :
+																									</span>
+																									<select class="pd-0"
+																										value=""
+																										name="deleteSubCategory"
+																										required>
+																										<option
+																											value="">
+																											Select
+																										</option>
+																										<% for (var i=0;
+																											i <
+																											dropdownList.length;
+																											i++) { %>
+																											<option
+																												value="<%= dropdownList[i].name%>">
+																												<%=
+																													dropdownList[i].displayName%>
+																											</option>
+																											<% } %>
+																									</select>
+																									<% if
+																										(message.length>
+																										0) { %>
+																										<input disabled
+																											type="submit"
+																											value="Delete">
+																										<% } else { %>
+																											<input
+																												type="submit"
+																												onclick="return confirm('Are you sure you want to delete?')"
+																												value="Delete"
+																												required>
+																											<% } %>
+																								</form>
+																							</div>
+																						</div>
+
+																						<% } %>
+																							<hr>
+																							<div
+																								class="table-responsive">
+																								<table class="table">
+																									<thead>
+																										<tr>
+																											<!-- <th>Image</th> -->
+																											<% if(subCategoryId.length==0)
+																												{ %>
+																												<th>Sub
+																													Category
+																												</th>
+																												<% } %>
+																													<th>Name
+																													</th>
+																													<th>Description
+																													</th>
+																													<th>Stock
+																														Count
+																													</th>
+																													<th>Action
+																													</th>
+																										</tr>
+																									</thead>
+																									<tbody>
+																										<tr>
+																											<% if
+																												(editProduct)
+																												{ %>
+
+																												<% if(subCategoryId.length==0)
+																													{ %>
+																													<form
+																														role="form"
+																														method="post"
+																														action="/admin-category-add/<%= categoryId %>/<%= editProduct.id%>"
+																														enctype="multipart/form-data">
+
+																														<% if(subCategoryId.length==0)
+																															{
+																															%>
+																															<%
+																																if(dropdownList.length>
+																																0)
+																																{
+																																%>
+																																<td><select
+																																		class="pd-0"
+																																		value=""
+																																		name="subCategory"
+																																		required>
+																																		<option
+																																			value="">
+																																			Select
+																																		</option>
+																																		<% for
+																																			(var
+																																			i=0;
+																																			i
+																																			<
+																																			dropdownList.length;
+																																			i++)
+																																			{
+																																			%>
+																																			<option
+																																				value="<%= dropdownList[i].name%>,<%= dropdownList[i].displayName%>">
+																																				<%=
+																																					dropdownList[i].displayName%>
+																																			</option>
+																																			<% }
+																																				%>
+																																	</select>
+																																</td>
+																																<% } else
+																																	{%>
+																																	<td><select
+																																			class="pd-0"
+																																			disabled
+																																			name="subCategory"
+																																			required>
+																																			<option
+																																				value="">
+																																				No
+																																				Category
+																																				Selected
+																																			</option>
+																																		</select>
+																																	</td>
+																																	<% }
+																																		%>
+																																		<% }
+																																			%>
+
+																																			<td><input
+																																					type="text"
+																																					class="pd-0"
+																																					value="<%= editProduct.name %>"
+																																					name="name"
+																																					required>
+																																			</td>
+																																			<td><input
+																																					type="text"
+																																					class="pd-0"
+																																					value="<%= editProduct.description %>"
+																																					name="description"
+																																					required>
+																																			</td>
+																																			<td><input
+																																					type="number"
+																																					value="<%= editProduct.stockCount %>"
+																																					name="stockCount"
+																																					required>
+																																			</td>
+																																			<% if
+																																				(message.length>
+																																				0)
+																																				{
+																																				%>
+																																				<td><input
+																																						disabled
+																																						class="mr-0"
+																																						type="submit"
+																																						value="Add/Update">
+																																				</td>
+																																				<% } else
+																																					{
+																																					%>
+																																					<td><input
+																																							class="mr-0"
+																																							type="submit"
+																																							value="Add/Update">
+																																					</td>
+																																					<% }
+																																						%>
+																													</form>
+
+																													<% } else
+																														{
+																														%>
+
+																														<form
+																															role="form"
+																															method="post"
+																															action="/admin-subCategory-add/<%= categoryId %>/<%= subCategoryId %>/<%= editProduct.id%>"
+																															enctype="multipart/form-data">
+																															<td
+																																style="display: none;">
+																																<input
+																																	type="text"
+																																	value="<%= displaySubCategoryId %>"
+																																	name="displaySubCategoryId"
+																																	required>
+																															</td>
+																															<td><input
+																																	type="text"
+																																	class="pd-0"
+																																	value="<%= editProduct.name %>"
+																																	name="name"
+																																	required>
+																															</td>
+																															<td><input
+																																	type="text"
+																																	class="pd-0"
+																																	value="<%= editProduct.description %>"
+																																	name="description"
+																																	required>
+																															</td>
+																															<td><input
+																																	type="number"
+																																	class="pd-0"
+																																	value="<%= editProduct.stockCount %>"
+																																	name="stockCount"
+																																	required>
+																															</td>
+																															<% if
+																																(message.length>
+																																0)
+																																{
+																																%>
+																																<td><input
+																																		class="mr-0"
+																																		disabled
+																																		type="submit"
+																																		value="Add/Update">
+																																</td>
+																																<% } else
+																																	{
+																																	%>
+																																	<td><input
+																																			class="mr-0"
+																																			type="submit"
+																																			value="Add/Update">
+																																	</td>
+																																	<% }
+																																		%>
+																														</form>
+																														<% }
+																															%>
+
+																															<% } else
+																																{
+																																%>
+
+																																<% if(subCategoryId.length==0)
+																																	{
+																																	%>
+																																	<form
+																																		role="form"
+																																		method="post"
+																																		action="/admin-category-add/<%= categoryId %>"
+																																		enctype="multipart/form-data">
+																																		<% if(subCategoryId.length==0)
+																																			{
+																																			%>
+																																			<%
+																																				if(dropdownList.length>
+																																				0)
+																																				{
+																																				%>
+																																				<td><select
+																																						class="pd-0"
+																																						name="subCategory"
+																																						value=""
+																																						required>
+																																						<option
+																																							value="">
+																																							Select
+																																						</option>
+																																						<% for
+																																							(var
+																																							i=0;
+																																							i
+																																							<
+																																							dropdownList.length;
+																																							i++)
+																																							{
+																																							%>
+																																							<option
+																																								value="<%= dropdownList[i].name%>,<%= dropdownList[i].displayName%>">
+																																								<%=
+																																									dropdownList[i].displayName%>
+																																							</option>
+																																							<% }
+																																								%>
+																																					</select>
+																																				</td>
+																																				<% } else
+																																					{%>
+																																					<td><select
+																																							class="pd-0"
+																																							disabled
+																																							name="subCategory"
+																																							required>
+																																							<option
+																																								value="">
+																																								No
+																																								Category
+																																								Selected
+																																							</option>
+																																						</select>
+																																					</td>
+																																					<% }
+																																						%>
+																																						<% }
+																																							%>
+
+																																							<td><input
+																																									class="pd-0"
+																																									type="text"
+																																									name="name"
+																																									required>
+																																							</td>
+																																							<td><input
+																																									class="pd-0"
+																																									type="text"
+																																									name="description"
+																																									required>
+																																							</td>
+																																							<td><input
+																																									class="pd-0"
+																																									type="number"
+																																									name="stockCount"
+																																									required>
+																																							</td>
+
+																																							<% if
+																																								(message.length>
+																																								0)
+																																								{
+																																								%>
+																																								<td><input
+																																										disabled
+																																										class="mr-0"
+																																										type="submit"
+																																										value="Add/Update">
+																																								</td>
+																																								<% } else
+																																									{
+																																									%>
+																																									<td><input
+																																											class="mr-0"
+																																											type="submit"
+																																											value="Add/Update">
+																																									</td>
+																																									<% }
+																																										%>
+																																	</form>
+
+																																	<% } else
+																																		{
+																																		%>
+
+																																		<form
+																																			role="form"
+																																			method="post"
+																																			action="/admin-subCategory-add/<%= categoryId %>/<%= subCategoryId %>"
+																																			enctype="multipart/form-data">
+																																			<td
+																																				style="display: none;">
+																																				<input
+																																					type="text"
+																																					value="<%= displaySubCategoryId %>"
+																																					name="displaySubCategoryId"
+																																					required>
+																																			</td>
+																																			<td><input
+																																					class="pd-0"
+																																					type="text"
+																																					name="name"
+																																					required>
+																																			</td>
+																																			<td><input
+																																					class="pd-0"
+																																					type="text"
+																																					name="description"
+																																					required>
+																																			</td>
+																																			<td><input
+																																					class="pd-0"
+																																					type="number"
+																																					name="stockCount"
+																																					required>
+																																			</td>
+
+																																			<% if
+																																				(message.length>
+																																				0)
+																																				{
+																																				%>
+																																				<td><input
+																																						disabled
+																																						class="mr-0"
+																																						type="submit"
+																																						value="Add/Update">
+																																				</td>
+																																				<% } else
+																																					{
+																																					%>
+																																					<td><input
+																																							class="mr-0"
+																																							type="submit"
+																																							value="Add/Update">
+																																					</td>
+																																					<% }
+																																						%>
+																																		</form>
+																																		<% }
+																																			%>
+
+																																			<% }
+																																				%>
+																										</tr>
+
+																									</tbody>
+																								</table>
+																							</div>
+																							<hr>
+																							<% if (products.length> 0) {
+																								%>
+																								<div
+																									class="admin-prod-outer">
+																									<% for(var i in
+																										products) { %>
+																										<div>
+																											<div
+																												class="float-right mb-20">
+
+																												<form
+																													role="form"
+																													style="display: inline;"
+																													method="post"
+																													action="/admin-edit"
+																													enctype="multipart/form-data">
+																													<input
+																														style="display: none;"
+																														name="editId"
+																														value="<%= products[i].id%>"
+																														type="number">
+																													<input
+																														style="display: none;"
+																														name="categoryId"
+																														value="<%= categoryId%>"
+																														type="text">
+																													<input
+																														style="display: none;"
+																														name="subCategoryId"
+																														value="<%= subCategoryId%>"
+																														type="text">
+																													<% if
+																														(message.length>
+																														0)
+																														{
+																														%>
+																														<input
+																															type="submit"
+																															class="admin-edit-button"
+																															value="Edit">
+																														<% } else
+																															{
+																															%>
+																															<input
+																																type="submit"
+																																class="admin-edit-button"
+																																value="Edit">
+																															<% }
+																																%>
+																												</form>
+
+																												<form
+																													role="form"
+																													style="display: inline;"
+																													method="post"
+																													action="/admin-delete"
+																													enctype="multipart/form-data">
+																													<input
+																														style="display: none;"
+																														name="deleteId"
+																														value="<%= products[i].id%>"
+																														type="number">
+																													<input
+																														style="display: none;"
+																														name="categoryId"
+																														value="<%= categoryId%>"
+																														type="text">
+																													<input
+																														style="display: none;"
+																														name="subCategoryId"
+																														value="<%= subCategoryId%>"
+																														type="text">
+																													<% if
+																														(message.length>
+																														0)
+																														{
+																														%>
+																														<td><button
+																																disabled
+																																type="submit">Delete</button>
+																														</td>
+																														<% } else
+																															{
+																															%>
+																															<input
+																																type="submit"
+																																onclick="return confirm('Are you sure you want to delete?')"
+																																class="admin-delete-button"
+																																value="Delete">
+																															<% }
+																																%>
+																												</form>
+																											</div>
+																											<% if(subCategoryId.length==0)
+																												{ %>
+																												<th>Sub
+																													Category
+																												</th>
+																												<%
+																													if(products[i].displaySubCategory.length>
+																													0) {
+																													%>
+																													<p>
+																														<%=
+																															products[i].displaySubCategory%>
+																													</p>
+																													<% } else
+																														{%>
+																														<p>No
+																															sub
+																															category
+																															defined
+																														</p>
+																														<% }
+																															%>
+																															<% }
+																																%>
+																																<p
+																																	class="prod-li-head-text">
+																																	<%=
+																																		products[i].name%>
+																																</p>
+																																<p
+																																	class="prod-li-text">
+																																	<%=
+																																		products[i].description%>
+																																</p>
+																																<p
+																																	class="prod-li-stock-text">
+																																	<%=
+																																		products[i].stockCount%>
+																																		In
+																																		Stock
+																																</p>
+																																</p>
+																																<hr>
+																										</div>
+																										<% } %>
+																								</div>
+																								<% } else {%>
+																									<p>No Data Found</p>
+																									<% } %>
+
+																			</div>
+																		</div>
+																	</div>
+																	<div class="tab-pane fade" id="v-pills-brands">
+																		<div class="row">
+																			<p class="cat-heading-text">Brands</p>
+																			<hr>
+																			<div class="col-md-4">
+																				<form role="form" method="post"
+																					action="/addBrandsHeader"
+																					enctype="multipart/form-data">
+																					<input style="display: none;"
+																						name="id" value="4">
+																					<span><input type="file"
+																							class="admin-fileWidth"
+																							accept="image/*" name="img"
+																							required></span>
+																					<span><input type="submit"
+																							value="Add Image"></span>
+																				</form>
+																				<form role="form" method="post"
+																					action="/deleteBrandsHeader"
+																					enctype="multipart/form-data">
+																					<input style="display: none;"
+																						name="id" value="brands">
+																					<button type="submit"
+																						class="admin-home-times"
+																						onclick="return confirm('Are you sure you want to delete?')"><i
+																							class="fas fa-times-circle"></i></button>
+																				</form>
+																				<img src="http://15.206.74.51/uploads/<%= brandsHeader%>"
+																					class="brands-admin-img-height"
+																					alt="image">
+																			</div>
+																			<div class="col-md-8">
+																				<form role="form" method="post"
+																					action="/addBrands"
+																					enctype="multipart/form-data">
+																					<span><input type="file"
+																							class="fileWidth"
+																							accept="image/*" name="img"
+																							required></span>
+																					<span><input type="submit"
+																							value="Add Brand"></span>
+																				</form>
+																				<div class="brands-outer-admin">
+																					<% if (brands.length> 0 ){ %>
+
+																						<% for (var i=0; i <
+																							brands.length; i++) { %>
+
+																							<span
+																								class="admin-brands-img">
+																								<form role="form"
+																									method="post"
+																									action="/deleteBrands"
+																									enctype="multipart/form-data">
+																									<input
+																										style="display: none;"
+																										name="id"
+																										value="<%= brands[i].id%>">
+																									<button
+																										type="submit"
+																										class="admin-brands-times"
+																										onclick="return confirm('Are you sure you want to delete?')"><i
+																											class="fas fa-times-circle"></i></button>
+																								</form>
+																								<img src="http://15.206.74.51/uploads/<%= brands[i].img%>"
+																									class="brands-admin-img-height"
+																									alt="image">
+																							</span>
+																							</td>
+																							</tr>
+																							<% } %>
+																								<% } else { %>
+																									<p>No Data Found</p>
+																									<% } %>
+																				</div>
+																			</div>
+																		</div>
+																	</div>
+																	<div class="tab-pane fade" id="v-pills-faq">
+																		<div class="row">
+																			<p class="cat-heading-text">FAQ</p>
+																			<hr>
+																			<div class="col-md-4">
+																				<form role="form" method="post"
+																					action="/addFaq"
+																					enctype="multipart/form-data">
+																					<input style="display: none;"
+																						name="id" value="2">
+																					<span><input type="file"
+																							class="admin-fileWidth"
+																							accept="image/*" name="img"
+																							required></span>
+																					<span><input type="submit"
+																							value="Add Image"></span>
+																				</form>
+																				<form role="form" method="post"
+																					action="/deleteFaq"
+																					enctype="multipart/form-data">
+																					<input style="display: none;"
+																						name="id" value="faq">
+																					<button type="submit"
+																						class="admin-home-times"
+																						onclick="return confirm('Are you sure you want to delete?')"><i
+																							class="fas fa-times-circle"></i></button>
+																				</form>
+																				<img src="http://15.206.74.51/uploads/<%= faq%>"
+																					class="brands-admin-img-height"
+																					alt="image">
+																			</div>
+																		</div>
+																	</div>
+																	<div class="tab-pane fade" id="v-pills-contact">
+																		<div class="row">
+																			<p class="cat-heading-text">Contact</p>
+																			<hr>
+																			<div class="col-md-4">
+																				<form role="form" method="post"
+																					action="/addContact"
+																					enctype="multipart/form-data">
+																					<input style="display: none;"
+																						name="id" value="5">
+																					<span><input type="file"
+																							class="admin-fileWidth"
+																							accept="image/*" name="img"
+																							required></span>
+																					<span><input type="submit"
+																							value="Add Image"></span>
+																				</form>
+																				<form role="form" method="post"
+																					action="/deleteContact"
+																					enctype="multipart/form-data">
+																					<input style="display: none;"
+																						name="id" value="contact">
+																					<button type="submit"
+																						class="admin-home-times"
+																						onclick="return confirm('Are you sure you want to delete?')"><i
+																							class="fas fa-times-circle"></i></button>
+																				</form>
+																				<img src="http://15.206.74.51/uploads/<%= contact%>"
+																					class="brands-admin-img-height"
+																					alt="image">
+																			</div>
+																		</div>
+																	</div>
+
+																	<div class="tab-pane fade" id="v-pills-user">
+																		<div class="row">
+																			<p class="cat-heading-text">Users</p>
+																			<hr>
+
+																			<div class="table-responsive">
+																				<table class="table">
+																					<thead>
+																						<tr>
+																							<th>First Name</th>
+																							<th>Last Name</th>
+																							<th>Email-id</th>
+																							<th>API Access</th>
+																							<th>Action</th>
+																						</tr>
+																					</thead>
+																					<tbody>
+
+																						<% if (adminUsers.length> 0 ){
+																							%>
+
+																							<% for (var i=0; i <
+																								adminUsers.length; i++)
+																								{ %>
+																								<tr>
+																									<form
+																										action="/adminUserUpdate"
+																										method="POST"
+																										enctype="multipart/form-data">
+																										<input
+																											style="display: none;"
+																											name="id"
+																											value="<%= adminUsers[i].id%>">
+																										<td>
+																											<p
+																												class="admin-user-name">
+																												<%=
+																													adminUsers[i].first%>
+																											</p>
+																										</td>
+																										<td>
+																											<p
+																												class="admin-user-name">
+																												<%=
+																													adminUsers[i].last%>
+																											</p>
+																										</td>
+																										<td>
+																											<p
+																												class="admin-user-email">
+																												<%=
+																													adminUsers[i].email%>
+																											</p>
+																										</td>
+																										<input
+																											style="display: none;"
+																											type="text"
+																											name="status"
+																											value=<%=adminUsers[i].status
+																											? 0 : 1 %>>
+																										<td><input
+																												class="admin-user-checkbox"
+																												type="checkbox"
+																												value=<%=adminUsers[i].status
+																												? 0 : 1
+																												%>
+																											<%= adminUsers[i].status
+																												? "checked"
+																												: "" %>
+																												>
+																										</td>
+																										<td><input
+																												class="mr-0"
+																												type="submit"
+																												onclick="return confirm('Are you sure you want to update?')"
+																												value="Update">
+																										</td>
+																									</form>
+																								</tr>
+																								<% } %>
+																									<% } else { %>
+																										<p>No Data Found
+																										</p>
+																										<% } %>
+
+																					</tbody>
+																				</table>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+
 				</div>
 
-				<% if (message.length > 0) { %>
-					<% if (categoryRedirect) { %>
-					<% if (editRedirect) { %>
-					<div class="alert alert-danger col-sm-12"><%= message %><span style="float: right; cursor: pointer;"
-							onclick="location.href='/admin-category/<%= categoryId%>'"><i class="fa fa-times"
-								aria-hidden="true"></span></i>
-					</div>
-					<% } else { %>
-					<div class="alert alert-danger col-sm-12"><%= message %><span style="float: right; cursor: pointer;"
-							onclick="location.href='/admin-category/computers'"><i class="fa fa-times"
-								aria-hidden="true"></span></i>
-					</div>
-					<% } %>
-					<% } else { %>
-					<% if (editRedirect) { %>
-					<div class="alert alert-danger col-sm-12"><%= message %><span style="float: right; cursor: pointer;"
-							onclick="location.href='/admin-subCategory/<%= categoryId%>/<%= subCategoryId%>'"><i
-								class="fa fa-times" aria-hidden="true"></span></i>
-					</div>
-					<% } else { %>
-					<div class="alert alert-danger col-sm-12"><%= message %><span style="float: right; cursor: pointer;"
-							onclick="location.href='/admin-category/<%= categoryId%>'"><i class="fa fa-times"
-								aria-hidden="true"></span></i>
-					</div>
-					<% } %>
-					<% } %>
-					<% } %>
-
-					<div class="nav flex-column nav-pills mb-30" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-						<a class="nav-link admin-sub-tabs" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="false">Home</a>
-						<a class="nav-link admin-sub-tabs" id="v-pills-products-tab" data-toggle="pill" href="#v-pills-products" role="tab" aria-controls="v-pills-products" aria-selected="false">Products</a>
-						<a class="nav-link admin-sub-tabs" id="v-pills-brands-tab" data-toggle="pill" href="#v-pills-brands" role="tab" aria-controls="v-pills-brands" aria-selected="false">Brands</a>
-						<a class="nav-link admin-sub-tabs" id="v-pills-faq-tab" data-toggle="pill" href="#v-pills-faq" role="tab" aria-controls="v-pills-faq" aria-selected="false">FAQ</a>
-						<a class="nav-link admin-sub-tabs" id="v-pills-contact-tab" data-toggle="pill" href="#v-pills-contact" role="tab" aria-controls="v-pills-contact" aria-selected="false">Contact</a>
-						<a class="nav-link admin-sub-tabs" id="v-pills-user-tab" data-toggle="pill" href="#v-pills-user" role="tab" aria-controls="v-pills-user" aria-selected="false">Users</a>
-					</div>
-					  
-					  <div class="tab-content" id="v-pills-tabContent">
-						<div class="tab-pane" id="v-pills-home">
-							<div class="row">
-								<p class="cat-heading-text">Home</p>
-								<hr>
-								<div class="col-md-4">
-									<p class="cat-heading-text">Logo</p>
-									<form role="form" method="post" action="/addLogo" enctype="multipart/form-data">
-										<input style="display: none;" name="id" value="28">
-										<span><input type="file" class="admin-fileWidth" accept="image/*" name="img" required></span>
-										<span><input type="submit" value="Add Logo"></span>
-									</form>
-									<form role="form" method="post" action="/deleteLogo" enctype="multipart/form-data">
-									<input style="display: none;" name="id" value="logo">
-									<button type="submit" class="admin-home-times" onclick="return confirm('Are you sure you want to delete?')" ><i class="fas fa-times-circle"></i></button>
-									</form>
-										<img src="http://15.206.74.51:3001/uploads/<%= logo%>" class="brands-admin-img-height" alt="image">
-								</div>
-								<div class="col-md-4">
-									<p class="cat-heading-text">Landing Image</p>
-									<form role="form" method="post" action="/addLanding" enctype="multipart/form-data">
-										<input style="display: none;" name="id" value="29">	
-										<span><input type="file" class="admin-fileWidth" accept="image/*" name="img" required></span>
-										<span><input type="submit" value="Add Image"></span>
-									</form>
-									<form role="form" method="post" action="/deleteLanding" enctype="multipart/form-data">
-									<input style="display: none;" name="id" value="landing">
-									<button type="submit" class="admin-home-times" onclick="return confirm('Are you sure you want to delete?')" ><i class="fas fa-times-circle"></i></button>
-									</form>
-										<img src="http://15.206.74.51:3001/uploads/<%= landing%>" class="brands-admin-img-height" alt="image">
-								</div>
-								<div class="col-md-4">
-									<p class="cat-heading-text">About Image</p>
-									<form role="form" method="post" action="/addAbout" enctype="multipart/form-data">
-										<input style="display: none;" name="id" value="24">	
-										<span><input type="file" class="admin-fileWidth" accept="image/*" name="img" required></span>
-										<span><input type="submit" value="Add Image"></span>
-									</form>
-									<form role="form" method="post" action="/deleteAbout" enctype="multipart/form-data">
-									<input style="display: none;" name="id" value="about">
-									<button type="submit" class="admin-home-times" onclick="return confirm('Are you sure you want to delete?')" ><i class="fas fa-times-circle"></i></button>
-									</form>
-										<img src="http://15.206.74.51:3001/uploads/<%= about%>" class="brands-admin-img-height" alt="image">
-								</div>
-						</div>
-						</div>
-
-						<div class="tab-pane fade active in" id="v-pills-products">
-							<div class="row">
-								<div class="col-md-3">
-									<p class="cat-heading-text">Products</p>
-								</div>
-									<div class="col-md-4">
-										<form style="float: right;" role="form" method="post" action="/addCategory"
-											enctype="multipart/form-data">
-											<span>Category : </span>
-											<input style="width: 40%; height: 20px;"
-												title="Start and end with character and use only alphabets, &, -, spaces and / between characters."
-												pattern="[a-zA-Z][a-zA-Z &/-]+[a-zA-Z]$" type="text" name="addCategory" required>
-														<input type="submit" value="Add">
-										</form>
-									</div>
-									<div class="col-md-5">
-										<form role="form" method="post" class="float-right" action="/deleteCategory" enctype="multipart/form-data">
-											<span>Category : </span>
-											<select class="pd-0" value="" name="deleteCategory" required>
-												<option value="">Select</option>
-												<% for (var i = 0; i < dropdownListCategoryUpdated.length; i++) { %>
-												<option value="<%= dropdownListCategoryUpdated[i].category%>">
-													<%= dropdownListCategoryUpdated[i].displayCategory%></option>
-												<% } %>
-											</select>
-											<% if (message.length > 0) { %>
-												<input disabled type="submit" value="Delete">
-												<% } else { %>
-													<input type="submit" onclick="return confirm('Are you sure you want to delete?')" value="Delete">
-												<% } %>
-										</form>
-									</div>
-							</div>
-								<hr>
-								<div class="row">
-									<div class="cat-outer col-md-3">
-										<p class="cat-heading-text">Categories</p>
-										<hr>
-				
-										<%  for (var i = 0; i < productCategoryList.length; i++) { %>
-										<div class="cat-link">
-											<a class="cat-li-text" href='/admin-category/<%= productCategoryList[i].name%>' role="button">
-												<i class="fas fa-caret-right mr-10"></i>
-												<%= productCategoryList[i].displayName%>
-											</a>
-											<% if(Object.keys(productCategoryList[i].subCategory).length > 0) { %>
-												<a data-toggle="collapse" href="#<%= productCategoryList[i].name%>"><i class="fa fa-angle-down"
-														aria-hidden="true"></i></a>
-												<% } %>
-												<% if(Object.keys(productCategoryList[i].subCategory).length > 0) { %>
-											<div class="collapse" id=<%= productCategoryList[i].name%>>
-												<div class="card card-body ml-20">
-													<% for (var [key, value] of Object.entries(productCategoryList[i].subCategory)) { %>
-													<a class="card-sub-li-text" href="/admin-subCategory/<%= productCategoryList[i].name%>/<%= value%>"><%= key%></a>
-													<% } %>
-												</div>
-											</div>
-											<% } %>
-										</div>
-										<% } %>
-				
-									</div>
-									<div class="col-md-9">
-										<span class="prod-heading-text"><span class="admin-product-heading">Main Heading: </span>
-										<%= displayCategoryId%> &nbsp;&nbsp;</span>
-										<span class="cat-total-text"><span class="admin-product-heading">Total Products: </span>
-										<%= products.length %></span>
-				
-										<% if(subCategoryId.length != 0) { %>
-											<span class="prod-heading-text"><span class="admin-product-heading">Sub Heading: </span>
-											<%= displaySubCategoryId%></span>
-											<form role="form" method="post" action="/admin-subCategory-add/multiple" enctype="multipart/form-data">
-												<input style="display: none;" type="text" value="<%= subCategoryId %>" name="subCategoryId" required>
-												<input style="display: none;" type="text" value="<%= categoryId %>" name="categoryId" required>
-												<input style="display: none;" type="text" value="<%= displaySubCategoryId %>" name="displaySubCategoryId" required>
-												<input style="display: inline;" type="file" name="multipleRecord" required>
-												<% if (message.length > 0) { %>
-													<input disabled type="submit" value="Add">
-													<% } else { %>
-														<input type="submit" value="Add">
-													<% } %>
-											</form>		
-									<% } else {%>
-				
-							<div class="row">
-								<div class="col-md-6">
-									<form role="form" method="post" action="/addSubCategory/<%= categoryId %>" enctype="multipart/form-data">
-										<span>Sub Category : </span>
-										<input style="width: 40%; height: 20px;"
-											title="Start and end with character and use only alphabets, &, -, spaces and / between characters."
-											pattern="[a-zA-Z][a-zA-Z &/-]+[a-zA-Z]$" type="text" name="addSubCategory" required>
-											<% if (message.length > 0) { %>
-												<input disabled type="submit" value="Add">
-												<% } else { %>
-													<input type="submit" value="Add">
-												<% } %>
-									</form>
-								</div>
-								<div class="col-md-6">
-									<form role="form" method="post" class="float-right" action="/deleteSubCategory/<%= categoryId %>" enctype="multipart/form-data">
-										<span>Sub Category : </span>
-										<select class="pd-0" value="" name="deleteSubCategory" required>
-											<option value="">Select</option>
-											<% for (var i = 0; i < dropdownList.length; i++) { %>
-											<option value="<%= dropdownList[i].name%>">
-												<%= dropdownList[i].displayName%></option>
-											<% } %>
-										</select>
-										<% if (message.length > 0) { %>
-											<input disabled type="submit" value="Delete">
-											<% } else { %>
-												<input type="submit" onclick="return confirm('Are you sure you want to delete?')" value="Delete" required>
-											<% } %>
-									</form>
-								</div>
-							</div>
-				
-								<% } %>
-										<hr>
-										<div class="table-responsive">
-											<table class="table">
-												<thead>
-													<tr>
-														<!-- <th>Image</th> -->
-														<% if(subCategoryId.length == 0) { %>
-														<th>Sub Category</th>
-														<% } %>
-														<th>Name</th>
-														<th>Description</th>
-														<th>Stock Count</th>
-														<th>Action</th>
-													</tr>
-												</thead>
-												<tbody>
-													<tr>
-														<% if (editProduct) { %>
-							
-														<% if(subCategoryId.length == 0) { %>
-														<form role="form" method="post" action="/admin-category-add/<%= categoryId %>/<%= editProduct.id%>" enctype="multipart/form-data">
-							
-															<% if(subCategoryId.length == 0) { %>
-															<% if(dropdownList.length > 0) { %>
-															<td><select class="pd-0" value="" name="subCategory" required>
-																	<option value="">Select</option>
-																	<% for (var i = 0; i < dropdownList.length; i++) { %>
-																	<option value="<%= dropdownList[i].name%>,<%= dropdownList[i].displayName%>">
-																		<%= dropdownList[i].displayName%></option>
-																	<% } %>
-																</select></td>
-															<% } else {%>
-															<td><select class="pd-0" disabled name="subCategory" required>
-																	<option value="">No Category Selected</option>
-																</select></td>
-															<% } %>
-															<% } %>
-							
-															<td><input type="text" class="pd-0" value="<%= editProduct.name %>" name="name" required></td>
-															<td><input type="text" class="pd-0" value="<%= editProduct.description %>" name="description" required></td>
-															<td><input type="number" value="<%= editProduct.stockCount %>" name="stockCount" required></td>
-															<% if (message.length > 0) { %>
-															<td><input disabled class="mr-0" type="submit" value="Add/Update"></td>
-															<% } else { %>
-																<td><input class="mr-0" type="submit" value="Add/Update"></td>
-															<% } %>
-														</form>
-							
-														<% } else { %>
-							
-														<form role="form" method="post" action="/admin-subCategory-add/<%= categoryId %>/<%= subCategoryId %>/<%= editProduct.id%>" enctype="multipart/form-data">
-															<td style="display: none;"><input type="text" value="<%= displaySubCategoryId %>" name="displaySubCategoryId" required></td>
-															<td><input type="text" class="pd-0" value="<%= editProduct.name %>" name="name" required></td>
-															<td><input type="text" class="pd-0" value="<%= editProduct.description %>" name="description" required></td>
-															<td><input type="number" class="pd-0" value="<%= editProduct.stockCount %>" name="stockCount" required></td>
-															<% if (message.length > 0) { %>
-															<td><input class="mr-0" disabled type="submit" value="Add/Update"></td>
-															<% } else { %>
-																<td><input class="mr-0" type="submit" value="Add/Update"></td>
-															<% } %>
-														</form>
-														<% } %>
-							
-														<% } else { %>
-							
-														<% if(subCategoryId.length == 0) { %>
-														<form role="form" method="post" action="/admin-category-add/<%= categoryId %>" enctype="multipart/form-data">
-															<% if(subCategoryId.length == 0) { %>
-															<% if(dropdownList.length > 0) { %>
-															<td><select class="pd-0" name="subCategory" value="" required>
-															<option value="">Select</option>
-															<% for (var i = 0; i < dropdownList.length; i++) { %>
-															<option value="<%= dropdownList[i].name%>,<%= dropdownList[i].displayName%>">
-																<%= dropdownList[i].displayName%></option>
-															<% } %>
-															</select></td>
-															<% } else {%>
-															<td><select class="pd-0" disabled name="subCategory" required>
-															<option value="">No Category Selected</option>
-															</select></td>
-															<% } %>
-															<% } %>
-				
-															<td><input class="pd-0" type="text" name="name" required></td>
-															<td><input class="pd-0" type="text" name="description" required></td>
-															<td><input class="pd-0" type="number" name="stockCount" required></td>
-				
-															<% if (message.length > 0) { %>
-																<td><input disabled class="mr-0" type="submit" value="Add/Update"></td>
-																<% } else { %>
-																	<td><input class="mr-0" type="submit" value="Add/Update"></td>
-																<% } %>
-														</form>
-							
-														<% } else { %>
-				
-														<form role="form" method="post"
-															action="/admin-subCategory-add/<%= categoryId %>/<%= subCategoryId %>"
-															enctype="multipart/form-data">
-															<td style="display: none;"><input type="text" value="<%= displaySubCategoryId %>" name="displaySubCategoryId" required></td>
-															<td><input class="pd-0" type="text" name="name" required></td>
-															<td><input class="pd-0" type="text" name="description" required></td>
-															<td><input class="pd-0" type="number" name="stockCount" required></td>
-				
-															<% if (message.length > 0) { %>
-																<td><input disabled class="mr-0" type="submit" value="Add/Update"></td>
-																<% } else { %>
-																	<td><input class="mr-0" type="submit" value="Add/Update"></td>
-																<% } %>
-														</form>
-														<% } %>
-							
-														<% } %>
-													</tr>
-				
-												</tbody>
-											</table>
-										</div>
-										<hr>
-										<% if (products.length > 0) { %>
-										<div class="admin-prod-outer">
-											<% for(var i in products) { %>
-											<div>
-												<div class="float-right mb-20">
-													
-												<form role="form" style="display: inline;" method="post" action="/admin-edit" enctype="multipart/form-data">
-													<input style="display: none;" name="editId" value="<%= products[i].id%>" type="number">
-													<input style="display: none;" name="categoryId" value="<%= categoryId%>" type="text">
-													<input style="display: none;" name="subCategoryId" value="<%= subCategoryId%>" type="text">
-													<% if (message.length > 0) { %>
-													<input type="submit" class="admin-edit-button" value="Edit">
-													<% } else { %>
-													<input type="submit" class="admin-edit-button" value="Edit">
-													<% } %>
-												</form>
-				
-												<form role="form" style="display: inline;" method="post" action="/admin-delete" enctype="multipart/form-data">
-												<input style="display: none;" name="deleteId" value="<%= products[i].id%>" type="number">
-												<input style="display: none;" name="categoryId" value="<%= categoryId%>" type="text">
-												<input style="display: none;" name="subCategoryId" value="<%= subCategoryId%>" type="text">
-												<% if (message.length > 0) { %>
-												<td><button disabled type="submit">Delete</button></td>
-												<% } else { %>
-												<input type="submit" onclick="return confirm('Are you sure you want to delete?')" class="admin-delete-button" value="Delete">
-												<% } %>
-												</form>
-												</div>
-												<% if(subCategoryId.length == 0) { %>
-													<th>Sub Category</th>
-													<% if(products[i].displaySubCategory.length > 0) { %>
-													<p><%= products[i].displaySubCategory%></p>
-													<% } else {%>
-														<p>No sub category defined</p>
-													<% } %>
-													<% } %>
-												<p class="prod-li-head-text"><%= products[i].name%></p>
-												<p class="prod-li-text">
-													<%= products[i].description%>
-												</p>
-												<p class="prod-li-stock-text"><%= products[i].stockCount%> In Stock</p>
-												</p>
-												<hr>
-											</div>
-											<% } %>
-										</div>
-										<% } else {%>
-										<p>No Data Found</p>	
-										<% } %>
-											
-									</div>
-						</div>
-					  </div>
-						<div class="tab-pane fade" id="v-pills-brands">
-							<div class="row">
-								<p class="cat-heading-text">Brands</p>
-								<hr>
-								<div class="col-md-4">
-									<form role="form" method="post" action="/addBrandsHeader" enctype="multipart/form-data">
-										<input style="display: none;" name="id" value="4">
-										<span><input type="file" class="admin-fileWidth" accept="image/*" name="img" required></span>
-										<span><input type="submit" value="Add Image"></span>
-									</form>
-									<form role="form" method="post" action="/deleteBrandsHeader" enctype="multipart/form-data">
-									<input style="display: none;" name="id" value="brands">
-									<button type="submit" class="admin-home-times" onclick="return confirm('Are you sure you want to delete?')" ><i class="fas fa-times-circle"></i></button>
-									</form>
-										<img src="http://15.206.74.51:3001/uploads/<%= brandsHeader%>" class="brands-admin-img-height" alt="image">
-								</div>
-								<div class="col-md-8">
-								<form role="form" method="post" action="/addBrands" enctype="multipart/form-data">
-								<span><input type="file" class="fileWidth" accept="image/*" name="img" required></span>
-								<span><input type="submit" value="Add Brand"></span>
-								</form>
-							<div class="brands-outer-admin">
-								<% if (brands.length> 0 ){ %>
-		
-									<% for (var i=0; i < brands.length; i++) { %>
-		
-									<span class="admin-brands-img"><form role="form" method="post" action="/deleteBrands" enctype="multipart/form-data">
-									<input style="display: none;" name="id" value="<%= brands[i].id%>">
-									<button type="submit" class="admin-brands-times" onclick="return confirm('Are you sure you want to delete?')" ><i class="fas fa-times-circle"></i></button>
-									</form>
-									<img src="http://15.206.74.51:3001/uploads/<%= brands[i].img%>" class="brands-admin-img-height" alt="image">
-									</span>	
-									</td>
-								</tr>
-								<% } %>
-									<% } else { %>
-										<p>No Data Found</p>
-										<% } %>
-							</div>
-						</div>
-						</div>
-						</div>
-						<div class="tab-pane fade" id="v-pills-faq">
-						<div class="row">
-								<p class="cat-heading-text">FAQ</p>
-								<hr>
-								<div class="col-md-4">
-									<form role="form" method="post" action="/addFaq" enctype="multipart/form-data">
-										<input style="display: none;" name="id" value="2">
-										<span><input type="file" class="admin-fileWidth" accept="image/*" name="img" required></span>
-										<span><input type="submit" value="Add Image"></span>
-									</form>
-									<form role="form" method="post" action="/deleteFaq" enctype="multipart/form-data">
-									<input style="display: none;" name="id" value="faq">
-									<button type="submit" class="admin-home-times" onclick="return confirm('Are you sure you want to delete?')" ><i class="fas fa-times-circle"></i></button>
-									</form>
-										<img src="http://15.206.74.51:3001/uploads/<%= faq%>" class="brands-admin-img-height" alt="image">
-								</div>
-						</div>
-						</div>
-						<div class="tab-pane fade" id="v-pills-contact">
-							<div class="row">
-								<p class="cat-heading-text">Contact</p>
-								<hr>
-								<div class="col-md-4">
-									<form role="form" method="post" action="/addContact" enctype="multipart/form-data">
-										<input style="display: none;" name="id" value="5">
-										<span><input type="file" class="admin-fileWidth" accept="image/*" name="img" required></span>
-										<span><input type="submit" value="Add Image"></span>
-									</form>
-									<form role="form" method="post" action="/deleteContact" enctype="multipart/form-data">
-									<input style="display: none;" name="id" value="contact">
-									<button type="submit" class="admin-home-times" onclick="return confirm('Are you sure you want to delete?')" ><i class="fas fa-times-circle"></i></button>
-									</form>
-										<img src="http://15.206.74.51:3001/uploads/<%= contact%>" class="brands-admin-img-height" alt="image">
-								</div>
-						</div>
-						</div>
-
-						<div class="tab-pane fade" id="v-pills-user">
-							<div class="row">
-								<p class="cat-heading-text">Users</p>
-								<hr>
-
-								<div class="table-responsive">
-									<table class="table">
-										<thead>
-											<tr>
-												<th>First Name</th>
-												<th>Last Name</th>
-												<th>Email-id</th>
-												<th>API Access</th>
-												<th>Action</th>
-											</tr>
-										</thead>
-										<tbody>
-
-											<% if (adminUsers.length> 0 ){ %>
-		
-												<% for (var i=0; i < adminUsers.length; i++) { %>
-													<tr>
-														<form action="/adminUserUpdate" method="POST" enctype="multipart/form-data">
-														<input style="display: none;" name="id" value="<%= adminUsers[i].id%>">
-														<td><p class="admin-user-name"><%= adminUsers[i].first%></p></td>
-														<td><p class="admin-user-name"><%= adminUsers[i].last%></p></td>
-														<td><p class="admin-user-email"><%= adminUsers[i].email%></p></td>
-														<input style="display: none;" type="text" name="status" value=<%= adminUsers[i].status ? 0 : 1 %>>
-														<td><input class="admin-user-checkbox" type="checkbox" value= <%= adminUsers[i].status ? 0 : 1 %> <%= adminUsers[i].status ? "checked" : "" %> ></td>
-														<td><input class="mr-0" type="submit" onclick="return confirm('Are you sure you want to update?')" value="Update"></td>
-														</form>
-													</tr>
-											<% } %>
-												<% } else { %>
-													<p>No Data Found</p>
-													<% } %>
-
-											</tbody>
-											</table>
-								</div>
-						</div>
-						</div>
-					  </div>
-
 				</div>
 
-			</div>
+				</div>
+			</section>
 
-			</div>
-		</section>
+			<!--====== End Products Page ======-->
 
-		<!--====== End Products Page ======-->
+			<% } else { %>
+				<!-- <img src="" alt="not found"> -->
+				<div style="text-align: center;">
+					<img style="width: 65%; height: auto;" class="category-img" alt="not found"
+						src="http://15.206.74.51/images/403.jpg" />
+				</div>
+				<% } %>
 
-		<% } else { %>
-			<!-- <img src="" alt="not found"> -->
-			<div style="text-align: center;">
-				<img style="width: 65%; height: auto;" class="category-img" alt="not found"
-					src="http://15.206.74.51:3001/images/403.jpg" />
-			</div>
-			<% } %>
-			
-		<!-- footer -->
+					<!-- footer -->
 
-		<% include footer %>
+					<% include footer %>
 
-			<!-- End Footer -->
+						<!-- End Footer -->
 
 </body>
 

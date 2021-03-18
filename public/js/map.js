@@ -184,7 +184,7 @@ function initMap() {
     var marker = new google.maps.Marker({
         position: new google.maps.LatLng(34.0937458, -118.3614978)
         , animation: google.maps.Animation.BOUNCE
-        , icon: 'http://15.206.74.51:3001/images/map-marker.png'
+        , icon: 'http://15.206.74.51/images/map-marker.png'
         , title: 'ASL'
         , map: map
 

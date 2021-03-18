@@ -585,12 +585,12 @@ h1, h2, h3, h4, h5, h6 {
 .header .owl-carousel .slide1, .header .caption .slide1 {}
 
 .header .owl-carousel .slide2, .header .caption .slide2 {
-  background-image: url(http://15.206.74.51:3001/images/1.jpg);
+  background-image: url(http://15.206.74.51/images/1.jpg);
 }
 
 .header .owl-carousel .slide3, .header .caption .slide3 {
   text-align: right;
-  background-image: url(http://15.206.74.51:3001/images/2.jpg);
+  background-image: url(http://15.206.74.51/images/2.jpg);
 }
 
 .header .owl-theme .owl-dots {
@@ -637,7 +637,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .parallax {
-  background-image: url(http://15.206.74.51:3001/images/0.jpg);
+  background-image: url(http://15.206.74.51/images/0.jpg);
   background-size: cover;
   background-attachment: fixed;
 }
