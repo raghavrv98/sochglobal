@@ -19,8 +19,8 @@ var session = require('express-session');
 
 var connection = mysql.createConnection({
   host: 'localhost',
-  user: 'sochglobaluser',
-  password: 'sochglobal@123',
+  user: 'root',
+  password: 'password',
   database: 'sochglobal'
 });
 
