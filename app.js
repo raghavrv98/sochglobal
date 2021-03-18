@@ -10,19 +10,19 @@ var app = express();
 var mysql = require('mysql')
 var session = require('express-session');
 
-// var connection = mysql.createConnection({
-//   host: 'localhost',
-//   user: 'root',
-//   password: 'root',
-//   database: 'sochglobal'
-// });
-
 var connection = mysql.createConnection({
   host: 'localhost',
   user: 'root',
   password: 'password',
   database: 'sochglobal'
 });
+
+// var connection = mysql.createConnection({
+//   host: 'localhost',
+//   user: 'sochglobaluser',
+//   password: 'sochglobal@123',
+//   database: 'sochglobal'
+// });
 
 connection.connect();
 
