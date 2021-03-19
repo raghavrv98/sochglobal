@@ -41,13 +41,13 @@ INSERT INTO `brands` VALUES (1,'allone.png','2021-03-06 23:11:22'),(2,'apple.png
 UNLOCK TABLES;
 
 --
--- Table structure for table `brandsheader`
+-- Table structure for table `brands_header`
 --
 
-DROP TABLE IF EXISTS `brandsheader`;
+DROP TABLE IF EXISTS `brands_header`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `brandsheader` (
+CREATE TABLE `brands_header` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `img` varchar(255) NOT NULL,
   `type` varchar(255) NOT NULL,
@@ -57,13 +57,13 @@ CREATE TABLE `brandsheader` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `brandsheader`
+-- Dumping data for table `brands_header`
 --
 
-LOCK TABLES `brandsheader` WRITE;
-/*!40000 ALTER TABLE `brandsheader` DISABLE KEYS */;
-INSERT INTO `brandsheader` VALUES (4,'images (1).jfif','brands','2021-03-11 16:04:23');
-/*!40000 ALTER TABLE `brandsheader` ENABLE KEYS */;
+LOCK TABLES `brands_header` WRITE;
+/*!40000 ALTER TABLE `brands_header` DISABLE KEYS */;
+INSERT INTO `brands_header` VALUES (4,'images (1).jfif','brands','2021-03-11 16:04:23');
+/*!40000 ALTER TABLE `brands_header` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -93,13 +93,13 @@ INSERT INTO `career` VALUES (7,'career_page_banner.jpg','career','2021-03-11 15:
 UNLOCK TABLES;
 
 --
--- Table structure for table `careerdescription`
+-- Table structure for table `career_description`
 --
 
-DROP TABLE IF EXISTS `careerdescription`;
+DROP TABLE IF EXISTS `career_description`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `careerdescription` (
+CREATE TABLE `career_description` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `description` varchar(255) NOT NULL,
   `creationTimestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -108,13 +108,13 @@ CREATE TABLE `careerdescription` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `careerdescription`
+-- Dumping data for table `career_description`
 --
 
-LOCK TABLES `careerdescription` WRITE;
-/*!40000 ALTER TABLE `careerdescription` DISABLE KEYS */;
-INSERT INTO `careerdescription` VALUES (1,'No positions','2021-03-11 15:50:03');
-/*!40000 ALTER TABLE `careerdescription` ENABLE KEYS */;
+LOCK TABLES `career_description` WRITE;
+/*!40000 ALTER TABLE `career_description` DISABLE KEYS */;
+INSERT INTO `career_description` VALUES (1,'No positions','2021-03-11 15:50:03');
+/*!40000 ALTER TABLE `career_description` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -324,4 +324,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-03-12  1:25:54
+-- Dump completed on 2021-03-19 23:48:44
