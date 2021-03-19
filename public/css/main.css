@@ -60,21 +60,6 @@ h1,h2,h3,h4,h5,h6{
   margin: 0;
 }
 
-
-/* ----- vertical middle align ----*/
-
-.v-middle {
-    position: absolute;
-    width: 100%;
-    top: 50%;
-    left: 0;
-    -webkit-transform: translate(0%, -50%);
-    -moz-transform: translate(0%, -50%);
-    -ms-transform: translate(0%, -50%);
-    -o-transform: translate(0%, -50%);
-    transform: translate(0%, -50%);
-}
-
 /* ----- Clear-fix & Buttons ----*/
 
 .clear-fix{

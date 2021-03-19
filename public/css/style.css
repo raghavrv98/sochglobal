@@ -7,7 +7,7 @@ body {
   color: #000000 !important;
   font-weight: 300 !important;
   font-family: Helvetica, sans-serif !important;
-  font-size: 20px !important;
+  font-size: 15px !important;
   line-height: 25px !important;
   letter-spacing: 1px !important;
 }
@@ -498,7 +498,6 @@ h1, h2, h3, h4, h5, h6 {
 
 .header {
   height: 100vh;
-  width: 100%;
   overflow: hidden;
   position: relative;
 }
@@ -513,7 +512,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .header .owl-carousel .content, .header .caption .content {
-  height: 100vh !important;
   background-size: cover;
   color: #fff;
   z-index: 999;
@@ -585,12 +583,12 @@ h1, h2, h3, h4, h5, h6 {
 .header .owl-carousel .slide1, .header .caption .slide1 {}
 
 .header .owl-carousel .slide2, .header .caption .slide2 {
-  background-image: url(http://3.141.231.119:80/images/1.jpg);
+  background-image: url(http://3.141.231.119/images/1.jpg);
 }
 
 .header .owl-carousel .slide3, .header .caption .slide3 {
   text-align: right;
-  background-image: url(http://3.141.231.119:80/images/2.jpg);
+  background-image: url(http://3.141.231.119/images/2.jpg);
 }
 
 .header .owl-theme .owl-dots {
@@ -637,7 +635,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .parallax {
-  background-image: url(http://3.141.231.119:80/images/0.jpg);
+  background-image: url(http://3.141.231.119/images/0.jpg);
   background-size: cover;
   background-attachment: fixed;
 }
@@ -1352,6 +1350,21 @@ select {
 
 /* --------------------------------------------------------------- */
 
+
+/* ----- vertical middle align ----*/
+
+.v-middle {
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  left: 0;
+  -webkit-transform: translate(0%, -50%);
+  -moz-transform: translate(0%, -50%);
+  -ms-transform: translate(0%, -50%);
+  -o-transform: translate(0%, -50%);
+  transform: translate(0%, -50%);
+}
+
 /* --------------------------------------------------------------- */
 
 /* Product Page */
@@ -1484,6 +1497,57 @@ select {
   * {
     background-position: 50% 0%;
   }
+
+  h3{
+    font-size: 15px !important;
+  }
+  .header{
+    height: auto !important;
+    margin-bottom: 0px !important;
+  }
+  .header h1 {
+    font-size: 15px !important;
+  }
+  .mt--50{
+    margin-top: -50px !important;
+  }
+  
+  .v-middle {
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    left: 0;
+    -webkit-transform: translate(0%, -50%);
+    -moz-transform: translate(0%, -50%);
+    -ms-transform: translate(0%, -50%);
+    -o-transform: translate(0%, -50%);
+    transform: translate(0%, -50%);
+  }
+  
+  h4{
+    font-size: 25px !important;
+  }
+
+  .hero .intro p{
+    font-size: 15px;
+  }
+
+  .hero .feat .item{
+    min-height: auto;
+  }
+
+  .education-text {
+    position: relative;
+    top: 0px;
+    width: 100%;
+    padding: 0px;
+  }
+
+  .education-img {
+    position: relative;
+    height: 0px;
+  }
+
   .faq-img-custom {
     max-height: 300px;
   }
@@ -1501,7 +1565,7 @@ select {
     background-color: #193761 !important;
   }
   .navbar-default .navbar-toggle .icon-bar {
-    background: #fff;
+    background: #fff !important;
   }
   .navbar-default .navbar-nav li a {
     color: #111 !important;
@@ -1537,9 +1601,51 @@ select {
   .navbar-default .navbar-nav>li {
     margin: 25px 15px 0;
   }
-  .header h1 {
-    font-size: 35px !important;
+
+  .education-text {
+    position: relative;
+    top: 0px;
+    width: 100%;
+    padding: 0px;
   }
+
+  .education-img {
+    position: relative;
+    height: 0px;
+  }
+
+  .header{
+    height: auto !important;
+  }
+
+  .v-middle {
+    position: absolute;
+    width: 100%;
+    top: 60%;
+    left: 0;
+    -webkit-transform: translate(0%, -50%);
+    -moz-transform: translate(0%, -50%);
+    -ms-transform: translate(0%, -50%);
+    -o-transform: translate(0%, -50%);
+    transform: translate(0%, -50%);
+  }
+  
+  .hero .intro p{
+    font-size: 15px;
+  }
+
+  .header h1 {
+    font-size: 15px !important;
+  }
+
+  h4{
+    font-size: 25px !important;
+  }
+
+  .hero .feat .item{
+    min-height: auto;
+  }
+
   .hero, .hero .feat .item, .team .about-team, .skills .item, .price .prc-item, .faq .accordion {
     margin-bottom: 50px !important;
   }

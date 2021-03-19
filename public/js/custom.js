@@ -31,12 +31,12 @@ $(function () {
         if (bodyScroll > 300) {
 
             navbar.addClass("nav-scroll");
-            logo.attr('src', 'http://3.141.231.119:80/uploads/sochGlobalLogo5.png');
+            logo.attr('src', 'http://3.141.231.119/uploads/sochGlobalLogo5.png');
 
         } else {
 
             navbar.removeClass("nav-scroll");
-            logo.attr('src', 'http://3.141.231.119:80/uploads/sochGlobalLogo5.png');
+            logo.attr('src', 'http://3.141.231.119/uploads/sochGlobalLogo5.png');
         }
     });
 
