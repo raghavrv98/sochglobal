@@ -28,7 +28,7 @@ $(function () {
             navbar = $(".navbar-default"),
             logo = $(".navbar .logo> img");
 
-        if (bodyScroll > 300) {
+        if (bodyScroll > 10) {
 
             navbar.addClass("nav-scroll");
             logo.attr('src', 'http://3.141.231.119/uploads/sochGlobalLogo5.png');

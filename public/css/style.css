@@ -10,6 +10,8 @@ body {
   font-size: 15px !important;
   line-height: 25px !important;
   letter-spacing: 1px !important;
+  margin: 0px !important;
+  padding: 0px !important;
 }
 
 .icon-size {
@@ -31,6 +33,10 @@ body {
   top: 550px;
   width: 88%;
   padding: 45px;
+}
+
+.display-prop{
+  display: inline;
 }
 
 .caution-img {
@@ -188,8 +194,8 @@ body {
 
 .float-whatsapp {
   position: fixed;
-  bottom: 40px;
-  right: 40px;
+  bottom: 20px;
+  right: 20px;
   border-radius: 50%;
   width: 60px;
   height: 60px;
@@ -254,7 +260,7 @@ body {
   margin-bottom: 40px;
   padding-bottom: 30px;
   position: relative;
-  margin-top: 40px;
+  margin-top: 80px;
 }
 
 .section-head:after, .section-head:before {
@@ -317,8 +323,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .brands-img-height {
-  height: 150px;
-  margin-bottom: 20px;
+  height: auto;
+  width: 100%;
 }
 
 .brands-admin-img-height {
@@ -338,12 +344,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .admin-brands-img, .brands-img {
-  border: 1px solid;
   border-radius: 15px;
-  margin: 10px;
-  padding: 10px;
-  width: 165px;
   box-shadow: 0px 10px 10px #eee;
+  margin: 10px;
 }
 
 .brands-img {
@@ -358,15 +361,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .admin-faq-times, .admin-career-times, .admin-contact-times, .admin-home-times {
-  position: absolute;
-  top: 25%;
-  right: 45%;
   border: none;
   background: transparent;
-}
-
-.admin-home-times {
-  top: 40%;
 }
 
 .admin-sub-tabs {
@@ -886,7 +882,7 @@ h1, h2, h3, h4, h5, h6 {
 -------------------------------------------------------- */
 
 .info {
-  min-height: 472px;
+  min-height: 418px;
 }
 
 .contact .map-pin-img {
@@ -894,7 +890,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .contact .form, .contact .info {
-  padding: 40px 50px;
+  padding: 20px;
   background: #fff;
   -webkit-box-shadow: 0px 5px 50px #eee;
   box-shadow: 0px 5px 50px #eee;
@@ -953,7 +949,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .contact .info .item h6 {
-  margin-left: 40px;
   letter-spacing: 1px;
   font-weight: 700;
 }
@@ -998,14 +993,8 @@ h1, h2, h3, h4, h5, h6 {
 /* -------------------------------------------------------
                     Footer
 -------------------------------------------------------- */
-
-.row-footer {
-  margin: 0px !important;
-}
-
 .footer-img-height {
   height: 100px;
-  width: 100;
 }
 
 footer {
@@ -1014,8 +1003,7 @@ footer {
 }
 
 footer .main-footer {
-  padding: 50px 0;
-  min-height: 225px;
+  padding: 50px 0 20px;
 }
 
 footer .main-footer .logo {
@@ -1140,7 +1128,6 @@ input[type=button], input[type=submit], input[type=reset] {
   font-size: 13px;
   border-radius: 5px 5px 5px 5px;
   margin: 5px;
-  margin-top: 20px;
 }
 
 input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover {
@@ -1164,7 +1151,7 @@ input[type=text], input[type=email], input[type=password], input[type=number], s
   display: inline-block;
   font-size: 16px;
   margin: 5px;
-  width: 85%;
+  width: 53%;
   border: 2px solid #f6f6f6;
   border-radius: 5px 5px 5px 5px;
   height: 35px;
@@ -1180,7 +1167,7 @@ input[type=text]:placeholder, input[type=email]:placeholder, input[type=password
 }
 
 select {
-  width: 150px;
+  width: 140px;
 }
 
 /* ANIMATIONS */
@@ -1375,6 +1362,7 @@ select {
   color: #742E2E;
   font-weight: 600;
   font-size: 25px;
+  margin-top: 20px;
 }
 
 .cat-link {
@@ -1384,7 +1372,6 @@ select {
 .cat-total-text {
   font-size: 15px;
   float: right;
-  margin-top: 10px;
 }
 
 .cat-li-text {
@@ -1498,6 +1485,49 @@ select {
     background-position: 50% 0%;
   }
 
+  .section-padding {
+    padding: 0px;
+  }
+  
+  .prod-li-head-text {
+    color: #193761;
+    font-size: 20px;
+  }
+
+  .prod-li-text {
+    color: #742E2E;
+    font-size: 15px;
+    font-weight: 400;
+  }
+  
+  .prod-li-head-text {
+    color: #193761;
+    font-size: 20px;
+  }
+
+  .display-prop{
+    display: block;
+  }
+
+  .cat-total-text {
+    font-size: 15px;
+    float: none;
+    margin-bottom: 20px;
+  }
+
+  .nav-pills{
+    text-align: center !important;
+  }
+
+  .admin-fileWidth {
+    width: 220px;
+    margin-top: 40px;
+  }
+
+  .admin-brands-img, .brands-img{
+    margin: 0px;
+  }
+
   h3{
     font-size: 15px !important;
   }
@@ -1600,6 +1630,49 @@ select {
 @media screen and (max-width: 991px) {
   .navbar-default .navbar-nav>li {
     margin: 25px 15px 0;
+  }
+
+  .prod-li-head-text {
+    color: #193761;
+    font-size: 20px;
+  }
+
+  .section-padding {
+    padding: 0px;
+  }
+
+  .prod-li-text {
+    color: #742E2E;
+    font-size: 15px;
+    font-weight: 400;
+  }
+  
+  .prod-li-head-text {
+    color: #193761;
+    font-size: 20px;
+  }
+
+  .display-prop{
+    display: block;
+  }
+
+  .cat-total-text {
+    font-size: 15px;
+    float: none;
+    margin-bottom: 20px;
+  }
+
+  .nav-pills{
+    text-align: center !important;
+  }
+
+  .admin-fileWidth {
+    width: 220px;
+    margin-top: 40px;
+  }
+
+  .admin-brands-img, .brands-img{
+    margin: 0px;
   }
 
   .education-text {
@@ -1715,7 +1788,7 @@ select {
   }
   .about-img {
     height: auto;
-    margin-top: 20px;
+    margin-top: 40px;
     font-family: Helvetica, sans-serif !important;
   }
   .logo {

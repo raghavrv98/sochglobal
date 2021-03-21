@@ -42,33 +42,35 @@
 		<!--====== Portfolio ======-->
 		<section class="portfolio section-padding" data-scroll-index="3">
 			<div class="container">
-				<img class="mb-20" src="http://3.141.231.119/uploads/<%=brandsHeader%>">
-				<!-- <h3>All Brands</h3> -->
+				<div class="row mt-80 mb-40">
+					<img class="mb-20" src="http://3.141.231.119/uploads/<%=brandsHeader%>">
+					<!-- <h3>All Brands</h3> -->
 
-				<!-- <div class="section-head">
+					<!-- <div class="section-head">
 				</div> -->
 
-				<div class="row">
+					<div class="row">
 
-					<!-- gallery -->
-					<div class="gallery text-center">
+						<!-- gallery -->
+						<div class="gallery text-center">
 
-						<% if (brands.length> 0 ){ %>
+							<% if (brands.length> 0 ){ %>
 
-							<% for (var i=0; i < brands.length; i++) { %>
-								<div class="col-md-3 items">
-									<div class="brands-img">
-										<img src="http://3.141.231.119/uploads/<%= brands[i].img%>"
-											class="brands-img-height" alt="image">
-										<div class="item-img-overlay">
+								<% for (var i=0; i < brands.length; i++) { %>
+									<div class="col-md-3 items">
+										<div class="brands-img">
+											<img src="http://3.141.231.119/uploads/<%= brands[i].img%>"
+												class="brands-img-height" alt="image">
+											<div class="item-img-overlay">
+											</div>
 										</div>
 									</div>
-								</div>
-								<% } %>
+									<% } %>
 
-									<% } else { %>
-										<p>No Data Found</p>
-										<% } %>
+										<% } else { %>
+											<p>No Data Found</p>
+											<% } %>
+						</div>
 					</div>
 				</div>
 			</div>

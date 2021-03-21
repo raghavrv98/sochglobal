@@ -139,7 +139,9 @@
 																							class="admin-fileWidth"
 																							accept="image/*" name="img"
 																							required></span>
-																					<span><input type="submit"
+																					<span><input
+																							style="margin: 10px 0px;"
+																							type="submit"
 																							value="Add Logo"></span>
 																				</form>
 																				<form role="form" method="post"
@@ -168,7 +170,9 @@
 																							class="admin-fileWidth"
 																							accept="image/*" name="img"
 																							required></span>
-																					<span><input type="submit"
+																					<span><input
+																							style="margin: 10px 0px;"
+																							type="submit"
 																							value="Add Image"></span>
 																				</form>
 																				<form role="form" method="post"
@@ -197,7 +201,9 @@
 																							class="admin-fileWidth"
 																							accept="image/*" name="img"
 																							required></span>
-																					<span><input type="submit"
+																					<span><input
+																							style="margin: 10px 0px;"
+																							type="submit"
 																							value="Add Image"></span>
 																				</form>
 																				<form role="form" method="post"
@@ -224,25 +230,26 @@
 																				<p class="cat-heading-text">Products</p>
 																			</div>
 																			<div class="col-md-4">
-																				<form style="float: right;" role="form"
-																					method="post" action="/addCategory"
+																				<form role="form" method="post"
+																					action="/addCategory"
 																					enctype="multipart/form-data">
-																					<span>Category : </span>
+																					<div class="display-prop">Category :
+																					</div>
 																					<input
-																						style="width: 40%; height: 20px;"
 																						title="Start and end with character and use only alphabets, &, -, spaces and / between characters."
 																						pattern="[a-zA-Z][a-zA-Z &/-]+[a-zA-Z]$"
 																						type="text" name="addCategory"
 																						required>
-																					<input type="submit" value="Add">
+																					<input style="margin: 10px 0px;"
+																						type="submit" value="Add">
 																				</form>
 																			</div>
 																			<div class="col-md-5">
 																				<form role="form" method="post"
-																					class="float-right"
 																					action="/deleteCategory"
 																					enctype="multipart/form-data">
-																					<span>Category : </span>
+																					<div class="display-prop">Category :
+																					</div>
 																					<select class="pd-0" value=""
 																						name="deleteCategory" required>
 																						<option value="">Select</option>
@@ -378,10 +385,11 @@
 																									method="post"
 																									action="/addSubCategory/<%= categoryId %>"
 																									enctype="multipart/form-data">
-																									<span>Sub Category :
-																									</span>
+																									<div
+																										class="display-prop">
+																										Sub Category :
+																									</div>
 																									<input
-																										style="width: 40%; height: 20px;"
 																										title="Start and end with character and use only alphabets, &, -, spaces and / between characters."
 																										pattern="[a-zA-Z][a-zA-Z &/-]+[a-zA-Z]$"
 																										type="text"
@@ -403,11 +411,12 @@
 																							<div class="col-md-6">
 																								<form role="form"
 																									method="post"
-																									class="float-right"
 																									action="/deleteSubCategory/<%= categoryId %>"
 																									enctype="multipart/form-data">
-																									<span>Sub Category :
-																									</span>
+																									<div
+																										class="display-prop">
+																										Sub Category :
+																									</div>
 																									<select class="pd-0"
 																										value=""
 																										name="deleteSubCategory"
@@ -982,7 +991,9 @@
 																							class="admin-fileWidth"
 																							accept="image/*" name="img"
 																							required></span>
-																					<span><input type="submit"
+																					<span><input
+																							style="margin: 10px 0px;"
+																							type="submit"
 																							value="Add Image"></span>
 																				</form>
 																				<form role="form" method="post"
@@ -1004,10 +1015,12 @@
 																					action="/addBrands"
 																					enctype="multipart/form-data">
 																					<span><input type="file"
-																							class="fileWidth"
+																							class="admin-fileWidth"
 																							accept="image/*" name="img"
 																							required></span>
-																					<span><input type="submit"
+																					<span><input
+																							style="margin: 10px 0px;"
+																							type="submit"
 																							value="Add Brand"></span>
 																				</form>
 																				<div class="brands-outer-admin">
@@ -1060,7 +1073,9 @@
 																							class="admin-fileWidth"
 																							accept="image/*" name="img"
 																							required></span>
-																					<span><input type="submit"
+																					<span><input
+																							style="margin: 10px 0px;"
+																							type="submit"
 																							value="Add Image"></span>
 																				</form>
 																				<form role="form" method="post"
@@ -1093,7 +1108,9 @@
 																							class="admin-fileWidth"
 																							accept="image/*" name="img"
 																							required></span>
-																					<span><input type="submit"
+																					<span><input
+																							style="margin: 10px 0px;"
+																							type="submit"
 																							value="Add Image"></span>
 																				</form>
 																				<form role="form" method="post"
