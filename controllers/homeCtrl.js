@@ -1354,16 +1354,36 @@ module.exports = {
 
             file.mv('public/uploads/' + file.name, function (err) {
 
-                var sql = `update home set img ='${img_name}' where id = ${id}`;
-                var query = db.query(sql, function (err) {
+                var sql = `SELECT COUNT(*) FROM home WHERE id = ${id}`
+                var query = db.query(sql, function (err, check) {
                     if (err) {
                         return res.status(500).send(err);
                     }
                     else {
-                        res.redirect(`/admin-category/computers`);
+                        if (check[0]['COUNT(*)'] && (check[0]['COUNT(*)']).toString() == '1') {
+                            var sql = `update home set img ='${img_name}' where id = ${id}`
+                            var query = db.query(sql, function (err) {
+                                if (err) {
+                                    return res.status(500).send(err);
+                                }
+                                else {
+                                    res.redirect(`/admin-category/computers`);
+                                }
+                            })
+                        }
+                        else {
+                            var sql = `INSERT INTO home (id, img, type)VALUES (${id},'${img_name}','logo')`;
+                            var query = db.query(sql, function (err) {
+                                if (err) {
+                                    return res.status(500).send(err);
+                                }
+                                else {
+                                    res.redirect(`/admin-category/computers`);
+                                }
+                            })
+                        }
                     }
                 })
-
             });
         } else {
 
@@ -1407,13 +1427,34 @@ module.exports = {
 
             file.mv('public/uploads/' + file.name, function (err) {
 
-                var sql = `update home set img ='${img_name}' where id = ${id}`;
-                var query = db.query(sql, function (err) {
+                var sql = `SELECT COUNT(*) FROM home WHERE id = ${id}`
+                var query = db.query(sql, function (err, check) {
                     if (err) {
                         return res.status(500).send(err);
                     }
                     else {
-                        res.redirect(`/admin-category/computers`);
+                        if (check[0]['COUNT(*)'] && (check[0]['COUNT(*)']).toString() == '1') {
+                            var sql = `update home set img ='${img_name}' where id = ${id}`
+                            var query = db.query(sql, function (err) {
+                                if (err) {
+                                    return res.status(500).send(err);
+                                }
+                                else {
+                                    res.redirect(`/admin-category/computers`);
+                                }
+                            })
+                        }
+                        else {
+                            var sql = `INSERT INTO home (id, img, type)VALUES (${id},'${img_name}','landing')`;
+                            var query = db.query(sql, function (err) {
+                                if (err) {
+                                    return res.status(500).send(err);
+                                }
+                                else {
+                                    res.redirect(`/admin-category/computers`);
+                                }
+                            })
+                        }
                     }
                 })
 
@@ -1460,13 +1501,34 @@ module.exports = {
 
             file.mv('public/uploads/' + file.name, function (err) {
 
-                var sql = `update home set img ='${img_name}' where id = ${id}`;
-                var query = db.query(sql, function (err) {
+                var sql = `SELECT COUNT(*) FROM home WHERE id = ${id}`
+                var query = db.query(sql, function (err, check) {
                     if (err) {
                         return res.status(500).send(err);
                     }
                     else {
-                        res.redirect(`/admin-category/computers`);
+                        if (check[0]['COUNT(*)'] && (check[0]['COUNT(*)']).toString() == '1') {
+                            var sql = `update home set img ='${img_name}' where id = ${id}`
+                            var query = db.query(sql, function (err) {
+                                if (err) {
+                                    return res.status(500).send(err);
+                                }
+                                else {
+                                    res.redirect(`/admin-category/computers`);
+                                }
+                            })
+                        }
+                        else {
+                            var sql = `INSERT INTO home (id, img, type)VALUES (${id},'${img_name}','about')`;
+                            var query = db.query(sql, function (err) {
+                                if (err) {
+                                    return res.status(500).send(err);
+                                }
+                                else {
+                                    res.redirect(`/admin-category/computers`);
+                                }
+                            })
+                        }
                     }
                 })
 
@@ -1513,13 +1575,34 @@ module.exports = {
 
             file.mv('public/uploads/' + file.name, function (err) {
 
-                var sql = `update contact set img ='${img_name}' where id = ${id}`;
-                var query = db.query(sql, function (err) {
+                var sql = `SELECT COUNT(*) FROM contact WHERE id = ${id}`
+                var query = db.query(sql, function (err, check) {
                     if (err) {
                         return res.status(500).send(err);
                     }
                     else {
-                        res.redirect(`/admin-category/computers`);
+                        if (check[0]['COUNT(*)'] && (check[0]['COUNT(*)']).toString() == '1') {
+                            var sql = `update contact set img ='${img_name}' where id = ${id}`
+                            var query = db.query(sql, function (err) {
+                                if (err) {
+                                    return res.status(500).send(err);
+                                }
+                                else {
+                                    res.redirect(`/admin-category/computers`);
+                                }
+                            })
+                        }
+                        else {
+                            var sql = `INSERT INTO contact (id, img, type)VALUES (${id},'${img_name}','contact')`;
+                            var query = db.query(sql, function (err) {
+                                if (err) {
+                                    return res.status(500).send(err);
+                                }
+                                else {
+                                    res.redirect(`/admin-category/computers`);
+                                }
+                            })
+                        }
                     }
                 })
 
@@ -1621,16 +1704,36 @@ module.exports = {
 
             file.mv('public/uploads/' + file.name, function (err) {
 
-                var sql = `update faq set img ='${img_name}' where id = ${id}`
-                var query = db.query(sql, function (err) {
+                var sql = `SELECT COUNT(*) FROM faq WHERE id = ${id}`
+                var query = db.query(sql, function (err, check) {
                     if (err) {
                         return res.status(500).send(err);
                     }
                     else {
-                        res.redirect(`/admin-category/computers`);
+                        if (check[0]['COUNT(*)'] && (check[0]['COUNT(*)']).toString() == '1') {
+                            var sql = `update faq set img ='${img_name}' where id = ${id}`
+                            var query = db.query(sql, function (err) {
+                                if (err) {
+                                    return res.status(500).send(err);
+                                }
+                                else {
+                                    res.redirect(`/admin-category/computers`);
+                                }
+                            })
+                        }
+                        else {
+                            var sql = `INSERT INTO faq (id, img, type)VALUES (${id},'${img_name}','faq')`;
+                            var query = db.query(sql, function (err) {
+                                if (err) {
+                                    return res.status(500).send(err);
+                                }
+                                else {
+                                    res.redirect(`/admin-category/computers`);
+                                }
+                            })
+                        }
                     }
                 })
-
             });
         } else {
 
@@ -1674,13 +1777,34 @@ module.exports = {
 
             file.mv('public/uploads/' + file.name, function (err) {
 
-                var sql = `update brands_header set img ='${img_name}' where id = ${id}`
-                var query = db.query(sql, function (err) {
+                var sql = `SELECT COUNT(*) FROM brands_header WHERE id = ${id}`
+                var query = db.query(sql, function (err, check) {
                     if (err) {
                         return res.status(500).send(err);
                     }
                     else {
-                        res.redirect(`/admin-category/computers`);
+                        if (check[0]['COUNT(*)'] && (check[0]['COUNT(*)']).toString() == '1') {
+                            var sql = `update brands_header set img ='${img_name}' where id = ${id}`
+                            var query = db.query(sql, function (err) {
+                                if (err) {
+                                    return res.status(500).send(err);
+                                }
+                                else {
+                                    res.redirect(`/admin-category/computers`);
+                                }
+                            })
+                        }
+                        else {
+                            var sql = `INSERT INTO brands_header (id, img, type)VALUES (${id},'${img_name}','brands_header')`;
+                            var query = db.query(sql, function (err) {
+                                if (err) {
+                                    return res.status(500).send(err);
+                                }
+                                else {
+                                    res.redirect(`/admin-category/computers`);
+                                }
+                            })
+                        }
                     }
                 })
 
@@ -1705,7 +1829,7 @@ module.exports = {
 
         var type = req.body.id;
 
-        var sql = `DELETE FROM brands_header where type="${type}"`;
+        var sql = `DELETE FROM brands_header where id="1"`;
         var query = db.query(sql, function (err) {
             if (err) {
                 return res.status(500).send(err);
