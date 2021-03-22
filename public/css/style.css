@@ -6,7 +6,7 @@
 body {
   color: #000000 !important;
   font-weight: 300 !important;
-  font-family: Helvetica, sans-serif !important;
+  font-family: calabri, sans-serif !important;
   font-size: 15px !important;
   line-height: 25px !important;
   letter-spacing: 1px !important;
@@ -16,7 +16,7 @@ body {
 
 .icon-size {
   font-size: 25px;
-  color: #193761;
+  color: #000000;
 }
 
 .container {
@@ -126,7 +126,7 @@ body {
 .about-img {
   height: auto;
   margin-top: -45px;
-  font-family: Helvetica, sans-serif !important;
+  font-family: calabri, sans-serif !important;
 }
 
 .believe-text {
@@ -176,7 +176,7 @@ body {
 }
 
 .forgot-password:hover {
-  color: #193761;
+  color: #000000;
 }
 
 .prod-outer {
@@ -241,7 +241,7 @@ body {
 }
 
 .mission-icon {
-  background: #193761;
+  background: #000000;
   width: 50px;
   height: 50px;
   text-align: center;
@@ -269,7 +269,7 @@ body {
   bottom: 0;
   width: 50px;
   height: 1px;
-  background: #193761;
+  background: #000000;
 }
 
 .section-head:after {
@@ -292,7 +292,7 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: Helvetica, sans-serif !important;
+  font-family: calabri, sans-serif !important;
 }
 
 .button-top {
@@ -416,7 +416,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .navbar-default .navbar-nav>li .active {
-  color: #193761 !important;
+  color: #000000 !important;
   background: none;
 }
 
@@ -562,13 +562,13 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .header .owl-carousel .content .botn:hover, .header .caption .content .botn:hover {
-  background: #193761;
-  border-color: #193761;
+  background: #000000;
+  border-color: #000000;
 }
 
 .header .owl-carousel .content .botn-bg, .header .caption .content .botn-bg {
-  background: #193761;
-  border-color: #193761;
+  background: #000000;
+  border-color: #000000;
 }
 
 .header .owl-carousel .content .botn-bg:hover, .header .caption .content .botn-bg:hover {
@@ -603,7 +603,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .header .owl-theme .owl-dots .active span {
-  background: #193761;
+  background: #000000;
 }
 
 .header .owl-theme .owl-nav {
@@ -693,7 +693,7 @@ h1, h2, h3, h4, h5, h6 {
   height: 80px;
   line-height: 80px;
   font-size: 50px;
-  color: #193761;
+  color: #000000;
   position: relative;
   overflow: hidden;
 }
@@ -704,7 +704,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .hero .intro h6 {
   margin-bottom: 15px;
-  color: #193761;
+  color: #000000;
   position: absolute;
 }
 
@@ -719,7 +719,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .hero .content .item:hover .icon {
-  color: #193761;
+  color: #000000;
 }
 
 .hero .content .icon {
@@ -734,7 +734,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .hero .content .cont h6 {
-  color: #193761;
+  color: #000000;
   font-weight: 400;
   font-size: 18px;
   margin-bottom: 10px;
@@ -765,11 +765,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .hero .feat .item:hover h5 {
-  color: #193761;
+  color: #000000;
 }
 
 .hero .feat .icon {
-  color: #193761;
+  color: #000000;
   font-size: 40px;
   margin-bottom: 20px;
 }
@@ -821,7 +821,7 @@ h1, h2, h3, h4, h5, h6 {
 .faq .accordion .title span {
   padding-right: 10px;
   font-size: 14px;
-  color: #193761;
+  color: #000000;
 }
 
 .faq .accordion .accordion-info {
@@ -921,8 +921,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .contact .form input[type="submit"]:hover {
-  background: #193761;
-  border-color: #193761;
+  background: #000000;
+  border-color: #000000;
 }
 
 .contact .info h5 {
@@ -944,7 +944,7 @@ h1, h2, h3, h4, h5, h6 {
 .contact .info .item .icon {
   padding-top: 5px;
   font-size: 25px;
-  color: #193761;
+  color: #000000;
   float: left;
 }
 
@@ -1054,7 +1054,7 @@ footer .main-footer p {
   width: 110px;
   border-radius: 0px 20px 20px 0px;
   background-color: white;
-  color: #193761;
+  color: #000000;
   margin-left: -9px;
   position: absolute;
   top: 50px;
@@ -1062,7 +1062,7 @@ footer .main-footer p {
 }
 
 .newsletter-button:hover {
-  background-color: #193761;
+  background-color: #000000;
   color: white;
 }
 
@@ -1111,7 +1111,7 @@ h2.inactive {
 
 h2.active {
   color: #0d0d0d;
-  border-bottom: 2px solid #193761;
+  border-bottom: 2px solid #000000;
 }
 
 /* FORM TYPOGRAPHY*/
@@ -1131,7 +1131,7 @@ input[type=button], input[type=submit], input[type=reset] {
 }
 
 input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover {
-  background-color: #193761;
+  background-color: #000000;
 }
 
 input[type=button]:active, input[type=submit]:active, input[type=reset]:active {
@@ -1159,7 +1159,7 @@ input[type=text], input[type=email], input[type=password], input[type=number], s
 
 input[type=text]:focus, input[type=email]:focus, input[type=password]:focus, input[type=number]:focus, select {
   background-color: #fff;
-  border-bottom: 2px solid #193761;
+  border-bottom: 2px solid #000000;
 }
 
 input[type=text]:placeholder, input[type=email]:placeholder, input[type=password]:placeholder, input[type=number]:placeholder, select {
@@ -1283,7 +1283,7 @@ select {
   bottom: -10px;
   width: 0;
   height: 2px;
-  background-color: #193761;
+  background-color: #000000;
   content: "";
   transition: width 0.2s;
 }
@@ -1359,7 +1359,7 @@ select {
 /* --------------------------------------------------------------- */
 
 .cat-heading-text, .cat-total-text, .prod-heading-text {
-  color: #742E2E;
+  color: #000000;
   font-weight: 600;
   font-size: 25px;
   margin-top: 20px;
@@ -1376,7 +1376,7 @@ select {
 
 .cat-li-text {
   font-size: 25px;
-  color: #193761;
+  color: #000000;
   margin-bottom: 10px !important;
 }
 
@@ -1386,13 +1386,13 @@ select {
 }
 
 .prod-li-text {
-  color: #742E2E;
+  color: #000000;
   font-size: 20px;
   font-weight: 400;
 }
 
 .prod-li-head-text {
-  color: #193761;
+  color: #000000;
   font-size: 30px;
 }
 
@@ -1411,7 +1411,7 @@ select {
 }
 
 .pagination-text {
-  color: #742E2E;
+  color: #000000;
   font-size: 20px;
   text-align: center !important;
 }
@@ -1427,7 +1427,7 @@ select {
 }
 
 .admin-product-heading {
-  color: #989B9C;
+  color: #000000;
   font-size: 15px;
 }
 
@@ -1490,18 +1490,18 @@ select {
   }
   
   .prod-li-head-text {
-    color: #193761;
+    color: #000000;
     font-size: 20px;
   }
 
   .prod-li-text {
-    color: #742E2E;
+    color: #000000;
     font-size: 15px;
     font-weight: 400;
   }
   
   .prod-li-head-text {
-    color: #193761;
+    color: #000000;
     font-size: 20px;
   }
 
@@ -1588,11 +1588,11 @@ select {
     background: none !important;
     margin-top: 15px !important;
     border: none !important;
-    background-color: #193761 !important;
+    background-color: #000000 !important;
   }
   .navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
     background: transparent !important;
-    background-color: #193761 !important;
+    background-color: #000000 !important;
   }
   .navbar-default .navbar-toggle .icon-bar {
     background: #fff !important;
@@ -1633,7 +1633,7 @@ select {
   }
 
   .prod-li-head-text {
-    color: #193761;
+    color: #000000;
     font-size: 20px;
   }
 
@@ -1642,13 +1642,13 @@ select {
   }
 
   .prod-li-text {
-    color: #742E2E;
+    color: #000000;
     font-size: 15px;
     font-weight: 400;
   }
   
   .prod-li-head-text {
-    color: #193761;
+    color: #000000;
     font-size: 20px;
   }
 
@@ -1765,7 +1765,7 @@ select {
     cursor: pointer !important;
   }
   .mission-icon {
-    background: #193761;
+    background: #000000;
     width: 90px;
     height: 90px;
     text-align: center;
@@ -1789,7 +1789,7 @@ select {
   .about-img {
     height: auto;
     margin-top: 40px;
-    font-family: Helvetica, sans-serif !important;
+    font-family: calabri, sans-serif !important;
   }
   .logo {
     width: 100px;
