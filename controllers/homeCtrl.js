@@ -77,6 +77,45 @@ module.exports = {
         })
     },
 
+    postContact: (req, res, next) => {
+        var name = req.body.name
+        var email = req.body.emailId
+        var subject = req.body.subject
+        var message = req.body.message
+
+        var sql = "select * from contact";
+        var query = db.query(sql, function (err, contact) {
+            if (err) {
+                return res.status(500).send(err);
+            }
+            else {
+                contact = contact[0] ? contact[0].img : "noImage.jpg"
+                
+                var sql = "select * from home";
+                var query = db.query(sql, function (err, home) {
+                    if (err) {
+                        return res.status(500).send(err);
+                    }
+                    else {
+                        var logo = home.find(val => val.type == "logo") ? home.find(val => val.type == "logo").img : "noImage.jpg"
+                        var messageBody = "\n Name : " + name + "\n Email-id : " + email + "\n subject : " + subject + "\n Message : " + message
+                        var session = sessionStorage.getItem('username')
+                        
+                        mailUtils.sendMail('rd@sochglobal.com', "Enquiry Mail", messageBody)
+                        message = "Message send successfully. Please wait we will contact you soon."
+
+                        res.render('contact', {
+                            message,
+                            logo,
+                            session,
+                            contact
+                        });
+                    }
+                });
+            }
+        })
+    },
+
     showCareer: (req, res, next) => {
 
         var sql = "select * from career_description";
@@ -157,7 +196,7 @@ module.exports = {
         var messageBodyForCompany = "User Email-id for Subscription: " + email
         var messageBodyForUser = "Thanks for subscribe to SochGlobal. You will now get latest udates."
 
-        mailUtils.sendMail('info@sochglobal.com', "Enquiry Mail", messageBodyForCompany)
+        mailUtils.sendMail('agrawalraghav669@gmail.com', "Enquiry Mail", messageBodyForCompany)
         mailUtils.sendMail(email, "Congratulations", messageBodyForUser)
 
         res.redirect('/');
@@ -1249,7 +1288,7 @@ module.exports = {
                             });
 
                             var messageBody = "\n Hello There, Your password is" + rows.find(val => val.email === email).password
-                            mailUtils.sendMail('info@sochglobal.com', "Password Request", messageBody)
+                            mailUtils.sendMail('agrawalraghav669@gmail.com', "Password Request", messageBody)
                         }
                         else {
                             message = "Email id does not exist.";
@@ -1265,35 +1304,6 @@ module.exports = {
             }
         });
     },
-
-    postContact: (req, res, next) => {
-        var name = req.body.name
-        var email = req.body.emailId
-        var subject = req.body.subject
-        var message = req.body.message
-
-        var sql = "select * from home";
-        var query = db.query(sql, function (err, home) {
-            if (err) {
-                return res.status(500).send(err);
-            }
-            else {
-                var logo = home.find(val => val.type == "logo") ? home.find(val => val.type == "logo").img : "noImage.jpg"
-                var messageBody = "\n Name : " + name + "\n Email-id : " + email + "\n subject : " + subject + "\n Message : " + message
-                var session = sessionStorage.getItem('username')
-
-                mailUtils.sendMail('info@sochglobal.com', "Enquiry Mail", messageBody)
-                message = "Message send successfully. Please wait we will contact you soon."
-
-                res.render('contact', {
-                    message,
-                    logo,
-                    session
-                });
-            }
-        });
-    },
-
     addBrands: (req, res, next) => {
 
         var file = req.files.img;

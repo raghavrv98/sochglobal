@@ -5,14 +5,14 @@ module.exports = {
         var transporter = nodemailer.createTransport({
             service: 'Gmail',
             auth: {
-                user: 'sales@sochglobal.com',
-                pass: 'Srilanka11!'
+                user: 'info@sochglobal.com',
+                pass: 'Soch1234!'
             }
         });
 
         if (msgType === 'html') {
             var mailOptions = {
-                from: 'sales@sochglobal.com',
+                from: 'info@sochglobal.com',
                 to: receiver,
                 subject: subject,
                 html: msg
@@ -20,7 +20,7 @@ module.exports = {
         }
         else {
             var mailOptions = {
-                from: 'sales@sochglobal.com',
+                from: 'info@sochglobal.com',
                 to: receiver,
                 subject: subject,
                 text: msg
