@@ -1261,38 +1261,49 @@ module.exports = {
                             });
                         }
                     }
-                })
-            }
-        });
+               })
+	  }
+	});
     },
 
-    postContact: (req, res, next) => {
-        var name = req.body.name
-        var email = req.body.emailId
-        var subject = req.body.subject
-        var message = req.body.message
+	postContact: (req, res, next) => {
+		        var name = req.body.name
+		        var email = req.body.emailId
+		        var subject = req.body.subject
+		        var message = req.body.message
 
-        var sql = "select * from home";
-        var query = db.query(sql, function (err, home) {
-            if (err) {
-                return res.status(500).send(err);
-            }
-            else {
-                var logo = home.find(val => val.type == "logo") ? home.find(val => val.type == "logo").img : "noImage.jpg"
-                var messageBody = "\n Name : " + name + "\n Email-id : " + email + "\n subject : " + subject + "\n Message : " + message
-                var session = sessionStorage.getItem('username')
+		        var sql = "select * from contact";
+		        var query = db.query(sql, function (err, contact) {
+				            if (err) {
+						                    return res.status(500).send(err);
+						                }
+				            else {
+						                    contact = contact[0] ? contact[0].img : "noImage.jpg"
 
-                mailUtils.sendMail('info@sochglobal.com', "Enquiry Mail", messageBody)
-                message = "Message send successfully. Please wait we will contact you soon."
+						                    var sql = "select * from home";
+						                    var query = db.query(sql, function (err, home) {
+									                        if (err) {
+													                        return res.status(500).send(err);
+													                    }
+									                        else {
+													                        var logo = home.find(val => val.type == "logo") ? home.find(val => val.type == "logo").img : "noImage.jpg"
+													                        var messageBody = "\n Name : " + name + "\n Email-id : " + email + "\n subject : " + subject + "\n Message : " + message
+													                        var session = sessionStorage.getItem('username')
 
-                res.render('contact', {
-                    message,
-                    logo,
-                    session
-                });
-            }
-        });
-    },
+													                        mailUtils.sendMail('rd@sochglobal.com', "Enquiry Mail", messageBody)
+													                        message = "Message send successfully. Please wait we will contact you soon."
+
+													                        res.render('contact', {
+																	                            message,
+																	                            logo,
+																	                            session,
+																	                            contact
+																	                        });
+													                    }
+									                    });
+						                }
+				        })
+		    },
 
     addBrands: (req, res, next) => {
 
