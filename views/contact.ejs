@@ -6,7 +6,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
 	<!-- Global site tag (gtag.js) - Google Analytics -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-199729484-1"></script>
+	<script src="https://www.googletagmanager.com/gtag/js?id=UA-199729484-1" defer></script>
 	<script>
 		window.dataLayer = window.dataLayer || [];
 		function gtag() { dataLayer.push(arguments); }
@@ -41,8 +41,27 @@ gU1wbeQ" />
 	<link rel="stylesheet" href="http://3.141.231.119/css/style.css">
 
 	<!--[if lt IE 9]-->
-	<script src="http://3.141.231.119/js/html5shiv.min.js"></script>
+	<script src="http://3.141.231.119/js/html5shiv.min.js" defer></script>
 	<!--[endif]-->
+
+	<script>
+		function successCallback(token) {
+			document.getElementById("tokenOutput").value = token;
+		}
+	</script>
+
+	<script>
+		function onloadCallback() {
+			grecaptcha.render('divRecaptcha', {
+				sitekey: '6LfnsLYkAAAAAAkCA3MIDTdcUHYu4mQQmxbsRuzX',
+				callback: successCallback
+			});
+		}
+	</script>
+
+	<!-- recpatcha js file -->
+	<script src="https://google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script>
+
 </head>
 
 <body>
@@ -59,84 +78,145 @@ gU1wbeQ" />
 
 				<img class="mt-80 mb-40" src="http://3.141.231.119/uploads/<%=contact%>">
 
-				<% if (message.length> 0) { %>
-					<div class="alert alert-success col-sm-12">
-						<%= message %>
-					</div>
-					<% } %>
-
-						<div class="row mb-35">
-							<div class="col-md-7">
-								<form class="form" method="post" action="/contact">
-									<div class="controls">
-										<div class="row">
-											<div class="col-md-6">
-												<div class="form-group">
-													<input type="text" name="name" placeholder="Name" required>
-												</div>
-											</div>
-
-											<div class="col-md-6">
-												<div class="form-group">
-													<input type="email" name="emailId" placeholder="Email" required>
-												</div>
-											</div>
-										</div>
-										<div class="row">
-											<div class="col-md-12">
-												<div class="form-group">
-													<input type="text" name="subject" placeholder="Subject" required>
-												</div>
-											</div>
-										</div>
-										<div class="row">
-											<div class="col-md-12">
-												<div class="form-group">
-													<textarea name="message" placeholder="Message" rows="4"
-														required></textarea>
-												</div>
-											</div>
-											<div class="col-sm-offset-3 col-sm-6">
-												<input type="submit" value="Send message">
-											</div>
-										</div>
-									</div>
-								</form>
+				<div class="row mb-35">
+					<div class="col-md-7">
+						<% if (message==="false" ) { %>
+							<div class="alert alert-danger col-sm-12">
+								There is an Error. Please contact Admin.
 							</div>
-							<div class="col-md-5">
-								<div class="info">
-									<h5>About Soch Global.</h5>
+							<% } else if (message.length>0) { %>
+								<div class="alert alert-success col-sm-12">
+									<%= message %>
+								</div>
+								<% } else { %>
 
-									<div class="item">
-										<span class="icon icon-phone"></span>
-										<h6 class="sm-titl">Phone :<br> <span>+1 (516) 248-8777</span></h6>
-									</div>
-									<div class="item">
-										<span class="icon icon-map-pin"></span>
-										<h6 class="sm-titl">Address :<br> <span>211 Denton Avenue, New Hyde Park,<br>
-												New York
-												11040</span>
-										</h6>
-									</div>
-									<div class="item">
+									<form class="form" method="post" action="/contact">
+										<div class="controls">
+
+											<div class="row">
+
+												<div class="col-md-12">
+													<div class="form-group">
+														<label for="email">Email<span class="requiredFields">*</span></label>
+														<input type="email" name="email" placeholder="abc@gmail.com">
+													</div>
+												</div>
+
+											</div>
+
+											<div class="row">
+
+												<div class="col-md-6">
+													<div class="form-group">
+														<label for="firstName">First Name<span class="requiredFields">*</span></label>
+														<input type="text" name="firstName" placeholder="First Name">
+													</div>
+												</div>
+
+												<div class="col-md-6">
+													<div class="form-group">
+														<label for="lastName">Last Name</label>
+														<input type="text" name="lastName" placeholder="Last Name">
+													</div>
+												</div>
+
+											</div>
+
+											<div class="row">
+
+												<div class="col-md-6">
+													<div class="form-group">
+														<label for="countryRegion">Country/Region<span class="requiredFields">*</span></label>
+														<input type="text" name="countryRegion" placeholder="Ex - USA">
+													</div>
+												</div>
+
+												<div class="col-md-6">
+													<div class="form-group">
+														<label for="phoneNumber">Phone number (Please start with country code)<span
+																class="requiredFields">*</span></label>
+														<input type="tel" name="phoneNumber" placeholder="Ex - +1 1234567890">
+													</div>
+												</div>
+
+											</div>
+
+											<div class="row">
+												<div class="col-md-12">
+													<div class="form-group">
+														<label for="companyName">Company name<span class="requiredFields">*</span></label>
+														<input type="text" name="companyName" placeholder="Company name">
+													</div>
+												</div>
+											</div>
+
+											<div class="row">
+												<div class="col-md-12">
+													<div class="form-group">
+														<label for="message">Message<span class="requiredFields">*</span></label>
+														<textarea name="message" placeholder="How may i help you?" rows="4"></textarea>
+													</div>
+												</div>
+											</div>
+
+											<div class="row">
+												<div class="col-md-12">
+													<div class="form-group">
+														<label for="websiteUrl">Your Website Url (Optional)</label>
+														<input type="text" name="websiteUrl" placeholder="www.abc.com">
+													</div>
+												</div>
+											</div>
+
+											<div id="divRecaptcha" class="g-recaptcha">
+											</div>
+											<input id="tokenOutput" type="hidden" name="token">
+											<br>
+
+											<div class="row">
+												<div class="col-sm-offset-3 col-sm-6">
+													<input type="submit" value="Send message">
+												</div>
+											</div>
+
+										</div>
+									</form>
+
+									<% } %>
+
+					</div>
+					<div class="col-md-5">
+						<div class="info">
+							<h5>About Soch Global.</h5>
+
+							<div class="item">
+								<span class="icon icon-phone"></span>
+								<h6 class="sm-titl">Phone :<br> <span>+1 (516) 248-8777</span></h6>
+							</div>
+							<div class="item">
+								<span class="icon icon-map-pin"></span>
+								<h6 class="sm-titl">Address :<br> <span>211 Denton Avenue, New Hyde Park,<br>
+										New York
+										11040</span>
+								</h6>
+							</div>
+							<!-- <div class="item">
 										<span class="icon icon-envelope"></span>
 										<h6 class="sm-titl">Email :<br> <span>info@sochglobal.com</span></h6>
-									</div>
-									<!-- social Icon -->
-									<div class="social-icon">
-										<a target="_blank" href="https://twitter.com/SochGlobal_Inc">
-											<span class="bg-twitter"><i class="fab fa-twitter"
-													aria-hidden="true"></i></span>
-										</a>
-										<a target="_blank" href="https://www.instagram.com/sochglobal_inc/">
-											<span class="bg-instagram"><i class="fab fa-instagram"
-													aria-hidden="true"></i></span>
-										</a>
-									</div>
-
-								</div>
+									</div> -->
+							<!-- social Icon -->
+							<div class="social-icon">
+								<a target="_blank" href="https://twitter.com/SochGlobal_Inc">
+									<span class="bg-twitter"><i class="fab fa-twitter" aria-hidden="true"></i></span>
+								</a>
+								<a target="_blank" href="https://www.instagram.com/sochglobal_inc/">
+									<span class="bg-instagram"><i class="fab fa-instagram" aria-hidden="true"></i></span>
+								</a>
 							</div>
+
 						</div>
+					</div>
+				</div>
 			</div>
 		</section>
 		<!--====== End Contact ======-->

@@ -18,11 +18,12 @@
     "lightbox2": "^2.11.0",
     "morgan": "1.9.0",
     "mysql": "^2.18.1",
+    "node-fetch": "^2.6.9",
     "nodemailer": "^6.4.11",
     "sessionstorage": "^0.1.0",
     "thunkify": "^2.1.2"
   },
   "devDependencies": {
-    "nodemon": "^2.0.4"
+    "nodemon": "^2.0.20"
   }
 }

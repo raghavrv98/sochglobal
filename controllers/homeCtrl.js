@@ -5,6 +5,8 @@ const fs = require('fs')
 var sessionStorage = require('sessionstorage');
 
 var message = '';
+const fetch = require('node-fetch');
+
 module.exports = {
 
     showLogin: (req, res, next) => {
@@ -78,42 +80,80 @@ module.exports = {
     },
 
     postContact: (req, res, next) => {
-        var name = req.body.name
-        var email = req.body.emailId
-        var subject = req.body.subject
+
+        var email = req.body.email
+        var firstName = req.body.firstName
+        var lastName = req.body.lastName
+        var phoneNumber = req.body.phoneNumber
+        var countryRegion = req.body.countryRegion
+        var companyName = req.body.companyName
         var message = req.body.message
+        var websiteUrl = req.body.websiteUrl
+        var token = req.body.token
 
-        var sql = "select * from contact";
-        var query = db.query(sql, function (err, contact) {
-            if (err) {
-                return res.status(500).send(err);
-            }
-            else {
-                contact = contact[0] ? contact[0].img : "noImage.jpg"
-                
-                var sql = "select * from home";
-                var query = db.query(sql, function (err, home) {
-                    if (err) {
-                        return res.status(500).send(err);
-                    }
-                    else {
-                        var logo = home.find(val => val.type == "logo") ? home.find(val => val.type == "logo").img : "noImage.jpg"
-                        var messageBody = "\n Name : " + name + "\n Email-id : " + email + "\n subject : " + subject + "\n Message : " + message
-                        var session = sessionStorage.getItem('username')
-                        
-                        mailUtils.sendMail('rd@sochglobal.com', "Enquiry Mail", messageBody)
-                        message = "Message send successfully. Please wait we will contact you soon."
+        // Example POST method implementation:
+        async function postData(url = "") {
 
-                        res.render('contact', {
-                            message,
-                            logo,
-                            session,
-                            contact
-                        });
-                    }
-                });
-            }
-        })
+            const SECRET_KEY = '6LfnsLYkAAAAAHbuJqgzkuIlgD0xk9t9rgI1cxmx';
+            const response = await fetch(url, {
+                method: "POST",
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                body: `secret=${SECRET_KEY}&response=${token}`,
+            });
+            return response.json(); // parses JSON response into native JavaScript objects
+        }
+
+        postData("https://google.com/recaptcha/api/siteverify").then((data) => {
+
+            var sql = "select * from contact";
+            var query = db.query(sql, function (err, contact) {
+                if (err) {
+                    return res.status(500).send(err);
+                }
+                else {
+                    contact = contact[0] ? contact[0].img : "noImage.jpg"
+
+                    var sql = "select * from home";
+                    var query = db.query(sql, function (err, home) {
+                        if (err) {
+                            return res.status(500).send(err);
+                        }
+                        else {
+                            var logo = home.find(val => val.type == "logo") ? home.find(val => val.type == "logo").img : "noImage.jpg"
+
+                            if (data.success) {
+
+                                var messageBody =
+                                    "\n Email : " + email +
+                                    "\n First Name : " + firstName +
+                                    "\n Last Name : " + lastName +
+                                    "\n Country Region : " + countryRegion +
+                                    "\n Phone Number : " + phoneNumber +
+                                    "\n Company Name : " + companyName +
+                                    "\n Message : " + message +
+                                    "\n Website Url : " + websiteUrl
+
+                                var session = sessionStorage.getItem('username')
+
+                                mailUtils.sendMail('rd@sochglobal.com', "Enquiry Mail", messageBody)
+                                message = "Message send successfully. Please wait we will contact you soon."
+
+                            }
+                            else {
+                                message = "false"
+                            }
+
+                            res.render('contact', {
+                                message,
+                                logo,
+                                session,
+                                contact,
+                            });
+                        }
+                    });
+                }
+            })
+        });
     },
 
     showCareer: (req, res, next) => {
@@ -196,7 +236,7 @@ module.exports = {
         var messageBodyForCompany = "User Email-id for Subscription: " + email
         var messageBodyForUser = "Thanks for subscribe to SochGlobal. You will now get latest udates."
 
-        mailUtils.sendMail('agrawalraghav669@gmail.com', "Enquiry Mail", messageBodyForCompany)
+        mailUtils.sendMail('info@sochglobal.com', "Enquiry Mail", messageBodyForCompany)
         mailUtils.sendMail(email, "Congratulations", messageBodyForUser)
 
         res.redirect('/');
@@ -1288,7 +1328,7 @@ module.exports = {
                             });
 
                             var messageBody = "\n Hello There, Your password is" + rows.find(val => val.email === email).password
-                            mailUtils.sendMail('agrawalraghav669@gmail.com', "Password Request", messageBody)
+                            mailUtils.sendMail('info@sochglobal.com', "Password Request", messageBody)
                         }
                         else {
                             message = "Email id does not exist.";
