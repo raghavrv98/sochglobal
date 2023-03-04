@@ -1340,9 +1340,9 @@ module.exports = {
                             });
                         }
                     }
-                })
-            }
-        });
+               })
+	  }
+	});
     },
     addBrands: (req, res, next) => {
 
