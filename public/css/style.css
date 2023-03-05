@@ -1112,11 +1112,12 @@ footer .main-footer p {
   position: absolute;
   top: 50px;
   border: 0px;
+  right: 18%;
 }
 
 .newsletter-button:hover {
-  background-color: #000000;
-  color: white;
+  background-color: #ffffff;
+  color: black;
 }
 
 /* ---------------------------------------------------------- */

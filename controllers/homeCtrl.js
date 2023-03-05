@@ -89,7 +89,7 @@ module.exports = {
         var companyName = req.body.companyName
         var message = req.body.message
         var websiteUrl = req.body.websiteUrl
-        var token = req.body.token
+        let token = req.body.token
 
         // Example POST method implementation:
         async function postData(url = "") {
@@ -231,15 +231,39 @@ module.exports = {
     },
 
     submitNewsLetter: (req, res, next) => {
-        var email = req.body.emailId
 
-        var messageBodyForCompany = "User Email-id for Subscription: " + email
-        var messageBodyForUser = "Thanks for subscribe to SochGlobal. You will now get latest udates."
+        let token = req.body.token
 
-        mailUtils.sendMail('info@sochglobal.com', "Enquiry Mail", messageBodyForCompany)
-        mailUtils.sendMail(email, "Congratulations", messageBodyForUser)
+        // Example POST method implementation:
+        async function postData(url = "") {
 
-        res.redirect('/');
+            const SECRET_KEY = '6LfnsLYkAAAAAHbuJqgzkuIlgD0xk9t9rgI1cxmx';
+            const response = await fetch(url, {
+                method: "POST",
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                body: `secret=${SECRET_KEY}&response=${token}`,
+            });
+            return response.json(); // parses JSON response into native JavaScript objects
+        }
+
+        postData("https://google.com/recaptcha/api/siteverify").then((data) => {
+            console.log('data: ', data);
+
+            if (data?.success) {
+
+                var email = req.body.emailId
+
+                var messageBodyForCompany = "User Email-id for Subscription: " + email
+                var messageBodyForUser = "Thanks for subscribe to SochGlobal. You will now get latest udates."
+
+                mailUtils.sendMail('info@sochglobal.com', "Enquiry Mail", messageBodyForCompany)
+                mailUtils.sendMail(email, "Congratulations", messageBodyForUser)
+            }
+            else {
+                console.log("error--", data?.['error-codes']);
+            }
+            res.redirect('/');
+        })
     },
 
     showBrands: (req, res, next) => {
@@ -1340,9 +1364,9 @@ module.exports = {
                             });
                         }
                     }
-               })
-	  }
-	});
+                })
+            }
+        });
     },
     addBrands: (req, res, next) => {
 

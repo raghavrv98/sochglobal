@@ -27,10 +27,12 @@
 
 			<div class="col-md-5 items">
 				<label style="font-size: 20px;" class="mb-20">Join Our NewsLetter</label>
-				<form method="POST" action="/newsLetter">
+				<form method="POST" action="/newsLetter" id="newsLetter" onsubmit = "return validateFirstName()">
 					<div class="form-group">
-						<input class="newsletter-input" type="email" name="emailId" id='emailId' placeholder="Enter your Email"
-							required>
+						<input class="newsletter-input" type="email" name="emailId" id='emailId' placeholder="Enter your Email" required>
+							<div id="divRecaptcha" class="g-recaptcha">
+							</div>
+							<input id="tokenOutput" type="text" name="token">
 						<button class="newsletter-button">Subscribe</button>
 					</div>
 				</form>
@@ -45,6 +47,41 @@
 					src="https://sochglobal.com/images/whatsapp.png" alt="whatsapp chat bot"></a></div>
 	</div>
 </footer>
+
+<script defer>
+	if ( window.history.replaceState ) {
+			window.history.replaceState( null, null, window.location.href );
+	}
+	
+	function successCallback(token) {
+		document.getElementById("tokenOutput").value = token;
+	}
+</script>
+
+<script defer>
+
+	function validateFirstName() {
+		var x = document.forms["newsLetter"]["token"].value;
+		console.log('x: ', x);
+		if (x == null || x == "") {
+			alert("Please Fill the captcha code");
+			return false;
+		}
+		else {
+			return true;
+		}
+	}
+
+	function onloadCallback() {
+		grecaptcha.render('divRecaptcha', {
+			sitekey: '6LfnsLYkAAAAAAkCA3MIDTdcUHYu4mQQmxbsRuzX',
+			callback: successCallback
+		});
+	}
+</script>
+
+<!-- recpatcha js file -->
+<script defer src="https://google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async></script>
 
 <!-- jQuery -->
 <script defer src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
