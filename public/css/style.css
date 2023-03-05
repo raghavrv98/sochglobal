@@ -1547,7 +1547,8 @@ select {
   margin-left: -50px;
 }
 
-#tokenOutput {
+#tokenOutputFooter,
+#tokenOutputContact {
   display: none;
 }
 

@@ -27,12 +27,13 @@
 
 			<div class="col-md-5 items">
 				<label style="font-size: 20px;" class="mb-20">Join Our NewsLetter</label>
-				<form method="POST" action="/newsLetter" id="newsLetter" onsubmit = "return validateFirstName()">
+				<form method="POST" action="/newsLetter" id="newsLetter" onsubmit="return validateFooterCaptchaCode()">
 					<div class="form-group">
-						<input class="newsletter-input" type="email" name="emailId" id='emailId' placeholder="Enter your Email" required>
-							<div id="divRecaptcha" class="g-recaptcha">
-							</div>
-							<input id="tokenOutput" type="text" name="token">
+						<input class="newsletter-input" type="email" name="emailId" id='emailId' placeholder="Enter your Email"
+							required>
+						<div id="divFooterCaptcha" class="g-recaptcha">
+						</div>
+						<input id="tokenOutputFooter" type="text" name="token">
 						<button class="newsletter-button">Subscribe</button>
 					</div>
 				</form>
@@ -49,20 +50,19 @@
 </footer>
 
 <script defer>
-	if ( window.history.replaceState ) {
-			window.history.replaceState( null, null, window.location.href );
+	if (window.history.replaceState) {
+		window.history.replaceState(null, null, window.location.href);
 	}
-	
-	function successCallback(token) {
-		document.getElementById("tokenOutput").value = token;
+
+	function successCallbackFooter(token) {
+		document.getElementById("tokenOutputFooter").value = token;
 	}
 </script>
 
 <script defer>
 
-	function validateFirstName() {
+	function validateFooterCaptchaCode() {
 		var x = document.forms["newsLetter"]["token"].value;
-		console.log('x: ', x);
 		if (x == null || x == "") {
 			alert("Please Fill the captcha code");
 			return false;
@@ -72,16 +72,16 @@
 		}
 	}
 
-	function onloadCallback() {
-		grecaptcha.render('divRecaptcha', {
+	function onloadCallbackFooter() {
+		grecaptcha.render('divFooterCaptcha', {
 			sitekey: '6LfnsLYkAAAAAAkCA3MIDTdcUHYu4mQQmxbsRuzX',
-			callback: successCallback
+			callback: successCallbackFooter
 		});
 	}
 </script>
 
 <!-- recpatcha js file -->
-<script defer src="https://google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async></script>
+<script defer src="https://google.com/recaptcha/api.js?onload=onloadCallbackFooter&render=explicit" async></script>
 
 <!-- jQuery -->
 <script defer src="https://code.jquery.com/jquery-3.0.0.min.js"></script>

@@ -45,22 +45,21 @@ gU1wbeQ" />
 	<!--[endif]-->
 
 	<script defer>
-		if ( window.history.replaceState ) {
-        window.history.replaceState( null, null, window.location.href );
-    }
-		
-		function successCallback(token) {
-			document.getElementById("tokenOutput").value = token;
+		if (window.history.replaceState) {
+			window.history.replaceState(null, null, window.location.href);
+		}
+
+		function successCallbackContact(token) {
+			document.getElementById("tokenOutputContact").value = token;
 		}
 	</script>
 
 	<script defer>
 
-		function validateFirstName() {
+		function validateContactCaptchaCode() {
 			var x = document.forms["contactUs"]["token"].value;
-			console.log('x: ', x);
 			if (x == null || x == "") {
-				alert("Please Fill the captcha code");
+				alert("Please Fill the captcha code for contact Form");
 				return false;
 			}
 			else {
@@ -68,16 +67,16 @@ gU1wbeQ" />
 			}
 		}
 
-		function onloadCallback() {
-			grecaptcha.render('divRecaptcha', {
+		function onloadCallbackContact() {
+			grecaptcha.render('divContactCaptcha', {
 				sitekey: '6LfnsLYkAAAAAAkCA3MIDTdcUHYu4mQQmxbsRuzX',
-				callback: successCallback
+				callback: successCallbackContact
 			});
 		}
 	</script>
 
 	<!-- recpatcha js file -->
-	<script defer src="https://google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async></script>
+	<script defer src="https://google.com/recaptcha/api.js?onload=onloadCallbackContact&render=explicit" async></script>
 
 </head>
 
@@ -107,7 +106,8 @@ gU1wbeQ" />
 								</div>
 								<% } else { %>
 
-									<form class="form" method="post" action="/contact" id="contactUs" onsubmit = "return validateFirstName()">
+									<form class="form" method="post" action="/contact" id="contactUs"
+										onsubmit="return validateContactCaptchaCode()">
 										<div class="controls">
 
 											<div class="row">
@@ -185,9 +185,9 @@ gU1wbeQ" />
 												</div>
 											</div>
 
-											<div id="divRecaptcha" class="g-recaptcha">
+											<div id="divContactCaptcha" class="g-recaptcha">
 											</div>
-											<input id="tokenOutput" type="text" name="token">
+											<input id="tokenOutputContact" type="text" name="token">
 											<br>
 
 											<div class="row">

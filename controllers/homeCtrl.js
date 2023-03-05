@@ -247,7 +247,6 @@ module.exports = {
         }
 
         postData("https://google.com/recaptcha/api/siteverify").then((data) => {
-            console.log('data: ', data);
 
             if (data.success) {
 
