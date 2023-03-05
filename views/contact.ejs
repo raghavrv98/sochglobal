@@ -6,8 +6,8 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
 	<!-- Global site tag (gtag.js) - Google Analytics -->
-	<script src="https://www.googletagmanager.com/gtag/js?id=UA-199729484-1" defer></script>
-	<script>
+	<script defer src="https://www.googletagmanager.com/gtag/js?id=UA-199729484-1"></script>
+	<script defer>
 		window.dataLayer = window.dataLayer || [];
 		function gtag() { dataLayer.push(arguments); }
 		gtag('js', new Date());
@@ -41,16 +41,34 @@ gU1wbeQ" />
 	<link rel="stylesheet" href="https://sochglobal.com/css/style.css">
 
 	<!--[if lt IE 9]-->
-	<script src="https://sochglobal.com/js/html5shiv.min.js"></script>
+	<script defer src="https://sochglobal.com/js/html5shiv.min.js"></script>
 	<!--[endif]-->
 
-	<script>
+	<script defer>
+		if ( window.history.replaceState ) {
+        window.history.replaceState( null, null, window.location.href );
+    }
+		
 		function successCallback(token) {
+			console.log('token: ', token);
 			document.getElementById("tokenOutput").value = token;
 		}
 	</script>
 
-	<script>
+	<script defer>
+
+		function validateFirstName() {
+			var x = document.forms["contactUs"]["token"].value;
+			console.log('x: ', x);
+			if (x == null || x == "") {
+				alert("Please Fill the captcha code");
+				return false;
+			}
+			else {
+				return true;
+			}
+		}
+
 		function onloadCallback() {
 			grecaptcha.render('divRecaptcha', {
 				sitekey: '6LfnsLYkAAAAAAkCA3MIDTdcUHYu4mQQmxbsRuzX',
@@ -60,7 +78,7 @@ gU1wbeQ" />
 	</script>
 
 	<!-- recpatcha js file -->
-	<script src="https://google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script>
+	<script defer src="https://google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async></script>
 
 </head>
 
@@ -90,7 +108,7 @@ gU1wbeQ" />
 								</div>
 								<% } else { %>
 
-									<form class="form" method="post" action="/contact">
+									<form class="form" method="post" action="/contact" id="contactUs" onsubmit = "return validateFirstName()">
 										<div class="controls">
 
 											<div class="row">
@@ -170,7 +188,7 @@ gU1wbeQ" />
 
 											<div id="divRecaptcha" class="g-recaptcha">
 											</div>
-											<input id="tokenOutput" type="hidden" name="token">
+											<input id="tokenOutput" type="text" name="token" required>
 											<br>
 
 											<div class="row">
