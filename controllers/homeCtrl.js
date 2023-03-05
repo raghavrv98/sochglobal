@@ -249,7 +249,7 @@ module.exports = {
         postData("https://google.com/recaptcha/api/siteverify").then((data) => {
             console.log('data: ', data);
 
-            if (data?.success) {
+            if (data.success) {
 
                 var email = req.body.emailId
 
@@ -260,7 +260,7 @@ module.exports = {
                 mailUtils.sendMail(email, "Congratulations", messageBodyForUser)
             }
             else {
-                console.log("error--", data?.['error-codes']);
+                console.log("error--", data.['error-codes']);
             }
             res.redirect('/');
         })
