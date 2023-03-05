@@ -260,7 +260,7 @@ module.exports = {
                 mailUtils.sendMail(email, "Congratulations", messageBodyForUser)
             }
             else {
-                console.log("error--", data.['error-codes']);
+                console.log("error--", data['error-codes']);
             }
             res.redirect('/');
         })
