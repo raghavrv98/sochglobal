@@ -1887,4 +1887,14 @@ select {
   }
 }
 
+.disclaimer{
+  box-sizing: border-box;
+  padding: 10px;
+  border: 1px solid;
+  border-radius: 10px;
+  background: #e0e0e0;
+  margin: 10px 0px;
+  font-size: 18px;
+}
+
 /* ------------------------------------------------------- */
