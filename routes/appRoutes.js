@@ -18,6 +18,7 @@ router.get('/faq', homeCtrl.showFaq);
 router.get('/career', homeCtrl.showCareer);
 router.get('/forgotPassword', homeCtrl.showForgotPassword);
 router.get('/notFound', homeCtrl.showNotFound);
+router.get('/privacyPolicy', homeCtrl.privacyPolicy);
 
 //dynamic routes
 

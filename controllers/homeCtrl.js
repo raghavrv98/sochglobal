@@ -1949,6 +1949,25 @@ module.exports = {
         })
     },
 
+
+    privacyPolicy: (req, res, next) => {
+        console.log('res: ', res);
+        var sql = "select * from home";
+        var query = db.query(sql, function (err, home) {
+            if (err) {
+                return res.status(500).send(err);
+            }
+            else {
+                var logo = home.find(val => val.type == "logo") ? home.find(val => val.type == "logo").img : "noImage.jpg"
+                var session = sessionStorage.getItem('username')
+                res.render('privacyPolicy', {
+                    logo,
+                    session
+                });
+            }
+        })
+    },
+
     showCaution: (req, res, next) => {
         var sql = "select * from home";
         var query = db.query(sql, function (err, home) {
