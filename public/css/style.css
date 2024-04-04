@@ -3,6 +3,7 @@
 -------------------------------------------------------- */
 
 @import url(main.css);
+
 body {
   color: #000000 !important;
   font-weight: 300 !important;
@@ -67,23 +68,23 @@ body {
   left: 18%;
 }
 
-.privacyPolicy-heading{
-text-align: center;
-margin-bottom: 50px;
-font-size: 24px;
+.privacyPolicy-heading {
+  text-align: center;
+  margin-bottom: 50px;
+  font-size: 24px;
 }
 
-.privacyPolicy-heading u{
+.privacyPolicy-heading u {
   font-weight: 100;
   text-decoration: underline !important;
   text-underline-offset: 15px;
 }
 
-.privacyPolicy-content{
+.privacyPolicy-content {
   font-size: 18px;
 }
 
-.privacyPolicy-content + h6{
+.privacyPolicy-content+h6 {
   font-weight: 900;
   margin-bottom: 10px;
 }
@@ -452,12 +453,12 @@ h6 {
   z-index: 1000;
 }
 
-.navbar-default .navbar-nav > li > a {
+.navbar-default .navbar-nav>li>a {
   margin: 0 !important;
   padding: 0 !important;
 }
 
-.navbar-default .navbar-nav > li {
+.navbar-default .navbar-nav>li {
   font-size: 16px;
   margin: 25px 20px 0;
   padding: 5 10px;
@@ -466,7 +467,7 @@ h6 {
   position: relative;
 }
 
-.navbar-default .navbar-nav > li .active {
+.navbar-default .navbar-nav>li .active {
   color: #000000 !important;
   background: none;
 }
@@ -489,7 +490,7 @@ h6 {
   padding-top: 5px;
 }
 
-.nav-scroll .navbar-nav > li > a {
+.nav-scroll .navbar-nav>li>a {
   color: #111 !important;
 }
 
@@ -497,7 +498,7 @@ h6 {
   margin-top: 0px !important;
 }
 
-.navbar-default .navbar-nav > li > a {
+.navbar-default .navbar-nav>li>a {
   color: #000 !important;
   font-size: 18px;
 }
@@ -639,18 +640,17 @@ h6 {
 }
 
 .header .owl-carousel .slide1,
-.header .caption .slide1 {
-}
+.header .caption .slide1 {}
 
 .header .owl-carousel .slide2,
 .header .caption .slide2 {
-  background-image: url(http://localhost:8080/images/1.jpg);
+  background-image: url(https://sochglobal.com/images/1.jpg);
 }
 
 .header .owl-carousel .slide3,
 .header .caption .slide3 {
   text-align: right;
-  background-image: url(http://localhost:8080/images/2.jpg);
+  background-image: url(https://sochglobal.com/images/2.jpg);
 }
 
 .header .owl-theme .owl-dots {
@@ -697,7 +697,7 @@ h6 {
 }
 
 .parallax {
-  background-image: url(http://localhost:8080/images/0.jpg);
+  background-image: url(https://sochglobal.com/images/0.jpg);
   background-size: cover;
   background-attachment: fixed;
 }
@@ -730,15 +730,13 @@ h6 {
   width: 100%;
   height: 100%;
   background: #8657db !important;
-  background: -webkit-gradient(
-    linear,
-    right top,
-    left top,
-    from(#8657db),
-    to(#2969b0)
-  ) !important;
+  background: -webkit-gradient(linear,
+      right top,
+      left top,
+      from(#8657db),
+      to(#2969b0)) !important;
   background: linear-gradient(to left, #8657db 0%, #2969b0 100%) !important;
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#8657DB', endColorstr='#2969B0', GradientType=1) !important;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#8657DB', endColorstr='#2969B0', GradientType=1) !important;
   opacity: 0.8 !important;
 }
 
@@ -1282,6 +1280,7 @@ select {
     -webkit-transform: translate3d(0, -100%, 0);
     transform: translate3d(0, -100%, 0);
   }
+
   100% {
     opacity: 1;
     -webkit-transform: none;
@@ -1295,6 +1294,7 @@ select {
     -webkit-transform: translate3d(0, -100%, 0);
     transform: translate3d(0, -100%, 0);
   }
+
   100% {
     opacity: 1;
     -webkit-transform: none;
@@ -1308,6 +1308,7 @@ select {
   from {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }
@@ -1317,6 +1318,7 @@ select {
   from {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }
@@ -1326,6 +1328,7 @@ select {
   from {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }
@@ -1631,13 +1634,16 @@ select {
   h3 {
     font-size: 15px !important;
   }
+
   .header {
     height: auto !important;
     margin-bottom: 0px !important;
   }
+
   .header h1 {
     font-size: 15px !important;
   }
+
   .mt--50 {
     margin-top: -50px !important;
   }
@@ -1681,29 +1687,36 @@ select {
   .faq-img-custom {
     max-height: 300px;
   }
+
   .navbar-default .logo {
     margin-left: 20px;
   }
+
   .navbar-default .navbar-toggle {
     background: none !important;
     margin-top: 15px !important;
     border: none !important;
     background-color: #000000 !important;
   }
+
   .navbar-default .navbar-toggle:hover,
   .navbar-default .navbar-toggle:focus {
     background: transparent !important;
     background-color: #000000 !important;
   }
+
   .navbar-default .navbar-toggle .icon-bar {
     background: #fff !important;
   }
+
   .navbar-default .navbar-nav li a {
     color: #111 !important;
   }
-  .navbar-default .navbar-nav > li > a {
+
+  .navbar-default .navbar-nav>li>a {
     padding-bottom: 0 !important;
   }
+
   .navbar-default .navbar-collapse {
     text-align: center;
     border: none;
@@ -1711,25 +1724,30 @@ select {
     background: #fff;
     margin-top: 5px;
   }
+
   .nav-scroll .navbar-toggle .icon-bar {
     background: #111;
   }
+
   .numbers .item {
     margin-bottom: 50px;
   }
+
   .services-tab .tabs-icon li {
     margin-bottom: 30px;
   }
+
   .portfolio .filtering span {
     margin: 10px 2px;
   }
+
   .section-head h3 {
     font-size: 25px;
   }
 }
 
 @media screen and (max-width: 991px) {
-  .navbar-default .navbar-nav > li {
+  .navbar-default .navbar-nav>li {
     margin: 25px 15px 0;
   }
 
@@ -1829,27 +1847,35 @@ select {
   .faq .accordion {
     margin-bottom: 50px !important;
   }
-  .team .owl-theme .owl-nav.disabled + .owl-dots {
+
+  .team .owl-theme .owl-nav.disabled+.owl-dots {
     margin-top: 0;
   }
+
   .numbers .item {
     margin-bottom: 50px;
   }
+
   .services-content .content {
     margin-bottom: 50px;
   }
+
   .portfolio .items {
     width: 100%;
   }
+
   .faq .faq-img {
     margin-top: 50px;
   }
+
   .contact .form {
     margin-bottom: 50px;
   }
+
   .contact .info .item {
     margin-bottom: 30px;
   }
+
   .call-us {
     color: #ffffff;
     float: right;
@@ -1857,6 +1883,7 @@ select {
     font-size: 13px;
     margin-top: 6px;
   }
+
   .whatsapp-contact {
     height: 20px;
     width: 20px;
@@ -1865,12 +1892,14 @@ select {
     top: 20%;
     cursor: pointer !important;
   }
+
   .whatsapp-text {
     top: 1px;
     position: absolute;
     left: 25px;
     cursor: pointer !important;
   }
+
   .mission-icon {
     background: #000000;
     width: 90px;
@@ -1885,6 +1914,7 @@ select {
     color: #fff;
     margin: 42px 0px;
   }
+
   .about-text {
     color: #000;
     position: absolute;
@@ -1893,11 +1923,13 @@ select {
     left: 35%;
     top: -42%;
   }
+
   .about-img {
     height: auto;
     margin-top: 40px;
     font-family: calabri, sans-serif !important;
   }
+
   .logo {
     width: 100px;
     height: 60px;
@@ -1908,7 +1940,7 @@ select {
   }
 }
 
-.disclaimer{
+.disclaimer {
   box-sizing: border-box !important;
   padding: 10px !important;
   border: 1px solid !important;
@@ -1917,5 +1949,18 @@ select {
   margin: 10px 0px !important;
   font-size: 18px !important;
 }
+
+.contact-box-div {
+  display: flex;
+  gap: 15px;
+}
+
+.contact-box-div input {
+  height: 35px;
+  width: 35px;
+  cursor: pointer;
+  align-self: center;
+}
+
 
 /* ------------------------------------------------------- */
