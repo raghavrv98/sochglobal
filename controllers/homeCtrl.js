@@ -1951,7 +1951,6 @@ module.exports = {
 
 
     privacyPolicy: (req, res, next) => {
-        console.log('res: ', res);
         var sql = "select * from home";
         var query = db.query(sql, function (err, home) {
             if (err) {
